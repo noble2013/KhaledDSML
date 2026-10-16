@@ -1,0 +1,45 @@
+[build-system]
+requires = ["setuptools>=70", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "khaled-dsml"
+version = "0.1.0"
+description = "Educational data science, machine learning and big-data analysis toolkit with Arabic interpretations"
+readme = "README.md"
+requires-python = ">=3.10"
+license = "MIT"
+authors = [{name = "Khaled Ali"}]
+keywords = ["data-science", "machine-learning", "big-data", "education", "statistics", "arabic"]
+classifiers = [
+  "Development Status :: 3 - Alpha",
+  "Intended Audience :: Education",
+  "Intended Audience :: Science/Research",
+  "Programming Language :: Python :: 3",
+  "Programming Language :: Python :: 3.10",
+  "Programming Language :: Python :: 3.11",
+  "Programming Language :: Python :: 3.12",
+  "Programming Language :: Python :: 3.13",
+  "Topic :: Scientific/Engineering :: Information Analysis",
+]
+dependencies = ["numpy>=1.26", "pandas>=2.1", "scipy>=1.11", "scikit-learn>=1.3"]
+
+[project.optional-dependencies]
+econometrics = ["statsmodels>=0.14"]
+dask = ["dask[dataframe]>=2024.1"]
+spark = ["pyspark>=3.5"]
+plots = ["matplotlib>=3.8"]
+notebooks = ["jupyterlab>=4", "ipykernel>=6", "openpyxl>=3.1"]
+dev = ["pytest>=8", "build>=1", "twine>=5"]
+all = ["statsmodels>=0.14", "matplotlib>=3.8", "jupyterlab>=4", "ipykernel>=6", "openpyxl>=3.1"]
+
+[project.scripts]
+khaled-dsml = "khaled_dsml.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+pythonpath = ["src"]
+testpaths = ["tests"]
+addopts = "-q"
