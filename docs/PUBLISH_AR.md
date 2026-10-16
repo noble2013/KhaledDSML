@@ -1,6 +1,9 @@
 # دليل نشر KhaledDSML — GitHub وPyPI
 
 **المؤلف:** الأستاذ الدكتور خالد علي (Khaled Ali)  
+**الجامعة:** جامعة الشهيد حمه لخضر – الوادي، الجزائر (University of El Oued, Algeria)  
+**الكلية:** كلية العلوم الاقتصادية والتجارية وعلوم التسيير (Faculty of Economic, Commercial and Management Sciences)  
+**البريد الإلكتروني المهني:** [ali-khaled@univ-eloued.dz](mailto:ali-khaled@univ-eloued.dz)  
 **اسم التوزيع المقترح:** `khaled-dsml`  
 **اسم الاستيراد في Python:** `khaled_dsml`
 
