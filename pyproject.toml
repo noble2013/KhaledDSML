@@ -24,6 +24,11 @@ classifiers = [
 ]
 dependencies = ["numpy>=1.26", "pandas>=2.1", "scipy>=1.11", "scikit-learn>=1.3"]
 
+[project.urls]
+Homepage = "https://github.com/noble2013/KhaledDSML"
+Repository = "https://github.com/noble2013/KhaledDSML"
+Issues = "https://github.com/noble2013/KhaledDSML/issues"
+
 [project.optional-dependencies]
 econometrics = ["statsmodels>=0.14"]
 dask = ["dask[dataframe]>=2024.1"]
