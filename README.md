@@ -117,18 +117,17 @@ print(grade_quiz(questions, answers))
 
 **لإنشاء المستودع ونشر الحزمة بأمان عبر GitHub Actions وTrusted Publishing (بدون حفظ مفتاح API)، راجع [دليل النشر العربي](docs/PUBLISH_AR.md).**
 
-## النشر بعد الاختبار والمراجعة
+## نشر الحزمة على TestPyPI وPyPI باستخدام GitHub Actions
 
-```powershell
-.\.venv\Scripts\python.exe -m pytest
-.\.venv\Scripts\python.exe -m build
-.\.venv\Scripts\python.exe -m twine check dist\*
-.\.venv\Scripts\python.exe -m twine upload --repository testpypi dist\*
-# وبعد اختبار النسخة على TestPyPI ومراجعة الاسم والرخصة:
-.\.venv\Scripts\python.exe -m twine upload dist\*
-```
+هذه المكتبة **غير منشورة بعد** على PyPI أو TestPyPI؛ لا تستخدم أمر `pip install khaled-dsml` من PyPI إلى حين نشرها.
 
-يستلزم رفع الحزمة إنشاء حساب ورمز وصول على TestPyPI/PyPI. لا تحفظ رموز API داخل المشروع أو المستودع العام. لم يُجرَ النشر تلقائيًا.
+1. تابع نتائج الاختبارات والبناء في [GitHub Actions](https://github.com/noble2013/KhaledDSML/actions).
+2. أنشئ حسابًا منفصلًا على [TestPyPI](https://test.pypi.org/account/register/) وبيئة `testpypi` في `Settings → Environments` بمستودع GitHub.
+3. أضف في [TestPyPI Trusted Publishing](https://test.pypi.org/manage/account/publishing/) ناشرًا معلقًا للاسم `khaled-dsml` ومعلومات المستودع `noble2013/KhaledDSML`، وملف `testpypi.yml`، والبيئة `testpypi`.
+4. بعد نجاح البناء، نفذ `Actions → Publish to TestPyPI (manual) → Run workflow`.
+5. بعد نجاح التجربة، أنشئ البيئة `pypi` وناشرًا موثوقًا للاسم نفسه على [PyPI](https://pypi.org/manage/account/publishing/) باستخدام `release.yml` والبيئة `pypi`، ثم انشر GitHub Release يحمل الوسم `v0.1.0`.
+
+يوصى بحماية بيئة `pypi` بمراجعة يدوية. لا تضع كلمات مرور أو رموز API داخل GitHub. اقرأ [دليل النشر العربي](docs/PUBLISH_AR.md) للمزيد.
 
 ## Notes (English)
 
