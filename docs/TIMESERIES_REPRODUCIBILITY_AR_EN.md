@@ -75,7 +75,7 @@ display_bilingual_result(report)
 
 ## اتجاه الخطوط في Jupyter وColab | Readable Arabic / English display
 
-`print()` يعرض العربية باتجاه الطرفية وقد يجعل الخط صغيرًا والمحاذاة من اليسار. لهذا وفرنا `display_bilingual_result()` و`display_bilingual_results()`، للنتيجة الواحدة أو مجموعة النتائج. **التنسيق مطابق للعرض التعليمي المعتمد:** العربية RTL يمين، والإنجليزية LTR يسار؛ كلتاهما بخط عريض 23 بكسل افتراضيًا، دون صناديق أو حدود أو خط فاصل.
+`print()` يعرض العربية باتجاه الطرفية وقد يجعل الخط صغيرًا والمحاذاة من اليسار. لهذا وفرنا `display_bilingual_result()` و`display_bilingual_results()`، للنتيجة الواحدة أو مجموعة النتائج. **الواجهة الافتراضية الجديدة** تعرض لوحة Studio أكاديمية مع بطاقات قياسات، ورسوم اختيارية، والعربية RTL يمينًا والإنجليزية LTR يسارًا. للحصول على الشكل النصي القديم دون بطاقات، مرّر `style="plain"`.
 
 The renderer escapes untrusted text, isolates each language's direction and uses a larger font in notebook cells. It changes **only** the report panel, not the entire Colab page.
 
@@ -91,18 +91,20 @@ display_bilingual_result(report, title="تقييم التنبؤ | Forecast evalu
 save_bilingual_result(trend, "trend_ar_en.html")
 ```
 
-استخدم `font_size=23` افتراضيًا، أو `font_size=24` للعرض في قاعة الدرس. / Default font size is 23 px; 24 px is suitable for classroom presentation.
+حجم الخط الافتراضي في Studio هو 23 بكسل، ويمكن تعديله بـ `font_size=24`. / Studio defaults to 23 px; use 24 px for classroom projection.
 
 ### عرض عدة اختبارات بنفس تنسيق الدفتر | Batch notebook display
 
 ```python
 from khaled_dsml import display_bilingual_results, save_bilingual_results
 
-display_bilingual_results([trend, change, report], font_size=24)
-save_bilingual_results([trend, change, report], "analysis_ar_en.html")
+display_bilingual_results([trend, change, report], font_size=24, style="plain")
+save_bilingual_results([trend, change, report], "analysis_ar_en.html", style="plain")
 ```
 
-كل نتيجة عربية تُعرض يمينًا ويتبعها تفسيرها الإنجليزي يسارًا، مع مسافة فاصلة بين النتائج. لا يلزم عرض `print()` مرتين لكل اختبار. / Each result is shown as right-aligned Arabic followed by left-aligned English. No card borders or extra headings by default.
+في النمط الكلاسيكي `plain`، تُعرض كل نتيجة عربية يمينًا ويتبعها تفسيرها الإنجليزي يسارًا. أما `studio` فهو النمط الإبداعي الافتراضي. لا يلزم عرض `print()` مرتين لكل اختبار. / Each result is shown as right-aligned Arabic followed by left-aligned English. No card borders or extra headings by default.
+
+لشرح التصميم الإبداعي الجديد راجع [Analytics Studio](ANALYTICS_STUDIO_AR_EN.md).
 
 ## تتبع البيانات والبيئة | Dataset integrity and software provenance
 
