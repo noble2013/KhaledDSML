@@ -169,3 +169,12 @@ from .missing_data_sensitivity import mnar_delta_sensitivity
 from .bayesian_binomial import (
     beta_binomial_posterior, beta_binomial_group_comparison,
 )
+
+# Research monitoring / meta-analysis extensions for v0.10
+from .monitoring_advanced import (
+    distribution_drift_profile, welford_streaming_summary, sample_ratio_mismatch,
+)
+from .meta_analysis import (
+    meta_analysis_heterogeneity, meta_analysis_random_effects,
+    egger_small_study_effects_test,
+)
