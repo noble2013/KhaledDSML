@@ -77,6 +77,7 @@ jobs:
         run: |
           python -m twine check dist/*
           python tools/check_distributions.py dist
+          python tools/release_gate.py --target pypi --tag v0.10.0 --prerelease false
       - name: Verify clean wheel AND clean source distribution installs
         timeout-minutes: 24
         run: python tools/install_dist_smoke.py dist
