@@ -1,9 +1,27 @@
 # KhaledDSML — علم البيانات وتعلّم الآلة وتحليل البيانات الضخمة
 
-**الإعداد والتطوير: الأستاذ الدكتور خالد علي (Khaled Ali)**  
-**الجامعة:** جامعة الشهيد حمه لخضر – الوادي، الجزائر (University of El Oued, Algeria)  
-**الكلية:** كلية العلوم الاقتصادية والتجارية وعلوم التسيير (Faculty of Economic, Commercial and Management Sciences)  
-**البريد الإلكتروني المهني:** [ali-khaled@univ-eloued.dz](mailto:ali-khaled@univ-eloued.dz)  
+<div dir="rtl" lang="ar" align="right">
+
+<h2 align="right" dir="rtl">بطاقة المؤلف | Author Profile</h2>
+
+<table dir="rtl">
+  <tr><th align="right">البيان</th><th align="right">المعلومات</th></tr>
+  <tr><td align="right">الاسم</td><td align="right"><strong>خالد</strong></td></tr>
+  <tr><td align="right">اللقب</td><td align="right"><strong>علي</strong></td></tr>
+  <tr><td align="right">الاسم بالإنجليزية</td><td align="left" dir="ltr"><strong>Khaled Ali</strong></td></tr>
+  <tr><td align="right">اللقب الأكاديمي المستخدم في وصف المشروع</td><td align="right"><strong>الأستاذ الدكتور</strong></td></tr>
+  <tr><td align="right">الجامعة</td><td align="right"><strong>جامعة الشهيد حمه لخضر – الوادي، الجزائر</strong></td></tr>
+  <tr><td align="right">الكلية</td><td align="right"><strong>كلية العلوم الاقتصادية والتجارية وعلوم التسيير</strong></td></tr>
+  <tr><td align="right">البريد الإلكتروني المهني</td><td align="left" dir="ltr"><a href="mailto:ali-khaled@univ-eloued.dz">ali-khaled@univ-eloued.dz</a></td></tr>
+</table>
+
+</div>
+
+<div lang="en" dir="ltr" align="left">
+
+<p><strong>Author:</strong> Khaled Ali · <strong>Academic title used in this project:</strong> Professor / Dr. · <strong>University:</strong> University of El Oued (Echahid Hamma Lakhdar), Algeria · <strong>Faculty:</strong> Faculty of Economic, Commercial and Management Sciences.</p>
+
+</div>
 **الإصدار الرسمي الأحدث: [KhaledDSML 0.10.0 على PyPI](https://pypi.org/project/khaled-dsml/0.10.0/) — منشور بتاريخ 17 أكتوبر 2026.**  
 **Latest stable release: [v0.10.0 on GitHub](https://github.com/noble2013/KhaledDSML/releases/tag/v0.10.0) · [Verified PyPI publishing workflow](https://github.com/noble2013/KhaledDSML/actions/runs/39072405164)**
 
@@ -11,7 +29,7 @@
 
 **ملاحظة للمراجعين:** مصدر الكتالوج يتضمن 256/256 ربطًا برمجيًا مرشحًا، لكن عدد البنود المكتملة علميًا غير مُعتمد آليًا. البندان #85 و#117 مرتبطان ببدائل محدودة لا تعادل اختبار القدرة المرصودة أو Vuong في Poisson/ZIP. لا تساوِ بين تغطية الواجهة والاعتماد العلمي.
 
-**[سجل التحقق والنشر للإصدار 0.10.0](docs/FINAL_RELEASE_0_10_AR_EN.md)** · **[اختبارات تشغيل Colab الحقيقية](docs/NOTEBOOK_EXECUTION_RC1_AR_EN.md)** · **[نتائج التدقيق المصدرية](docs/CATALOG_AUDIT_0_10_AR_EN.md)** · **[الضوابط الخاصة بالقدرة وفائض الأصفار](docs/ZERO_INFLATION_AND_PRECISION_0_10_AR_EN.md)**
+**[عرض الوصف في Google Colab باتجاه عربي RTL وإنجليزي LTR](notebooks/24_library_description_rtl_author.ipynb)** · **[دليل العرض ثنائي اللغة](docs/COLAB_DESCRIPTION_RTL_AR_EN.md)** · **[سجل التحقق والنشر للإصدار 0.10.0](docs/FINAL_RELEASE_0_10_AR_EN.md)** · **[اختبارات تشغيل Colab الحقيقية](docs/NOTEBOOK_EXECUTION_RC1_AR_EN.md)** · **[نتائج التدقيق المصدرية](docs/CATALOG_AUDIT_0_10_AR_EN.md)** · **[الضوابط الخاصة بالقدرة وفائض الأصفار](docs/ZERO_INFLATION_AND_PRECISION_0_10_AR_EN.md)**
 
 حزمة Python تعليمية للمقاييس التالية:
 
