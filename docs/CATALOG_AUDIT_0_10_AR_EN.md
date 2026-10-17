@@ -28,9 +28,9 @@ The reference tracker contains exactly **256 items across 12 domains**. Its hist
 
 ## 256-row trace | جدول مطابقة جميع البنود
 
-A machine-assisted **source-trace of all 256 rows** is preserved in [CATALOG_256_SOURCE_TRACE_V010.tsv](CATALOG_256_SOURCE_TRACE_V010.tsv). It conservatively identifies **64 rows with exact public API-name candidates** from their tracker notes (plus explicit v0.9/v0.10 differences); **192 rows have no exact match recorded**. **These figures are not completion/absence totals:** the original notes are stale and a compound row may contain both implemented and missing submethods. The TSV preserves each original tracker line verbatim for subsequent independent scientific sign-off.
+A machine-assisted and manually enriched **source-trace of all 256 rows** is preserved in [CATALOG_256_SOURCE_TRACE_V010.tsv](CATALOG_256_SOURCE_TRACE_V010.tsv). It identifies **182 rows with public API-name candidates** after source review (initial tracker notes plus 118 manually mapped catalogue rows); **74 rows currently have no public API-name candidate**. **These figures are not completion/absence totals:** the original notes are stale and a compound row may contain both implemented and missing submethods. The TSV preserves each original tracker line verbatim for subsequent independent scientific sign-off. Importability and test-file references can be recomputed with `python tools/catalogue_audit.py --output catalogue_evidence.csv`; this does not assign completion labels.
 
-أعددنا مطابقة نصية لجميع البنود الـ256: **64 بندًا لها مرشحات أسماء دوال عامة**، و**192 بندًا لا تحمل تطابق اسمًا صريحًا في التعليقات القديمة**؛ وهذا ليس حكمًا بأنها غير منفذة ولا نسبة إنجاز. يجب ربط كل بند بالأدلة وباختبارات مرجعية قبل اعتماد حالته.
+أعددنا مطابقة نصية لجميع البنود الـ256: **182 بندًا لها مرشحات دوال عامة بعد المطابقة اليدوية**، و**74 بندًا لم نحدد لها بعد اسم دالة عامة مرشحًا**؛ وهذا ليس حكمًا بأنها غير منفذة ولا نسبة إنجاز. يجب ربط كل بند بالأدلة وباختبارات مرجعية قبل اعتماد حالته.
 
 ## Verified source-level changes relative to the tracker | اختلافات مثبتة بالكود
 
