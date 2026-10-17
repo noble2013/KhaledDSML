@@ -9,7 +9,7 @@ def test_visualizes_real_ml_metrics_without_guessing():
     html=render_analysis_dashboard(r,theme="amethyst")
     assert "MCC" in html
     assert "ROC-AUC" in html
-    assert "Statistical" in html or "Statistical interpretation" in html
+    assert "KHALED DSML" in html
     assert 'dir="rtl"' in html
     assert 'dir="ltr"' in html
 
