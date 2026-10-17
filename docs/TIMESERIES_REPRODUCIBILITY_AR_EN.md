@@ -19,7 +19,10 @@
 ## اختبارات الاتجاه والانقطاع | Trend & change detection
 
 ```python
-from khaled_dsml import mann_kendall_trend_test, pettitt_change_point_test
+from khaled_dsml import (
+    mann_kendall_trend_test, pettitt_change_point_test,
+    display_bilingual_result,
+)
 
 monthly_sales = [95, 101, 103, 105, 112, 117, 122, 120, 127, 131, 137, 145]
 trend = mann_kendall_trend_test(monthly_sales)
@@ -53,7 +56,10 @@ print(arch_lm_test(residuals, lags=5).interpretation_ar)
 ## تقييم جودة التنبؤ دون تسرب | Leakage-safe forecasting evaluation
 
 ```python
-from khaled_dsml import mean_absolute_scaled_error, forecast_accuracy_report
+from khaled_dsml import (
+    mean_absolute_scaled_error, forecast_accuracy_report,
+    display_bilingual_result,
+)
 
 train = [100, 110, 120, 130, 140, 150, 160]
 actual = [170, 180, 190]
@@ -69,6 +75,26 @@ print(report["interpretation_en"])
 `MASE` يقسّم متوسط الخطأ المطلق للتنبؤ على متوسط خطأ التنبؤ الساذج من **عينة التدريب فقط**؛ إذا كانت تلك القيمة صفرًا فالمقياس غير معرّف ويظهر خطأ واضح. يجب حفظ الترتيب الزمني وتساوي أفق التنبؤ في المقارنة. / Baseline is computed **only from pre-forecast training history**. If the baseline denominator vanishes, MASE is undefined.
 
 `sMAPE` هنا يستخدم الصيغة `200 * abs(y-pred)/(abs(y)+abs(pred))` بالمئة؛ إذا كانت القيمتان صفرًا يُحسب الحد بصفر وفق اصطلاح الدالة. هذا الاصطلاح ينبغي التصريح به عند نشر النتائج. / sMAPE is convention-sensitive; the zero/zero term contributes zero in this API.
+
+## اتجاه الخطوط في Jupyter وColab | Readable Arabic / English display
+
+`print()` يعرض العربية باتجاه الطرفية وقد يجعل الخط صغيرًا والمحاذاة من اليسار. لذلك استخدم `display_bilingual_result()` لجميع اختبارات المكتبة التي ترجع `TestResult` أو قاموسًا يحوي التفسير بالعربية والإنجليزية. العربية RTL بمحاذاة اليمين بخط عريض، والإنجليزية LTR بمحاذاة اليسار.
+
+The renderer escapes untrusted text, isolates each language's direction and uses a larger font in notebook cells. It changes **only** the report panel, not the entire Colab page.
+
+```python
+from khaled_dsml import display_bilingual_result, save_bilingual_result
+
+# Compatible with both TestResult objects and bilingual dictionaries
+display_bilingual_result(trend, font_size=23)
+display_bilingual_result(change)
+display_bilingual_result(report, title="تقييم التنبؤ | Forecast evaluation")
+
+# Portable HTML report, suitable for browser printing
+save_bilingual_result(trend, "trend_ar_en.html")
+```
+
+استخدم `font_size=21` افتراضيًا، أو `font_size=23` للعرض في قاعة الدرس. / Default font size is 21 px; 23 px is suitable for classroom presentation.
 
 ## تتبع البيانات والبيئة | Dataset integrity and software provenance
 
