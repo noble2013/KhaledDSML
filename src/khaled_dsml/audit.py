@@ -292,7 +292,7 @@ def render_audit_report(summary: Mapping, *, title="تدقيق البيانات 
     )
     return (
         '<!doctype html><html lang="ar" dir="rtl"><head><meta charset="utf-8">'
-        '<style>main{max-width:780px;margin:2rem auto;font:16px Tahoma,Arial;'
+        '<style>main{max-width:780px;margin:2rem auto;font:600 19px Tahoma,Arial;'
         'line-height:1.9;text-align:right}table{border-collapse:collapse;width:100%}'
         'td,th{padding:.4rem;border-bottom:1px solid #ddd}'
         '</style></head><body><main>'
