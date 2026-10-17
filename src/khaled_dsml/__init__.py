@@ -1,5 +1,5 @@
 """KhaledDSML: educational statistics, ML and big data in Python."""
-__version__ = "0.7.0"
+__version__ = "0.8.0"
 
 from .statistics import (normality_test, shapiro_test, jarque_bera_test,
     independent_t_test, paired_t_test, mann_whitney_test, wilcoxon_test,
@@ -147,4 +147,10 @@ from .distributed_analytics import (
     spark_numeric_profile, spark_time_holdout,
     spark_fit_logistic_classifier, spark_binary_classification_metrics,
     dask_duplicate_summary, dask_numeric_profile, dask_time_holdout,
+)
+
+# Advanced statistical mediation/moderation, v0.8 (statsmodels remains optional)
+from .mediation_moderation import (
+    mediation_paths, sobel_mediation_test, bootstrap_mediation_interval,
+    moderation_interaction_test, simple_slopes_table, johnson_neyman_region,
 )
