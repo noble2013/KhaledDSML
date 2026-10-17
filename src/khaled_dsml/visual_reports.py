@@ -251,6 +251,28 @@ def _sparkline(values: Sequence[float] | None) -> str:
     )
 
 
+_TABLE_HEADINGS_AR = {
+    "moderator_value": "قيمة المتغير المعدّل",
+    "moderator_lower": "بداية مجال المعدّل",
+    "moderator_upper": "نهاية مجال المعدّل",
+    "slope": "الميل المشروط",
+    "standard_error": "الخطأ المعياري",
+    "ci_lower": "الحد الأدنى لفاصل الثقة",
+    "ci_upper": "الحد الأعلى لفاصل الثقة",
+    "p_value": "القيمة الاحتمالية",
+    "reject_null": "رفض فرضية العدم",
+    "slope_significant": "دلالة الميل",
+    "group_a": "المجموعة الأولى",
+    "group_b": "المجموعة الثانية",
+    "mean_difference": "فرق المتوسطين",
+    "n_samples": "حجم العينة",
+    "count": "العدد",
+    "missing_count": "عدد القيم المفقودة",
+    "mean_predicted": "متوسط الاحتمال المتوقع",
+    "fraction_positive": "نسبة الفئة الموجبة",
+}
+
+
 def _table_block(values: Mapping) -> str:
     """Inline responsive preview of an actual result DataFrame, never invented rows.
 
@@ -263,7 +285,13 @@ def _table_block(values: Mapping) -> str:
             continue
         selected = frame.iloc[:25, :8]
         headers = "".join(
-            f'<th scope="col">{escape(str(c))}</th>' for c in selected.columns
+            '<th scope="col">'
+            + (f'<span class="kdsml-th-ar" lang="ar" dir="rtl">'
+               f'{escape(_TABLE_HEADINGS_AR[str(c)])}</span>'
+               if str(c) in _TABLE_HEADINGS_AR else "")
+            + f'<span class="kdsml-th-en" lang="en" dir="ltr">{escape(str(c))}</span>'
+            + '</th>'
+            for c in selected.columns
         )
         rows = []
         for _, row in selected.iterrows():
@@ -275,7 +303,7 @@ def _table_block(values: Mapping) -> str:
                     text = f"{value:.4g}"
                 else:
                     text = str(value)
-                cols.append(f'<td>{escape(text)}</td>')
+                cols.append(f'<td dir="auto">{escape(text)}</td>')
             rows.append("<tr>" + "".join(cols) + "</tr>")
         truncated = len(frame)>25 or len(frame.columns)>8
         hint = ("<p class=\"kdsml-table-hint\" dir=\"ltr\">"
@@ -411,6 +439,12 @@ _CSS = """
  font:600 13px Arial,sans-serif;color:#264056}
 .kdsml-studio .kdsml-table-scroll th{padding:12px 13px;
  background:#eaf4f8;color:#274763;border-bottom:2px solid #b2d9dd}
+.kdsml-studio .kdsml-table-scroll th .kdsml-th-ar{
+ display:block;text-align:right;font:800 13px Tahoma,Arial,sans-serif;
+ direction:rtl;white-space:normal;min-width:86px;line-height:1.5}
+.kdsml-studio .kdsml-table-scroll th .kdsml-th-en{
+ display:block;text-align:left;font:700 11px Arial,sans-serif;
+ color:#597489;direction:ltr;line-height:1.4}
 .kdsml-studio .kdsml-table-scroll td{padding:10px 13px;
  border-bottom:1px solid #e8edf1;white-space:nowrap}
 .kdsml-studio .kdsml-table-scroll tbody tr:nth-child(even){background:#f8fbfd}
