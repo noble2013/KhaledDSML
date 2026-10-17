@@ -39,7 +39,7 @@ def test_krippendorff_alpha_perfect_and_missing_data():
     with_missing=[["yes","yes",None],["no","no","no"],
                   ["yes","no",None],["no",None,"no"]]
     r=krippendorff_nominal_alpha(with_missing)
-    assert np.isfinite(r["alpha"])
+    assert np.isfinite(r["krippendorff_alpha"])
     assert r["n_pairable_units"]==4
     with pytest.raises(ValueError):
         krippendorff_nominal_alpha([[None,None],["yes",None],["no",None]])
