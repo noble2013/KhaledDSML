@@ -69,4 +69,5 @@ from .reproducibility import (
 
 from .bilingual_display import (
     render_bilingual_result, display_bilingual_result, save_bilingual_result,
+    render_bilingual_results, display_bilingual_results, save_bilingual_results,
 )
