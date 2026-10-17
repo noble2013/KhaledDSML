@@ -2,6 +2,7 @@
 import numpy as np
 import pytest
 from scipy import stats
+from html import escape
 from scipy.special import expit
 from sklearn.cluster import KMeans
 from sklearn.ensemble import RandomForestClassifier
@@ -108,5 +109,5 @@ def test_added_methods_render_arabic_and_english_without_external_fonts():
     for result in items:
         html=render_analysis_dashboard(result,theme="amethyst")
         assert 'dir="rtl"' in html
-        assert result["interpretation_ar"] in html
-        assert result["interpretation_en"] in html
+        assert escape(result["interpretation_ar"]) in html
+        assert escape(result["interpretation_en"]) in html
