@@ -134,3 +134,15 @@ def test_plot_roc_curve_optional_matplotlib():
     finally:
         import matplotlib.pyplot as plt
         plt.close(fig)
+
+
+def test_english_and_arabic_model_interpretation():
+    from khaled_dsml.ml_evaluation import interpret_classification_metrics
+    metrics = binary_classification_metrics([0, 0, 1, 1], [.1, .4, .35, .8])
+    report = interpret_classification_metrics(metrics)
+    assert "ROC-AUC" in report["ar"] and "ROC-AUC" in report["en"]
+    assert "استرجاع" in report["ar"] or "الاسترجاع" in report["ar"]
+    assert "recall" in report["en"]
+    html = render_classification_report(metrics)
+    assert "English interpretation" in html
+    assert "التفسير بالعربية" in html
