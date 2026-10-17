@@ -1,5 +1,13 @@
 # سجل التغييرات | Changelog
 
+## 0.5.0 — قيد التطوير / Unreleased
+
+- اختبارات افتراضات متعددة المتغيرات Mardia، Box M، Mauchly، Breusch–Godfrey وLevene mean.
+- اختبارات الاتجاه الفئوي، G²، CMH، Newcombe، Welch TOST وحساب القوة المسبقة.
+- Omega one-factor، ICC2/ICC3، Krippendorff nominal alpha، جودة التضمين، Distance correlation، استقرار العناقيد.
+- دعم مدونات Unicode العربية/الإنجليزية: Zipf، TTR، Dunning G²، وفواصل paired bootstrap.
+- يحافظ على تقارير Analytics Studio الإبداعية ذات محاذاة اللغة الصحيحة.
+
 ## 0.4.0 — قيد التطوير / Unreleased
 
 - `inference_extended`: Welch ANOVA، Brunner-Munzel، Mood median، McNemar، Cochran Q، z للنسب، Wilson، ارتباطات جزئية، أحجام الأثر ونسب المخاطر.
