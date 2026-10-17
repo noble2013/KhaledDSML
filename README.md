@@ -43,6 +43,29 @@ py -3.13 -m venv .venv
 py -m pip install khaled-dsml
 ```
 
+### Analytics Studio — واجهة تحليل إحصائي إبداعية (تطوير 0.3.0)
+
+الواجهة الجديدة **افتراضيًا** تعرض رأسًا متدرجًا، وبطاقات مؤشرات محسوبة فعليًا، وقرار الاختبار عند توافره، وتفسيرًا عربيًا من اليمين وإنجليزيًا من اليسار. تدعم الرسم SVG دون إنترنت، وثلاثة ألوان: `aurora` و`ocean` و`amethyst`. يمكن العودة إلى الشكل النصي القديم بـ `style="plain"`.
+
+```python
+from khaled_dsml import (
+    mann_kendall_trend_test, display_bilingual_results,
+    display_analysis_dashboard, save_analysis_dashboard,
+)
+
+data = [100, 108, 113, 121, 125, 138, 142, 154, 163, 178, 185, 197]
+result = mann_kendall_trend_test(data)
+
+# النمط الافتراضي الآن تصميم احترافي
+display_bilingual_results(result, theme="aurora", chart_data=data)
+
+# تقرير موسع للطباعة
+display_analysis_dashboard(result, theme="ocean", chart_data=data)
+save_analysis_dashboard(result, "report_ar_en.html", chart_data=data)
+```
+
+**[دفتر Colab جاهز بتصميم مبهر](notebooks/06_analytics_studio.ipynb)** · **[دليل الاستخدام بالعربية والإنجليزية](docs/ANALYTICS_STUDIO_AR_EN.md)**. ما زال هذا التطوير ضمن `0.3.0` غير المنشور، والإصدار الرسمي على PyPI هو `0.2.0`.
+
 ### التطوير 0.3.0: السلاسل الزمنية وقابلية إعادة البحث
 
 الإضافات التالية **موجودة في فرع التطوير فقط** `feature/v0.3-timeseries-reproducibility`، ولم تُنشر بعد على PyPI:
