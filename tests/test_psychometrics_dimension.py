@@ -35,7 +35,7 @@ def test_icc_perfect_agreement_and_consistency():
 def test_krippendorff_alpha_perfect_and_missing_data():
     clean=[["yes","yes"],["no","no"],["yes","yes"],["no","no"]]
     r=krippendorff_nominal_alpha(clean)
-    assert r["alpha"]==pytest.approx(1)
+    assert r["krippendorff_alpha"]==pytest.approx(1)
     with_missing=[["yes","yes",None],["no","no","no"],
                   ["yes","no",None],["no",None,"no"]]
     r=krippendorff_nominal_alpha(with_missing)
