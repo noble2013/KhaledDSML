@@ -77,6 +77,19 @@ display_classification_report(metrics)
 
 لرسم ROC ومقارنة نماذج الانحدار اللوجستي وأشجار القرار دون تسرّب بيانات التدريب، راجع [دليل تقييم التصنيف العربي](docs/ML_EVALUATION_AR.md).
 
+### إحصاءات وصفية شاملة + شرح عربي وإنجليزي (تطوير 0.2.0)
+
+```python
+from khaled_dsml import describe_numeric, display_descriptive_report
+
+summary = describe_numeric([10, 12, 12, 14, 18, 20, None])
+display_descriptive_report(summary)  # Arabic RTL + English LTR
+```
+
+تشمل النزعة المركزية، والتشتت، والجداول التكرارية، والربيعيات والقيم المئوية، والالتواء والتفرطح، والمتوسط المشذب والهندسي والتوافقي، والارتباط والتغاير، ومعامل جيني، والتقارير الثنائية اللغة.
+
+**[الدليل الأكاديمي عربي–إنجليزي](docs/DESCRIPTIVES_BILINGUAL_AR_EN.md)** | **[كتالوج المستخدم: متابعة 256 بندًا](docs/DESCRIPTIVES_BILINGUAL_AR_EN.md#5-حدود-التغطية--catalogue-coverage)**
+
 ### كشف مشاكل البيانات
 
 ```python
@@ -127,6 +140,8 @@ print(grade_quiz(questions, answers))
 |---|---|
 | `reports` (التطوير 0.2.0) | `render_test_report`, `display_test_report`, `save_test_report` (تقارير عربية RTL) |\n| `statistics` | `normality_test`, `independent_t_test`, `paired_t_test`, `anova_test`, `kruskal_test`, `chi_square_test`, `pearson_test`, `spearman_test`, `levene_test`, `ks_two_sample_test` |
 | `quality` | `quality_report`, `missingness_report`, `iqr_outliers`, `fill_missing_numeric`, `optimize_memory`, `distribution_drift_test` |
+| `descriptive` (0.2.0) | `describe_numeric`, `descriptive_table`, `frequency_table`, `describe_categorical`, `display_descriptive_report` |
+| `catalog_tests` (0.2.0) | `one_sample_t_test`, `fisher_exact_test`, `dagostino_normality_test`, `bootstrap_mean_ci`, `adjust_pvalues`, `cohen_d` |
 | `ml_evaluation` (0.2.0) | `binary_classification_metrics`, `roc_curve_table`, `compare_classifiers`, `render_classification_report`, `display_classification_report` |\n| `ml` | `make_regressor`, `make_classifier`, `cross_validation_summary`, `classification_metrics`, `regression_metrics`, `cluster_data`, `pca_summary` |
 | `bigdata` | `generate_transactions`, `csv_chunk_summary`, `csv_chunk_missing`, `csv_chunk_monthly`, `map_reduce_word_count`, `json_documents_to_table` |
 | `sqltools` | `sqlite_import_frame`, `sqlite_group_summary` (SQLite محلي لتجارب SQL) |
@@ -143,7 +158,7 @@ print(grade_quiz(questions, answers))
 ## الإصدار الرسمي الحالي والتطوير القادم
 
 - **PyPI الحالي:** [KhaledDSML 0.1.0](https://pypi.org/project/khaled-dsml/0.1.0/) — مستقر للاستخدام.
-- **التطوير 0.2.0:** تقارير عربية RTL، وتقييم التصنيف الثنائي وROC-AUC ومقارنة النماذج؛ قيد الاختبارات على فرع مستقل.
+- **التطوير 0.2.0:** تقارير عربية/إنجليزية RTL/LTR، والإحصاء الوصفي الشامل، واختبارات إضافية من كتالوج المستخدم، وتقييم التصنيف الثنائي وROC-AUC؛ قيد الاختبارات على فرع مستقل.
 - **المنهجية:** لا يُنشر الإصدار 0.2.0 رسميًا قبل نجاح GitHub Actions ومراجعة التغييرات. راجع [دليل النشر](docs/PUBLISH_AR.md).
 
 ## Notes (English)
