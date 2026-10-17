@@ -44,3 +44,18 @@ def test_table_truncation_is_explicit_not_silent():
     assert "Preview truncated to 25 rows" in html
     assert html.count("<tbody><tr>")==1
     assert html.count("<tr>")>=26
+
+
+def test_new_scientific_metrics_use_correct_bilingual_labels():
+    report = {
+        "krippendorff_alpha": 0.82, "icc": 0.74,
+        "ttr": 0.62, "n_raters": 3,
+        "interpretation_ar": "مؤشرات الثبات والتنوع المعجمي",
+        "interpretation_en": "Reliability and lexical diversity",
+    }
+    html = render_analysis_dashboard(report,theme="ocean")
+    assert "Krippendorff α" in html
+    assert "ألفا كريبندورف" in html
+    assert "Type-token ratio" in html
+    assert "مستوى الدلالة" not in html
+    assert 'dir="rtl"' in html and 'dir="ltr"' in html
