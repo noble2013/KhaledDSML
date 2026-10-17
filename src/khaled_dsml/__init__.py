@@ -1,5 +1,5 @@
 """KhaledDSML: educational statistics, ML and big data in Python."""
-__version__ = "0.9.0"
+__version__ = "0.10.0.dev0"
 
 from .statistics import (normality_test, shapiro_test, jarque_bera_test,
     independent_t_test, paired_t_test, mann_whitney_test, wilcoxon_test,
@@ -112,7 +112,7 @@ from .research_workflow import (
     compare_groups, research_quality_gate, apa_style_test_summary,
 )
 
-# Academic methods completion — unreleased v0.5
+# Academic methods completion — v0.5
 from .assumptions_multivariate import (
     mardia_multivariate_normality, box_m_covariance_equality,
     mauchly_sphericity_test, breusch_godfrey_test, levene_mean_test,
@@ -132,7 +132,7 @@ from .nlp_corpus import (
     dunning_corpus_keyness, paired_bootstrap_score_difference,
 )
 
-# Post-hoc and correlated ROC comparison (0.6 development)
+# Post-hoc and correlated ROC comparison (v0.6)
 from .posthoc_comparisons import (
     tukey_hsd_comparisons, games_howell_comparisons, dunn_posthoc,
     dunnett_control_comparisons, nemenyi_friedman_posthoc,
@@ -155,8 +155,12 @@ from .mediation_moderation import (
     moderation_interaction_test, simple_slopes_table, johnson_neyman_region,
 )
 
-# Missing-data methodology — unreleased v0.9
+# Missing-data methodology — v0.9
 from .missing_data_advanced import (
     little_mcar_test, missingness_association_screen,
     multiple_impute_train_test_numeric, rubin_pool_scalar,
 )
+
+# Research methods under development for v0.10.0 (not yet on PyPI)
+from .multivariate_normality import henze_zirkler_normality_test
+from .missing_data_sensitivity import mnar_delta_sensitivity
