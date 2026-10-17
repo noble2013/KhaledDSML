@@ -237,3 +237,9 @@ from .specialized_inference import (
 from .changepoints_advanced import pelt_mean_shift, ddm_binary_error_monitor
 from .adwin_advanced import adwin_bounded_mean_monitor
 from .bilingual_exports import save_analysis_xlsx, save_analysis_docx
+
+# Optional arch Phillips–Perron and exact integer forensics (0.10 development)
+from .unitroot_specialist import phillips_perron_unit_root
+from .forensic_specialist import (
+    grimmer_variance_consistency, pcurve_right_skew_screen,
+)
