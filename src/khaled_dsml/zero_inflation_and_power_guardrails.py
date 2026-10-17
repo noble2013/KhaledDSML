@@ -36,11 +36,13 @@ def poisson_excess_zero_score(counts, *, alpha=.05):
     model can cause apparent excess zeros; this does not establish ZIP.
     """
     alpha=_probability(alpha,"alpha")
+    if isinstance(counts,(list,tuple)) and any(isinstance(x,(bool,np.bool_)) for x in counts):
+        raise ValueError("Boolean values are not valid count observations")
     try:
         y=np.asarray(counts,dtype=float)
     except (TypeError,ValueError) as exc:
         raise ValueError("counts must be nonnegative integer observations") from exc
-    if (y.ndim!=1 or not 50<=len(y)<=2_000_000
+    if (y.dtype.kind=="b" or y.ndim!=1 or not 50<=len(y)<=2_000_000
         or not np.isfinite(y).all() or np.any(y<0)
         or not np.array_equal(y,np.floor(y))
         or np.max(y)>1_000_000):
