@@ -357,6 +357,7 @@ print(grade_quiz(questions, answers))
 - **التطوير القادم:** `0.10.0.dev0` على فرع [feature/v0.10-catalog-henze-zirkler](https://github.com/noble2013/KhaledDSML/tree/feature/v0.10-catalog-henze-zirkler)؛ **غير منشور**، ولا يُدمج قبل نجاح GitHub Actions.
 - **التدقيق:** [مراجعة كتالوج 256 بندًا](docs/CATALOG_AUDIT_0_10_AR_EN.md). لا يعني عدد اختبارات pytest اكتمال الكتالوج.
 - **وظائف تجريبية:** Henze–Zirkler بمعايرة Monte Carlo، وتحليل حساسية MNAR بعوامل delta افتراضية؛ انظر [الدليل العلمي](docs/RESEARCH_METHODS_0_10_AR_EN.md). [دفتر Colab 13](notebooks/13_multivariate_mnar_studio.ipynb).
+- **التحليل البايزي التجريبي:** `beta_binomial_posterior` و`beta_binomial_group_comparison` للتقدير البعدي وفحص الفروض البايزية، مع `BF10` محسوب فعليًا؛ [الدليل](docs/BAYESIAN_BINOMIAL_0_10_AR_EN.md) · [Colab 14](notebooks/14_bayesian_binomial_studio.ipynb).
 
 ```powershell
 py -3.13 -m pip install --upgrade "khaled-dsml[econometrics,distributed]==0.9.0"
