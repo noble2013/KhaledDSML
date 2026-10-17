@@ -10,13 +10,13 @@
 
 ### Distribution evidence | سلامة التوزيع
 
-The release candidate gate checks all of the following:
+The release candidate gate checks all of the following (see also [actual notebook execution](NOTEBOOK_EXECUTION_RC1_AR_EN.md)):
 
 1. `pyproject.toml` version equals the public `khaled_dsml.__version__` exactly.
 2. Version follows the project's canonical PEP 440 scheme; a stable PyPI release must have plain `X.Y.Z` syntax and matching `vX.Y.Z` GitHub tag.
 3. `MANIFEST.in` includes `docs/CATALOG_256_SOURCE_TRACE_V010.tsv`, and actual generated `sdist` contains 256 catalogue rows.
 4. Built `wheel` contains package `__init__.py` and distribution metadata matching `0.10.0rc1`.
-5. Four Python CI targets pass independent numerical tests; actual Dask/PySpark tests run with Java 17; distributions build, validate and install.
+5. Four Python CI targets pass independent numerical tests; actual Dask/PySpark tests run with Java 17; **Colab notebooks 19–23 run as real offline research examples**; distributions build, validate and install.
 6. Both publishing workflows use up-to-date test extras `econometrics`, `plots`, `exports`, `unitroot` and `quantiles`. They never need saved PyPI passwords or GitHub secrets.
 7. TestPyPI requires manual `TESTPYPI` confirmation, rejects stable source versions and requires configured OIDC. Production PyPI rejects release candidates and prerelease GitHub Releases.
 8. A fresh `pip install` after building the wheel verifies that the installed Python import version matches the source.

@@ -21,14 +21,19 @@ jobs:
         uses: actions/setup-python@v5
         with:
           python-version: '3.13'
+      - name: Require manual publication only from reviewed main
+        run: |
+          test "${GITHUB_REF}" = "refs/heads/main"
       - name: Require explicit manual TestPyPI permission and non-stable version
         env:
           CONFIRM: ${{ inputs.confirm_publish }}
         run: python tools/release_gate.py --target testpypi --confirm "$CONFIRM"
       - name: Install test and packaging dependencies
         run: python -m pip install --upgrade build twine '.[dev,econometrics,plots,exports,unitroot,quantiles]'
-      - name: Run tests
-        run: python -m pytest
+      - name: Verify APIs and real offline teaching notebooks
+        run: |
+          python -m pytest
+          python tools/notebook_smoke.py
       - name: Build distributions
         run: python -m build
       - name: Validate distributions
