@@ -90,6 +90,23 @@ display_descriptive_report(summary)  # Arabic RTL + English LTR
 
 **[الدليل الأكاديمي عربي–إنجليزي](docs/DESCRIPTIVES_BILINGUAL_AR_EN.md)** | **[كتالوج المستخدم: متابعة 256 بندًا](docs/DESCRIPTIVES_BILINGUAL_AR_EN.md#5-حدود-التغطية--catalogue-coverage)**
 
+### تدقيق جودة البيانات والافتراضات | Data audit and assumption checks (0.2.0)
+
+```python
+import pandas as pd
+from IPython.display import HTML, display
+from khaled_dsml import audit_dataset, render_audit_report, anderson_darling_normality
+
+df = pd.DataFrame({"price": [100, 110, None, 110], "sales": [5, 7, 8, 7]})
+audit = audit_dataset(df)
+display(HTML(render_audit_report(audit)))
+print(anderson_darling_normality([1.1, 1.2, 1.5, 1.8, 2.1, 2.4, 2.6, 3.0]))
+```
+
+توفر وحدة `audit` كشف التكرارات التامة، أنماط الفقد، الأعمدة شبه الثابتة، القيم الشاذة، بنفورد، الأرقام النهائية، وتداخل التدريب والاختبار. تضم `assumptions_extra` اختبارات Anderson–Darling وLilliefors وRuns واختبار Bartlett للكروية وKMO وDurbin–Watson وVIF.
+
+**[التوثيق الأكاديمي بالعربية والإنجليزية](docs/AUDIT_ASSUMPTIONS_AR_EN.md)**. وظائف هذا القسم موجودة **على فرع تطوير 0.2.0 فقط**، ولم تُنشر بعد على PyPI.
+
 ### كشف مشاكل البيانات
 
 ```python
@@ -140,6 +157,8 @@ print(grade_quiz(questions, answers))
 |---|---|
 | `reports` (التطوير 0.2.0) | `render_test_report`, `display_test_report`, `save_test_report` (تقارير عربية RTL) |\n| `statistics` | `normality_test`, `independent_t_test`, `paired_t_test`, `anova_test`, `kruskal_test`, `chi_square_test`, `pearson_test`, `spearman_test`, `levene_test`, `ks_two_sample_test` |
 | `quality` | `quality_report`, `missingness_report`, `iqr_outliers`, `fill_missing_numeric`, `optimize_memory`, `distribution_drift_test` |
+| `audit` (0.2.0) | `audit_dataset`, `missing_pattern_report`, `duplicate_rows_report`, `modified_z_outliers`, `mahalanobis_outliers`, `ml_outliers` |
+| `assumptions_extra` (0.2.0) | `anderson_darling_normality`, `lilliefors_normality`, `runs_test`, `kmo_sampling_adequacy`, `condition_number_vif` |
 | `descriptive` (0.2.0) | `describe_numeric`, `descriptive_table`, `frequency_table`, `describe_categorical`, `display_descriptive_report` |
 | `catalog_tests` (0.2.0) | `one_sample_t_test`, `fisher_exact_test`, `dagostino_normality_test`, `bootstrap_mean_ci`, `adjust_pvalues`, `cohen_d` |
 | `ml_evaluation` (0.2.0) | `binary_classification_metrics`, `roc_curve_table`, `compare_classifiers`, `render_classification_report`, `display_classification_report` |\n| `ml` | `make_regressor`, `make_classifier`, `cross_validation_summary`, `classification_metrics`, `regression_metrics`, `cluster_data`, `pca_summary` |
@@ -158,7 +177,7 @@ print(grade_quiz(questions, answers))
 ## الإصدار الرسمي الحالي والتطوير القادم
 
 - **PyPI الحالي:** [KhaledDSML 0.1.0](https://pypi.org/project/khaled-dsml/0.1.0/) — مستقر للاستخدام.
-- **التطوير 0.2.0:** تقارير عربية/إنجليزية RTL/LTR، والإحصاء الوصفي الشامل، واختبارات إضافية من كتالوج المستخدم، وتقييم التصنيف الثنائي وROC-AUC؛ قيد الاختبارات على فرع مستقل.
+- **التطوير 0.2.0:** تقارير عربية/إنجليزية RTL/LTR، والإحصاء الوصفي الشامل، واختبارات إضافية وتدقيق البيانات وفحص الافتراضات من كتالوج المستخدم، وتقييم التصنيف الثنائي وROC-AUC؛ قيد الاختبارات على فرع مستقل.
 - **المنهجية:** لا يُنشر الإصدار 0.2.0 رسميًا قبل نجاح GitHub Actions ومراجعة التغييرات. راجع [دليل النشر](docs/PUBLISH_AR.md).
 
 ## Notes (English)
