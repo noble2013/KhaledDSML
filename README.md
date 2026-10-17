@@ -83,7 +83,7 @@ display_bilingual_result(trend)  # العربية يمين، الإنجليزي�
 
 **دفتر جاهز للتجربة:** [05_bilingual_display.ipynb](notebooks/05_bilingual_display.ipynb) — استيراد الاختبارات وعرض النتائج العربية والإنجليزية بنفس شكل Colab، وحفظ تقرير HTML للطباعة.
 
-**العرض المُعتمد لدفاتر Google Colab وJupyter (تطوير 0.3.0):** بلا إطارات أو عناوين إضافية افتراضيًا، العربية RTL بمحاذاة اليمين، والإنجليزية LTR بمحاذاة اليسار، مع خط غامق كبير. يدعم عرض نتيجة واحدة أو مجموعة نتائج، وحفظ نسخة HTML:
+**النمط النصي الكلاسيكي لدفاتر Google Colab وJupyter (تطوير 0.3.0):** استخدم `style="plain"` للحصول على تنسيق بلا إطارات، العربية RTL بمحاذاة اليمين، والإنجليزية LTR بمحاذاة اليسار. أصبح نمط `studio` الإبداعي هو الافتراضي:
 
 ```python
 from khaled_dsml import (
@@ -92,9 +92,9 @@ from khaled_dsml import (
 )
 
 change = pettitt_change_point_test([10] * 20 + [30] * 20)
-display_bilingual_result(trend)                 # نتيجة واحدة
-display_bilingual_results([trend, change], font_size=24)  # عدة نتائج
-save_bilingual_results([trend, change], "statistics_ar_en.html")
+display_bilingual_result(trend, style="plain")   # النمط الكلاسيكي
+display_bilingual_results([trend, change], font_size=24, style="plain")  # عدة نتائج
+save_bilingual_results([trend, change], "statistics_ar_en.html", style="plain")
 ```
 
 تتضمن كذلك Box–Pierce وARCH-LM وMASE والتوثيق بالبصمة SHA-256. التفاصيل في [دليل السلاسل الزمنية وإعادة إنتاج البحث](docs/TIMESERIES_REPRODUCIBILITY_AR_EN.md).
