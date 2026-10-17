@@ -99,3 +99,18 @@ def test_mnar_sensitivity_rejects_leakage_and_misalignments():
         mnar_delta_sensitivity(orig, [imputed, imputed], column="y", deltas=[np.inf, 0])
     with pytest.raises(ValueError):
         mnar_delta_sensitivity(orig.fillna({"y": 2}), [imputed, imputed], column="y", deltas=[0, 1])
+
+
+def test_colab_13_is_valid_bilingual_notebook():
+    import json
+    from pathlib import Path
+
+    path = Path(__file__).resolve().parents[1] / "notebooks" / "13_multivariate_mnar_studio.ipynb"
+    nb = json.loads(path.read_text(encoding="utf-8"))
+    assert nb["nbformat"] == 4
+    sources = "\n".join("".join(c["source"]) for c in nb["cells"])
+    assert "henze_zirkler_normality_test" in sources
+    assert "mnar_delta_sensitivity" in sources
+    assert "العربية" in sources
+    assert "0.10.0.dev0" in sources
+    assert all(not c.get("outputs") for c in nb["cells"] if c["cell_type"] == "code")
