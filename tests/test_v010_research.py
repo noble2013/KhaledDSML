@@ -44,7 +44,7 @@ def test_hz_affine_invariance_reproducibility_and_rejection():
     assert c["p_value"] <= .05
     assert "عدم الرفض" in a["interpretation_ar"]
     html = render_analysis_dashboard(a, theme="aurora")
-    assert "Henze-Zirkler" in html and "RTL" in html.upper()
+    assert "هينز" in html and 'dir="rtl"' in html
 
 
 @pytest.mark.parametrize("bad", [
