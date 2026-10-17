@@ -89,7 +89,7 @@ def render_test_report(
         '<meta name="viewport" content="width=device-width, initial-scale=1">\n'
         f"<title>{heading}</title>\n"
         "<style>\n"
-        ".khaled-dsml-report{font-family:Tahoma,Arial,sans-serif;direction:rtl;text-align:right;"
+        ".khaled-dsml-report{font-family:Tahoma,Arial,sans-serif;font-size:19px;font-weight:600;direction:rtl;text-align:right;"
         "max-width:880px;margin:2rem auto;padding:0 1rem;color:#25243a;"
         "background:#fff;line-height:1.9}\n"
         ".khaled-dsml-report h1{font-size:1.5rem}.khaled-dsml-report h2{font-size:1.16rem;margin:0 0 .75rem}\n"
@@ -97,7 +97,7 @@ def render_test_report(
         "padding:1.2rem;margin:1rem 0;break-inside:avoid}\n"
         ".khaled-dsml-report .result p{margin:.35rem 0}.khaled-dsml-report .interpretation{font-weight:600}"
         ".khaled-dsml-report .note{font-size:.93rem;color:#555}\n"
-        ".khaled-dsml-report .english{direction:ltr;text-align:left;border-top:1px solid #ddd;margin-top:.8rem;padding-top:.5rem}\n"
+        ".khaled-dsml-report .english{direction:ltr;text-align:left;font-size:19px;font-weight:600;border-top:1px solid #ddd;margin-top:.8rem;padding-top:.5rem}\n"
         ".khaled-dsml-report bdi{font-family:Consolas,monospace;unicode-bidi:isolate}\n"
         "@media print{.khaled-dsml-report{margin:0;max-width:none}.khaled-dsml-report .result{border:1px solid #aaa}}\n"
         "</style>\n</head>\n<body>\n" 
