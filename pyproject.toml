@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "khaled-dsml"
-version = "0.10.0rc1"
+version = "0.10.0"
 description = "Educational data science, machine learning and big-data analysis toolkit with Arabic interpretations"
 readme = "README.md"
 requires-python = ">=3.10"
@@ -12,7 +12,7 @@ license = "MIT"
 authors = [{name = "Khaled Ali", email = "ali-khaled@univ-eloued.dz"}]
 keywords = ["data-science", "machine-learning", "big-data", "education", "statistics", "arabic"]
 classifiers = [
-  "Development Status :: 4 - Beta",
+  "Development Status :: 5 - Production/Stable",
   "Intended Audience :: Education",
   "Intended Audience :: Science/Research",
   "Programming Language :: Python :: 3",

@@ -40,6 +40,9 @@ jobs:
         run: |
           python -m twine check dist/*
           python tools/check_distributions.py dist
+      - name: Install both release archives in clean environments
+        timeout-minutes: 24
+        run: python tools/install_dist_smoke.py dist
       - name: Upload distributions
         uses: actions/upload-artifact@v4
         with:

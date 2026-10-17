@@ -1,4 +1,4 @@
-"""Execute science notebook code cells (19–23) offline under release CI.
+"""Execute science notebook code cells (14–23) offline under release CI.
 
 Only skip explicit first-cell "%pip install ..." (CI has already installed all
 relevant extras). Each notebook runs in its own temporary working directory.
@@ -19,6 +19,11 @@ from unittest.mock import patch
 
 ROOT = Path(__file__).resolve().parents[1]
 NOTEBOOKS = (
+    "14_bayesian_binomial_studio.ipynb",
+    "15_monitoring_meta_studio.ipynb",
+    "16_research_integrity_studio.ipynb",
+    "17_ml_validation_studio.ipynb",
+    "18_general_linear_models_studio.ipynb",
     "19_final_research_studio.ipynb",
     "20_specialized_inference_and_exports.ipynb",
     "21_pp_grimmer_pcurve_studio.ipynb",

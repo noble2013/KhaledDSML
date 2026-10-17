@@ -5,11 +5,11 @@
 **الكلية:** كلية العلوم الاقتصادية والتجارية وعلوم التسيير (Faculty of Economic, Commercial and Management Sciences)  
 **البريد الإلكتروني المهني:** [ali-khaled@univ-eloued.dz](mailto:ali-khaled@univ-eloued.dz)  
 **الإصدار الرسمي المنشور على PyPI: 0.9.0 (17 أكتوبر 2026)**  
-**النسخة التجريبية المصدرية قيد الاختبار: 0.10.0rc1 (Release Candidate 1) — ليست منشورة على PyPI بعد.**
+**نسخة المصدر النهائية: 0.10.0 — جاهزة للتحقق الأخير قبل النشر؛ ليست منشورة على PyPI حتى نجاح إجراء نشر مستقل.**
 
 **ملاحظة للمراجعين:** مصدر الكتالوج يتضمن 256/256 ربطًا برمجيًا مرشحًا، لكن عدد البنود المكتملة علميًا غير مُعتمد آليًا. البندان #85 و#117 مرتبطان ببدائل محدودة لا تعادل اختبار القدرة المرصودة أو Vuong في Poisson/ZIP. لا تساوِ بين تغطية الواجهة والاعتماد العلمي.
 
-**[دليل إعداد إصدار 0.10.0rc1 واختبار PyPI](docs/PUBLISH_AR.md)** · **[اختبارات تشغيل Colab الحقيقية](docs/NOTEBOOK_EXECUTION_RC1_AR_EN.md)** · **[نتائج التدقيق المصدرية](docs/CATALOG_AUDIT_0_10_AR_EN.md)** · **[الضوابط الخاصة بالقدرة وفائض الأصفار](docs/ZERO_INFLATION_AND_PRECISION_0_10_AR_EN.md)**
+**[دليل نشر 0.10.0 النهائي](docs/FINAL_RELEASE_0_10_AR_EN.md)** · **[اختبارات تشغيل Colab الحقيقية](docs/NOTEBOOK_EXECUTION_RC1_AR_EN.md)** · **[نتائج التدقيق المصدرية](docs/CATALOG_AUDIT_0_10_AR_EN.md)** · **[الضوابط الخاصة بالقدرة وفائض الأصفار](docs/ZERO_INFLATION_AND_PRECISION_0_10_AR_EN.md)**
 
 حزمة Python تعليمية للمقاييس التالية:
 
@@ -358,7 +358,7 @@ print(grade_quiz(questions, answers))
 ## الإصدار الرسمي الحالي والتطوير القادم
 
 - **الإصدار المنشور:** [KhaledDSML 0.9.0 على PyPI](https://pypi.org/project/khaled-dsml/0.9.0/).
-- **تحضير 0.10.0rc1 للنشر الاختباري:** المصدر يضم بنود الكتالوج الـ256 مع التحفظات العلمية، وبوابة إصدار تمنع رفع النسخة التجريبية إلى PyPI المستقر. لا يحدث النشر تلقائيًا. راجع [دليل النشر الآمن](docs/PUBLISH_AR.md).
+- **تحضير الإصدار المستقر 0.10.0:** اختبارات Python 3.10–3.13، وDask/PySpark الحقيقي، وتنفيذ دفاتر Colab 14–23 وملفات Office، وفحص تثبيت كل من wheel وsdist في بيئتين منفصلتين. النشر الفعلي إلى PyPI يبقى إجراء مستقلاً؛ [دليل إصدار 0.10.0](docs/FINAL_RELEASE_0_10_AR_EN.md).
 - **التدقيق:** [مراجعة كتالوج 256 بندًا](docs/CATALOG_AUDIT_0_10_AR_EN.md). لا يعني عدد اختبارات pytest اكتمال الكتالوج.
 - **وظائف تجريبية:** Henze–Zirkler بمعايرة Monte Carlo، وتحليل حساسية MNAR بعوامل delta افتراضية؛ انظر [الدليل العلمي](docs/RESEARCH_METHODS_0_10_AR_EN.md). [دفتر Colab 13](notebooks/13_multivariate_mnar_studio.ipynb).
 - **مراقبة البيانات والتحليل البعدي (فرع التطوير):** PSI وJensen–Shannon وWasserstein مع KS، ومتوسط/تباين Welford المتدفق، وSRM، وعدم التجانس Q/I² وDerSimonian–Laird وEgger، جميعها بتفسيرات ثنائية اللغة وتحفظات علمية. [الدليل](docs/MONITORING_META_0_10_AR_EN.md) · [دفتر Colab 15](notebooks/15_monitoring_meta_studio.ipynb).
