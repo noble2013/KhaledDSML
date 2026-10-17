@@ -9,6 +9,7 @@ from __future__ import annotations
 from collections.abc import Iterable, Mapping, Sequence
 from html import escape
 import math
+import pandas as pd
 from pathlib import Path
 
 from ._results import TestResult
@@ -24,6 +25,28 @@ _METRICS = (
     ("p_value", "القيمة الاحتمالية", "p-value"),
     ("alpha", "مستوى الدلالة", "Significance"),
     ("roc_auc", "المساحة تحت ROC", "ROC-AUC"),
+    ("balanced_accuracy", "الدقة المتوازنة", "Balanced accuracy"),
+    ("mcc", "معامل ماثيوز", "MCC"),
+    ("cohen_kappa", "اتفاق كابا", "Cohen κ"),
+    ("pr_auc", "المساحة تحت PR", "PR-AUC"),
+    ("average_precision", "متوسط الدقة", "Avg. precision"),
+    ("log_loss", "خسارة لوغاريتمية", "Log loss"),
+    ("brier", "مقياس براير", "Brier"),
+    ("ece", "خطأ المعايرة", "ECE"),
+    ("r2", "معامل التحديد", "R²"),
+    ("adjusted_r2", "التحديد المعدل", "Adj. R²"),
+    ("kappa", "معامل الاتفاق", "Kappa"),
+    ("htmt", "نسبة HTMT", "HTMT"),
+    ("ave", "متوسط التباين المستخلص", "AVE"),
+    ("composite_reliability", "الثبات المركب", "Composite reliability"),
+    ("odds_ratio", "نسبة الأرجحية", "Odds ratio"),
+    ("relative_risk", "الخطر النسبي", "Relative risk"),
+    ("proportion", "النسبة", "Proportion"),
+    ("lower", "الحد الأدنى", "Lower bound"),
+    ("upper", "الحد الأعلى", "Upper bound"),
+    ("pearson_dispersion", "تشتت بيرسون", "Pearson dispersion"),
+    ("calinski_harabasz", "مؤشر كالينسكي", "Calinski-Harabasz"),
+
     ("accuracy", "الدقة", "Accuracy"),
     ("precision", "الإحكام", "Precision"),
     ("recall", "الاسترجاع", "Recall"),
@@ -178,6 +201,46 @@ def _sparkline(values: Sequence[float] | None) -> str:
     )
 
 
+def _table_block(values: Mapping) -> str:
+    """Inline responsive preview of an actual result DataFrame, never invented rows.
+
+    Large tables are truncated to a safe 25x8 preview. Results must contain a
+    pandas DataFrame under 'table', 'bins' or 'group_rates' for this to appear.
+    """
+    for key in ("table", "bins", "group_rates"):
+        frame = values.get(key)
+        if not isinstance(frame, pd.DataFrame) or frame.empty:
+            continue
+        selected = frame.iloc[:25, :8]
+        headers = "".join(
+            f'<th scope="col">{escape(str(c))}</th>' for c in selected.columns
+        )
+        rows = []
+        for _, row in selected.iterrows():
+            cols = []
+            for value in row:
+                if pd.isna(value):
+                    text = "—"
+                elif isinstance(value, (float, int)) and not isinstance(value, bool):
+                    text = f"{value:.4g}"
+                else:
+                    text = str(value)
+                cols.append(f'<td>{escape(text)}</td>')
+            rows.append("<tr>" + "".join(cols) + "</tr>")
+        truncated = len(frame)>25 or len(frame.columns)>8
+        hint = ("<p class=\"kdsml-table-hint\" dir=\"ltr\">"
+                "Preview truncated to 25 rows × 8 columns</p>" if truncated else "")
+        return (
+            '<section class="kdsml-table-panel">'
+            '<h3 lang="ar" dir="rtl">جدول نتائج التحليل</h3>'
+            '<p lang="en" dir="ltr">ANALYTICAL RESULTS TABLE</p>'
+            '<div class="kdsml-table-scroll"><table dir="ltr">'
+            f'<thead><tr>{headers}</tr></thead><tbody>{"".join(rows)}</tbody>'
+            f'</table></div>{hint}</section>'
+        )
+    return ""
+
+
 def _render_item(item, index: int) -> str:
     ar_title, en_title, ar, en, values = _parse_result(item)
     decision = values.get("reject_null")
@@ -191,6 +254,7 @@ def _render_item(item, index: int) -> str:
     else:
         pill = ""
     metric_html = _metrics_block(values, index)
+    table_html = _table_block(values)
     notes_ar = values.get("notes", "")
     notes_en = values.get("notes_en", "")
     notes = ""
@@ -213,7 +277,7 @@ def _render_item(item, index: int) -> str:
         f'<p>{escape(ar)}</p></div>'
         '<div class="kdsml-en" dir="ltr" lang="en">'
         '<span class="kdsml-lang">Explanation & interpretation</span>'
-        f'<p>{escape(en)}</p></div></div>{notes}</article>'
+        f'<p>{escape(en)}</p></div></div>{table_html}{notes}</article>'
     )
 
 
@@ -284,6 +348,23 @@ _CSS = """
  font-size:var(--kdsml-text-size);font-weight:650;line-height:1.8;
  margin:0;text-align:left !important;overflow-wrap:anywhere;
  white-space:pre-wrap;color:#293c52}
+.kdsml-studio .kdsml-table-panel{margin-top:21px;padding:18px;
+ border:1px solid #e2e8f0;border-radius:14px;background:#f9fcff}
+.kdsml-studio .kdsml-table-panel h3{font-size:18px;font-weight:800;
+ text-align:right;color:#244762;margin:0}
+.kdsml-studio .kdsml-table-panel p{font-size:11px;font-weight:650;
+ color:#6d8297;margin:4px 0 13px;text-align:left}
+.kdsml-studio .kdsml-table-scroll{width:100%;overflow-x:auto;
+ -webkit-overflow-scrolling:touch;scrollbar-color:#b5c5d6 transparent}
+.kdsml-studio .kdsml-table-scroll table{border-collapse:collapse;
+ width:100%;min-width:420px;background:#fff;text-align:left;
+ font:600 13px Arial,sans-serif;color:#264056}
+.kdsml-studio .kdsml-table-scroll th{padding:12px 13px;
+ background:#eaf4f8;color:#274763;border-bottom:2px solid #b2d9dd}
+.kdsml-studio .kdsml-table-scroll td{padding:10px 13px;
+ border-bottom:1px solid #e8edf1;white-space:nowrap}
+.kdsml-studio .kdsml-table-scroll tbody tr:nth-child(even){background:#f8fbfd}
+.kdsml-studio .kdsml-table-panel .kdsml-table-hint{margin-top:12px;font-size:11px}
 .kdsml-studio .kdsml-notes{margin-top:17px;padding:10px 15px;border-radius:9px;
  border:1px dashed #bbcbd8;background:#fcfdfd;color:#465b70}
 .kdsml-studio .kdsml-notes p{margin:5px 0;font-size:13px;line-height:1.7;font-weight:600}
