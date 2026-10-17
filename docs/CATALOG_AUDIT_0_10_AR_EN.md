@@ -1,7 +1,7 @@
 # تدقيق كتالوج KhaledDSML (256 بندًا) | Catalogue coverage audit
 
 **Baseline / نقطة الانطلاق:** `main` release `0.9.0`, snapshot 17 October 2026.
-**Branch / فرع العمل:** source baseline after merged PR #9, #10 and #11; additional candidates on `feature/v0.10-ml-validation-expansion` (`0.10.0.dev0`, unpublished).
+**Branch / فرع العمل:** source baseline after merged PR #9–12; new classical GLMs on `feature/v0.10-general-linear-models` (`0.10.0.dev0`, unpublished).
 **Provenance / المصدر:** `KhaledDSML_Catalog_Verified_Phase2_2026-10-17.xlsx` saved in the author's Library. The reference workbook, **not** the number of pytest tests, defines the 256 units of work.
 
 ## Scope and historical numbers | النطاق والأرقام التاريخية
@@ -31,6 +31,10 @@ The reference tracker contains exactly **256 items across 12 domains**. Its hist
 A machine-assisted and manually enriched **source-trace of all 256 rows** is preserved in [CATALOG_256_SOURCE_TRACE_V010.tsv](CATALOG_256_SOURCE_TRACE_V010.tsv). It identifies **182 rows with public API-name candidates** after source review (initial tracker notes plus 118 manually mapped catalogue rows); **74 rows currently have no public API-name candidate**. **These figures are not completion/absence totals:** the original notes are stale and a compound row may contain both implemented and missing submethods. The TSV preserves each original tracker line verbatim for subsequent independent scientific sign-off. Importability and test-file references can be recomputed with `python tools/catalogue_audit.py --output catalogue_evidence.csv`; this does not assign completion labels.
 
 أعددنا مطابقة نصية لجميع البنود الـ256: **182 بندًا لها مرشحات دوال عامة بعد المطابقة اليدوية**، و**74 بندًا لم نحدد لها بعد اسم دالة عامة مرشحًا**؛ وهذا ليس حكمًا بأنها غير منفذة ولا نسبة إنجاز. يجب ربط كل بند بالأدلة وباختبارات مرجعية قبل اعتماد حالته.
+
+## General linear models mapping | ربط النماذج الخطية
+
+IDs **#37 repeated-measures ANOVA**, **#38 ANCOVA**, **#39 one-way MANOVA** now map to new explicit APIs in `general_linear_models.py`, with independent arithmetic checks, a bilingual methodology guide and Colab 18. This is three source-level callable candidates, **not** complete scientific approval or a license to disregard sphericity, parallel slopes, independence, covariance rank or conditional model assumptions.
 
 ## Model validation audit and recovered mappings | تدقيق تقييم نماذج التعلّم
 
