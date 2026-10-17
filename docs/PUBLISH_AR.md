@@ -1,95 +1,89 @@
-# دليل نشر KhaledDSML — GitHub وPyPI
+# دليل إصدار KhaledDSML 0.10 — الإصدار التجريبي والنشر الآمن
 
-**المؤلف:** الأستاذ الدكتور خالد علي (Khaled Ali)  
-**الجامعة:** جامعة الشهيد حمه لخضر – الوادي، الجزائر (University of El Oued, Algeria)  
-**الكلية:** كلية العلوم الاقتصادية والتجارية وعلوم التسيير (Faculty of Economic, Commercial and Management Sciences)  
-**البريد الإلكتروني المهني:** [ali-khaled@univ-eloued.dz](mailto:ali-khaled@univ-eloued.dz)  
-**اسم التوزيع المقترح:** `khaled-dsml`  
-**اسم الاستيراد في Python:** `khaled_dsml`
+**المؤلف:** الأستاذ الدكتور خالد علي — جامعة الشهيد حمه لخضر، الوادي.
 
-> هذه الملفات تجهّز المشروع للنشر ولا تنشره تلقائيًا. لم يُتحقَّق نهائيًا من توفر الاسم على PyPI. يجب عدم وضع كلمة المرور أو رموز الوصول داخل الملفات أو محادثة أو GitHub.
+## حالة المشروع
 
-## أولا: إنشاء مستودع GitHub
+| العنصر | الحالة |
+|---|---|
+| الإصدار الرسمي المتاح سابقًا على PyPI | `0.9.0` |
+| إصدار المصدر قيد التحضير | `0.10.0rc1` — Release Candidate 1 |
+| مستودع المصدر | https://github.com/noble2013/KhaledDSML |
+| مجموع بنود الكتالوج | 256 بندًا |
+| البنود المرتبطة بواجهات مرشحة | 256، بينها **بديلان غير مكافئين للطريقة الأصلية** (#85 و#117) |
+| نشر نسخة 0.10.0 مستقرة | **لم يحدث، ولا يجوز استنتاجه من نجاح CI** |
 
-1. سجل الدخول في https://github.com/new.
-2. أنشئ مستودعًا باسم `KhaledDSML` ضمن حسابك، واجعله **Public** عندما تريد إتاحة المصدر للآخرين. لا تختر إنشاء README أو ترخيص من واجهة GitHub؛ فهما موجودان في المشروع بالفعل.
-3. نزّل الحزمة المصدرية وافتح PowerShell من جذر المشروع الذي يحتوي `pyproject.toml`.
-4. نفّذ الأوامر التالية **بعد استبدال** `YOUR_GITHUB_USERNAME` باسم مستخدم GitHub الحقيقي (لا تستخدم الاسم النموذجي كما هو):
+**التفسير العلمي:** ربط اسم دالة بكل بند ليس اعتمادًا علميًا؛ بعض الوظائف تدعم حالات محدودة فقط. يجب مراجعة التصميم والإحصاء والمراجع والاستقلالية قبل استخدامها في دراسة منشورة.
 
-```powershell
-git init
-git add .
-git commit -m "Initial release of KhaledDSML 0.1.0"
-git branch -M main
-git remote add origin https://github.com/YOUR_GITHUB_USERNAME/KhaledDSML.git
-git push -u origin main
-```
+## 1. إعداد نسخة Windows والتحقق منها
 
-يمكن استخدام تطبيق GitHub Desktop بدل `git` إن لم يكن مثبتًا، ولا حاجة لنشر الحزمة في دليل نظام Windows أو داخل `.venv`.
-
-## ثانيا: التحقق محليًا قبل النشر
+في PowerShell داخل جذر المستودع الذي يحتوي `pyproject.toml`:
 
 ```powershell
+git checkout main
+git pull origin main
 py -3.13 -m venv .venv
 .\.venv\Scripts\python.exe -m pip install --upgrade pip
-.\.venv\Scripts\python.exe -m pip install -e ".[dev,econometrics,plots]"
+.\.venv\Scripts\python.exe -m pip install -e ".[dev,econometrics,plots,exports,unitroot,quantiles]"
 .\.venv\Scripts\python.exe -m pytest
+.\.venv\Scripts\python.exe tools\release_gate.py --target source
 .\.venv\Scripts\python.exe -m build
 .\.venv\Scripts\python.exe -m twine check dist\*
+.\.venv\Scripts\python.exe tools\check_distributions.py dist
+.\.venv\Scripts\python.exe -m pip install --force-reinstall --no-deps ".\dist\khaled_dsml-0.10.0rc1-py3-none-any.whl"
+.\.venv\Scripts\python.exe -c "import khaled_dsml; print(khaled_dsml.__version__)"
 ```
 
-إن لم تكن أدوات البناء متاحة، تثبت ضمن خيار `[dev]` الموضح أعلاه. ارفع الملفات المصدرية **دون** `.venv` و`dist` والملفات المؤقتة.
+الأمر الأخير يعرض `0.10.0rc1` بعد دمج نسخة التحضير. هذه **عملية بناء وتثبيت محلية**، وليست نشرًا على PyPI.
 
-## ثالثا: إنشاء الحسابات
+عند الحاجة للميزات الموزعة ثبت `.[dask,spark]` منفصلًا وتحقق من توفر Java اللازمة لـPySpark. الخيار `.[all]` يتضمن المحركات الموزعة وقد يكون ثقيلًا ولا يصلح لبيئات قليلة الموارد.
 
-- **PyPI**: https://pypi.org/account/register/ — حساب نشر الحزم النهائي.
-- **TestPyPI**: https://test.pypi.org/account/register/ — حساب **منفصل** للتجارب.
+## 2. التحقق من GitHub Actions
 
-## رابعا: النشر الآمن دون تخزين API Token باستخدام Trusted Publishing
+يجب نجاح ست مهام `.github/workflows/python-tests.yml`: أربع مصفوفات Python (3.10، 3.11، 3.12، 3.13)، اختبار Dask/PySpark الحقيقي، ثم بناء ملفات `wheel` و`sdist` والتحقق منهما.
 
-المشروع يحتوي مساري GitHub Actions منفصلين:
+التحقق الجديد `tools/release_gate.py` يطابق نسختي `pyproject.toml` و`khaled_dsml.__version__`، ويتأكد من البنود الـ256 وتوثيق القيود في #85 و#117. وفحص `tools/check_distributions.py` يتحقق من وجود سجل الكتالوج الكامل **داخل أرشيف المصدر**، ومن توافق إصدارات الملفات الناتجة.
 
-| الوجهة | اسم الملف على GitHub | وقت التنفيذ | GitHub Environment |
-|---|---|---|---|
-| TestPyPI | `.github/workflows/testpypi.yml` | تشغيل يدوي من Actions | `testpypi` |
-| PyPI | `.github/workflows/release.yml` | إصدار GitHub Release منشور | `pypi` |
+## 3. تجربة TestPyPI — تتطلب تشغيلًا يدويًا واضحًا
 
-1. من المستودع في GitHub، افتح `Settings → Environments` وأنشئ بيئتين باسم `testpypi` و`pypi`. يوصى بضبط **الموافقة اليدوية** للمراجعين على بيئة `pypi` وقيود حمايتها قبل أي نشر نهائي.
-2. في حساب **TestPyPI** افتح https://test.pypi.org/manage/account/publishing/، وأضف **pending Trusted Publisher** بالحقول: اسم الحزمة `khaled-dsml`، مالك مستودع GitHub الفعلي، المستودع `KhaledDSML`، اسم Workflow `testpypi.yml`، وEnvironment `testpypi`.
-3. في GitHub ادخل `Actions → Publish to TestPyPI (manual) → Run workflow` على الفرع `main`.
-4. بعد اكتمال المهمة ابحث عن الحزمة على https://test.pypi.org/project/khaled-dsml/، وجرّب التثبيت في بيئة فارغة. ثبّت الاعتمادات أولًا من PyPI الرسمي، ثم ثبّت مكتبتنا وحدها من TestPyPI باستعمال `--no-deps` لتفادي خلط المستودعات:
+لا يبدأ النشر إلى TestPyPI تلقائيًا. عند اختيار اختباره:
+1. اربط الحساب في https://test.pypi.org/ بالناشر الموثوق `noble2013/KhaledDSML` وملف `testpypi.yml` وبيئة GitHub `testpypi`.
+2. افتح GitHub → Actions → **Publish to TestPyPI (manual)** → **Run workflow**.
+3. أدخل كلمة الموافقة `TESTPYPI` في `confirm_publish`.
+4. ترفض بوابة الاختبار الإصدار المستقر، وتسمح فقط بالنسخ التطويرية/التجريبية؛ تقنيًا يعتمد النشر على إعداد OIDC والبيئة الصحيحين.
+
+بعد نجاح الاختبار، يمكن تثبيت نسخة تجريبية في بيئة **جديدة** بتحميل الاعتماديات الأساسية من PyPI الرسمي أولًا، ثم الحزمة التجريبية بـ`--no-deps`:
 
 ```powershell
 py -3.13 -m venv .testvenv
+.\.testvenv\Scripts\python.exe -m pip install --upgrade pip
 .\.testvenv\Scripts\python.exe -m pip install numpy pandas scipy scikit-learn
-.\.testvenv\Scripts\python.exe -m pip install --no-deps --index-url https://test.pypi.org/simple/ khaled-dsml==0.1.0
-.\.testvenv\Scripts\python.exe -c "import khaled_dsml; print('Imported OK')"
+.\.testvenv\Scripts\python.exe -m pip install --no-deps --index-url https://test.pypi.org/simple/ "khaled-dsml==0.10.0rc1"
+.\.testvenv\Scripts\python.exe -c "import khaled_dsml; print(khaled_dsml.__version__)"
 ```
 
-إذا رغبت في تثبيت ميزات إضافية، ثبّت اعتمادياتها أولًا من PyPI الرسمي بحسب خيارات `[econometrics]` و`[plots]` في `pyproject.toml`.
+**تنبيه:** الأمر يفترض أن الإصدار التجريبي نُشر فعلًا؛ لا تنفذه بهدف تنزيل إصدار لم يُنشر بعد.
 
-5. بعد نجاح الاختبار، افتح https://pypi.org/manage/account/publishing/ وأضف **pending Trusted Publisher** لاسم المشروع `khaled-dsml`، مالك ومستودع GitHub نفسيهما، وWorkflow `release.yml`، وEnvironment `pypi`.
-6. من GitHub أنشئ Release جديدًا، وسمه `v0.1.0`، ثم اضغط `Publish release`. يتحقق workflow من اختبارات المشروع وتطابق وسم الإصدار مع `pyproject.toml`، ويُنشئ الحزم، ثم ينشرها إلى PyPI تلقائيًا **فقط بعد** إتمام Trusted Publisher والصلاحيات المطلوبة.
-7. تأكد من ظهور https://pypi.org/project/khaled-dsml/ ثم نفذ الأمر التالي لاختبار التثبيت العام:
+## 4. نشر PyPI المستقر — إجراء منفصل لاحق
 
-```powershell
-py -3.13 -m pip install khaled-dsml
-```
+الملف `.github/workflows/release.yml` يُنفذ عند نشر GitHub Release. بوابة الإصدار ترفض تلقائيًا:
+- الإصدار الذي يتضمن `dev` أو `a` أو `b` أو `rc`.
+- الوسم الذي لا يطابق نسخة `pyproject.toml` تمامًا.
+- GitHub Release معلّمًا بأنه `prerelease`.
 
-## خامسا: لماذا بيئتان مختلفتان؟
+عندما تقرر نشر `0.10.0` النهائي بعد مراجعة الاختبارات والاستقرار والتوثيق:
+1. غيّر **في commit واحد** نسختي `pyproject.toml` و`src/khaled_dsml/__init__.py` إلى `0.10.0`، وعدّل تصنيف الحالة وتوثيق الإصدار.
+2. شغّل الاختبارات وبناء وتثبيت الملفات، وراجع الأرقام والتحفظات العلمية.
+3. أنشئ الوسم `v0.10.0` من commit مُجاز، ثم GitHub Release بنفس الوسم وغير معلّم `prerelease`.
+4. تأكد من حماية بيئة `pypi` في GitHub (مراجعين وأذونات مناسبة) ومن إعداد Trusted Publisher لنفس `release.yml`. النشر بواسطة OIDC لا يحتاج حفظ رموز دخول داخل المشروع.
+5. تحقق من الإصدار المنشور على https://pypi.org/project/khaled-dsml/ باختبار تثبيت في بيئة نظيفة.
 
-يتحقق PyPI من هوية GitHub بواسطة OIDC قصيرة الأجل دون تخزين أسرار نشر ثابتة، وبالاعتماد على اسم المستودع وملف العمل واسم البيئة. لهذا يجب كتابة أسماء الملفات والبيئات **كما هي حرفيًا**. المستودع وحده لا يكفي للنشر، والحسابان على PyPI وTestPyPI مستقلان.
+**لا تنشر PR تجريبيًا أو وسم rc1 كإصدار مستقر.** كما لا يمكن استبدال ملفات PyPI بعد النشر بالاسم والإصدار نفسيهما؛ أخطاء الإصدار تتطلب إصدارًا جديدًا.
 
-## سادسا: ما الذي ينشره الإصدار 0.1.0؟
+## 5. المراجع الرسمية
 
-- وحدات إحصائية وتعلم آلة وجودة بيانات، واختبارات آلية مع تفسير عربي.
-- وظائف لمعالجة الملفات بالأجزاء وأمثلة اقتصاد كمي.
-- أمثلة Jupyter وملفات توثيق عربية.
-- **لا** يشمل تنفيذًا متكاملاً لجميع وظائف Spark أو Hadoop أو NoSQL، ولا يثبت تغطيته لكل محتوى بطاقة دراسية رسمية لم تتم مراجعتها.
-
-## مصادر التوثيق الرسمية
-
-- https://docs.pypi.org/trusted-publishers/creating-a-project-through-oidc/
-- https://docs.pypi.org/trusted-publishers/using-a-publisher/
-- https://docs.pypi.org/trusted-publishers/security-model/
-- https://packaging.python.org/en/latest/guides/publishing-package-distribution-releases-using-github-actions-ci-cd-workflows/
+- [Python Packaging — PEP 440](https://peps.python.org/pep-0440/)
+- [PyPI Trusted Publishing](https://docs.pypi.org/trusted-publishers/using-a-publisher/)
+- [PyPI GitHub OIDC](https://docs.pypi.org/trusted-publishers/)
+- [تفاصيل القيود العلمية للـ256 بندًا](CATALOG_AUDIT_0_10_AR_EN.md)
+- [بدائل القدرة اللاحقة وفائض الأصفار](ZERO_INFLATION_AND_PRECISION_0_10_AR_EN.md)
