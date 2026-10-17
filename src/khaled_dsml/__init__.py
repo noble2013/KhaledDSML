@@ -23,3 +23,9 @@ from .ml_evaluation import (
     render_classification_report, save_classification_report,
     display_classification_report,
 )
+
+from .descriptive import (
+    describe_numeric, describe_categorical, descriptive_table, frequency_table,
+    weighted_mean, gini_coefficient, covariance_correlation, interpret_descriptive,
+    render_descriptive_report, save_descriptive_report, display_descriptive_report,
+)
