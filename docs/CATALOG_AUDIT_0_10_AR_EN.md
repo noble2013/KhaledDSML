@@ -34,7 +34,7 @@ A machine-assisted and manually enriched **source-trace of all 256 rows** is pre
 
 ## Model validation audit and recovered mappings | تدقيق تقييم نماذج التعلّم
 
-Mapping candidates added for #167 nested CV, #177 predictive label permutation significance, #178 the shared predictive Y-randomization scope, #179 Dummy benchmark, #187 heldout permutation importance, and #193 learning curve. Existing exported functions recovered on #26/#200 Ljung–Box, #98 Breusch–Pagan, #125 Cronbach alpha, #196 ADF, #207 regression *residual* CUSUM (not generic stream detection), #227 p-value multiple-testing adjustment (not a comprehensive sequential design). This yields 209 candidate-matched versus 47 unmapped items. All are **source-level candidates**, not counts of complete scientific implementations.
+Mapping candidates added for #167 nested CV, #177 predictive label permutation significance, #178 the shared predictive Y-randomization scope, #179 Dummy benchmark, #187 heldout permutation importance, and #193 learning curve. Existing implementations reconciled on #26/#200 Ljung–Box, #98 Breusch–Pagan, #125 Cronbach alpha, #196 ADF, #207 regression *residual* CUSUM (not generic stream detection), #227 p-value multiple-testing adjustment (not a comprehensive sequential design). This yields 209 candidate-matched versus 47 unmapped items. All are **source-level candidates**, not counts of complete scientific implementations.
 
 ## Integrity and reproducibility research mapping / ربط أدوات نزاهة البحث
 
