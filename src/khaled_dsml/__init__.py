@@ -250,3 +250,9 @@ from .shap_stability_scoped import shap_explanation_stability
 from .tdigest_scoped import tdigest_quantile_summary
 from .bayesian_categorical_specialist import dirichlet_multinomial_bayes_factor
 from .sprite_scoped import sprite_integer_constraint_witness
+
+# Scientifically guarded retrospective precision and zero-inflation diagnostics.
+from .zero_inflation_and_power_guardrails import (
+    poisson_excess_zero_score, vuong_strictly_nonnested,
+    post_study_precision_scenarios,
+)
