@@ -1,5 +1,12 @@
 # سجل التغييرات | Changelog
 
+## 0.6.0 — قيد التطوير / Unreleased
+
+- `posthoc_comparisons`: Tukey HSD, Games–Howell, Dunn (Holm/Bonferroni), Dunnett مقابل مجموعة ضابطة، وNemenyi للقياسات المترابطة بعد Friedman.
+- `roc_comparison`: DeLong المترابط لتقدير فرق ROC-AUC وقيمته الاحتمالية وفاصل الثقة، وBootstrap طبقي مزدوج للفاصل دون اختلاق p-value.
+- مخرجات Analytics Studio ذات اتجاه RTL العربي وLTR الإنجليزي، وجداول مقارنة النتائج، ودفتر Colab تعليمي متكامل.
+- اختبارات مرجعية ومراجعة علمية مستقلة قبل الاعتماد. الإصدار الرسمي الحالي 0.5.0.
+
 ## 0.5.0 — قيد التطوير / Unreleased
 
 - اختبارات افتراضات متعددة المتغيرات Mardia، Box M، Mauchly، Breusch–Godfrey وLevene mean.
