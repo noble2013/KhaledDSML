@@ -4,7 +4,7 @@
 **الجامعة:** جامعة الشهيد حمه لخضر – الوادي، الجزائر (University of El Oued, Algeria)  
 **الكلية:** كلية العلوم الاقتصادية والتجارية وعلوم التسيير (Faculty of Economic, Commercial and Management Sciences)  
 **البريد الإلكتروني المهني:** [ali-khaled@univ-eloued.dz](mailto:ali-khaled@univ-eloued.dz)  
-**الإصدار الرسمي الحالي على PyPI: 0.2.0 — إصدار 0.3.0 قيد التطوير**
+**الإصدار الرسمي الحالي على PyPI: 0.3.0 — إصدار 0.4.0 قيد التطوير**
 
 حزمة Python تعليمية للمقاييس التالية:
 
@@ -42,6 +42,25 @@ py -3.13 -m venv .venv
 ```powershell
 py -m pip install khaled-dsml
 ```
+
+### Academic Analysis Suite 0.4.0 — تحديث شامل للاختبارات البحثية
+
+**مرحلة تطوير غير منشورة بعد على PyPI**؛ الإصدار الرسمي المستقر هو `0.3.0`. أضيفت اختبارات الاستدلال والنسب، وتقييم النماذج ومعايرتها، وموثوقية الاستبيانات، والتحليل العاملي الاستكشافي، وتشخيص الانحدار، والسلاسل الزمنية المتقدمة. تبقى التقارير الإبداعية **Analytics Studio** باللغتين العربية يمينًا والإنجليزية يسارًا.
+
+```python
+from khaled_dsml import (
+    mcnemar_test, wilson_proportion_interval,
+    classification_diagnostics, display_analysis_dashboard,
+)
+
+test = mcnemar_test([[20, 5], [15, 30]])
+display_analysis_dashboard(test, theme="aurora")
+
+interval = wilson_proportion_interval(65, 100)
+display_analysis_dashboard(interval, theme="amethyst")
+```
+
+الوثائق العلمية للأسماء والفرضيات وشروط الاستخدام: [Academic Suite 0.4 AR/EN](docs/ACADEMIC_SUITE_0_4_AR_EN.md). لا ادعاء بإتمام كل كتالوج 256 بندًا قبل تغطيته المرجعية والتحقق الكامل.
 
 ### Analytics Studio — واجهة تحليل إحصائي إبداعية (تطوير 0.3.0)
 
