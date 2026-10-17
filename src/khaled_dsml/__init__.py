@@ -1,5 +1,5 @@
 """KhaledDSML: educational statistics, ML and big data in Python."""
-__version__ = "0.3.0"
+__version__ = "0.4.0"
 
 from .statistics import (normality_test, shapiro_test, jarque_bera_test,
     independent_t_test, paired_t_test, mann_whitney_test, wilcoxon_test,
@@ -74,4 +74,36 @@ from .bilingual_display import (
 
 from .visual_reports import (
     render_analysis_dashboard, display_analysis_dashboard, save_analysis_dashboard,
+)
+
+# Extended academic catalogue — v0.4 (optional heavy engines stay lazily imported)
+from .inference_extended import (
+    welch_anova_test, mood_median_test, brunner_munzel_test,
+    mcnemar_test, cochran_q_test, one_proportion_z_test,
+    two_proportions_z_test, wilson_proportion_interval,
+    point_biserial_test, partial_correlation_test, cramers_v,
+    phi_coefficient, fisher_z_correlation_test, glass_delta,
+    eta_squared, omega_squared, cohen_w, contingency_risk_measures,
+)
+from .psychometrics_extended import (
+    item_total_statistics, split_half_reliability, test_retest_correlation,
+    cohen_kappa_agreement, fleiss_kappa_agreement, factor_scree_table,
+    parallel_analysis, exploratory_factor_analysis, convergent_validity,
+    htmt_ratio, fornell_larcker_matrix, harman_single_factor,
+)
+from .ml_extended import (
+    classification_diagnostics, calibration_summary, detailed_regression_metrics,
+    cluster_validation_metrics, binary_group_fairness, time_series_split_indices,
+    repeated_cv_indices, model_overfit_gap,
+)
+from .regression_extended import (
+    regression_white_test, regression_goldfeld_quandt_test,
+    regression_reset_test, regression_rainbow_test, regression_influence_table,
+    chow_structural_break_test, regression_cusum_test, model_information_criteria,
+    logistic_hosmer_lemeshow, glm_overdispersion_diagnostic, two_way_anova,
+)
+from .timeseries_extended import (
+    kpss_stationarity_test, zivot_andrews_break_test,
+    granger_predictivity_tests, engle_granger_cointegration_test,
+    johansen_cointegration_test, diebold_mariano_test,
 )
