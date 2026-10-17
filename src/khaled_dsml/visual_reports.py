@@ -16,6 +16,19 @@ from ._results import TestResult
 
 
 _METRICS = (
+    ("posterior_mean", "المتوسط البعدي", "Posterior mean"),
+    ("posterior_variance", "التباين البعدي", "Posterior variance"),
+    ("credible_lower", "حد المصداقية الأدنى", "Credible lower"),
+    ("credible_upper", "حد المصداقية الأعلى", "Credible upper"),
+    ("predictive_mean_successes", "المتوسط التنبؤي للنجاحات", "Predictive successes"),
+    ("probability_a_greater_b_given_h1", "احتمال تفوق المجموعة أ وفق النموذج البديل", "Pr(A > B | H1)"),
+    ("log_bayes_factor_10", "لوغاريتم عامل بايز BF10", "Log Bayes factor 10"),
+    ("bayes_factor_10", "عامل بايز BF10", "Bayes factor 10"),
+    ("posterior_mean_a", "المتوسط البعدي للمجموعة أ", "Group A posterior"),
+    ("posterior_mean_b", "المتوسط البعدي للمجموعة ب", "Group B posterior"),
+    ("successes", "حالات النجاح", "Successes"),
+    ("trials", "عدد المحاولات", "Trials"),
+    ("predictive_trials", "المحاولات المستقبلية", "Future trials"),
     ("n_samples", "حجم العينة", "Sample size"),
     ("n_resamples", "محاكاة مونت كارلو", "Monte Carlo replicates"),
     ("monte_carlo_exceedances", "محاكاة تجاوزت الإحصائية", "Null exceedances"),
@@ -132,6 +145,8 @@ _METRICS = (
     ("missing_cells", "الخلايا المفقودة", "Missing cells"),
 )
 _TITLES = {
+    "Bayesian Beta-binomial posterior": ("التوزيع البعدي بايز-ثنائي الحدين", "Bayesian Beta–binomial posterior"),
+    "Bayesian independent-binomial model comparison": ("مقارنة بايزية لمعدلات المجموعتين", "Bayesian comparison of binomial groups"),
     "Henze-Zirkler multivariate normality (Monte Carlo)": ("اختبار هينز–زيركلر للاعتدالية متعددة المتغيرات", "Henze–Zirkler multivariate normality"),
     "MNAR delta-shift sensitivity (descriptive)": ("تحليل حساسية دلتا للبيانات المفقودة", "MNAR delta-shift sensitivity"),
     "Mann-Kendall trend (normal approximation)": ("اختبار اتجاه مان–كندال", "Mann–Kendall trend"),
