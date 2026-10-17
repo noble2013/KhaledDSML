@@ -165,3 +165,14 @@ def test_causal_caveats_present_in_results(mediation_data,moderation_data):
         assert result["interpretation_en"].strip()
     assert "causal" in outputs[0]["interpretation_en"]
     assert "p_value" not in outputs[2]
+
+
+def test_bilingual_statistical_table_header_and_no_html_injection(moderation_data):
+    x,w,y=moderation_data
+    result=simple_slopes_table(x,w,y)
+    html=render_analysis_dashboard(result,theme="amethyst")
+    assert "الميل المشروط" in html
+    assert "قيمة المتغير المعدّل" in html
+    assert 'class="kdsml-th-ar" lang="ar" dir="rtl"' in html
+    assert 'class="kdsml-th-en" lang="en" dir="ltr"' in html
+    assert 'dir="auto"' in html
