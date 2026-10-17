@@ -1,7 +1,7 @@
 # تدقيق كتالوج KhaledDSML (256 بندًا) | Catalogue coverage audit
 
 **Baseline / نقطة الانطلاق:** `main` release `0.9.0`, snapshot 17 October 2026.
-**Branch / فرع العمل:** source baseline after merged PR #9–16; SEM/SHAP/t-digest and Bayesian categorical candidates on `feature/v0.10-sem-shap-tdigest` (`0.10.0.dev0`, unpublished).
+**Branch / فرع العمل:** source baseline after merged PR #9–17; final scientific guardrails on `feature/v0.10-scientific-final-gap-guards` (`0.10.0.dev0`, unpublished).
 **Provenance / المصدر:** `KhaledDSML_Catalog_Verified_Phase2_2026-10-17.xlsx` saved in the author's Library. The reference workbook, **not** the number of pytest tests, defines the 256 units of work.
 
 ## Scope and historical numbers | النطاق والأرقام التاريخية
@@ -28,9 +28,20 @@ The reference tracker contains exactly **256 items across 12 domains**. Its hist
 
 ## 256-row trace | جدول مطابقة جميع البنود
 
-A machine-assisted and manually enriched **source-trace of all 256 rows** is preserved in [CATALOG_256_SOURCE_TRACE_V010.tsv](CATALOG_256_SOURCE_TRACE_V010.tsv). It identifies **254 rows with candidate public API names** after source review (initial tracker notes plus 118 manually mapped catalogue rows); **2 rows currently have no public API-name candidate**. **These figures are not completion/absence totals:** the original notes are stale and a compound row may contain both implemented and missing submethods. The TSV preserves each original tracker line verbatim for subsequent independent scientific sign-off. Importability and test-file references can be recomputed with `python tools/catalogue_audit.py --output catalogue_evidence.csv`; this does not assign completion labels.
+A machine-assisted and manually enriched **source-trace of all 256 rows** is preserved in [CATALOG_256_SOURCE_TRACE_V010.tsv](CATALOG_256_SOURCE_TRACE_V010.tsv). It identifies **256 rows with candidate public API names (includes restricted substitutes)** after source review (initial tracker notes plus 118 manually mapped catalogue rows); **0 rows without public API-name candidates; 2 have restricted substitutes**. **These figures are not completion/absence totals:** the original notes are stale and a compound row may contain both implemented and missing submethods. The TSV preserves each original tracker line verbatim for subsequent independent scientific sign-off. Importability and test-file references can be recomputed with `python tools/catalogue_audit.py --output catalogue_evidence.csv`; this does not assign completion labels.
 
-أعددنا مطابقة نصية لجميع البنود الـ256: **254 بندًا لها مرشحات أسماء دوال عامة مرتبطة**، و**بندان لا يحملان اسم دالة عامة مرشحًا**؛ وهذا ليس حكمًا بأنها غير منفذة ولا نسبة إنجاز. يجب ربط كل بند بالأدلة وباختبارات مرجعية قبل اعتماد حالته.
+أعددنا مطابقة نصية لجميع البنود الـ256: **256 بندًا لها مرشحات دوال عامة مرتبطة، بينها بديلان محدودان**، و**0 بنود بلا مرشحات؛ بندان مرتبطان ببدائل جزئية**؛ وهذا ليس حكمًا بأنها غير منفذة ولا نسبة إنجاز. يجب ربط كل بند بالأدلة وباختبارات مرجعية قبل اعتماد حالته.
+
+## Completion of API candidate trace — NOT methodology certification | اكتمال الربط لا اعتماد المناهج
+
+Original rows **#85** and **#117** now have carefully marked source-level candidate alternatives:
+
+- **#85:** `post_study_precision_scenarios`, a post-study interval and externally hypothesized true-effect sensitivity; **does not compute achieved/observed power** derived from the fitted effect or p-value.
+- **#117:** `vuong_strictly_nonnested` for genuinely strictly nonnested distinguishable model families only, with ZIP/Poisson explicitly blocked; plus `poisson_excess_zero_score` using a separate van den Broek 1995 efficient score for excess zeros in independent intercept-only Poisson counts.
+
+**256/256 original rows now have at least one public API candidate**. These two replacements are **not implementations of the exact originally named misleading procedures**. Their scope must remain visible in catalogue notes and users must not conclude that all 256 methods are scientifically complete, fully validated or certified.
+
+See [ZERO_INFLATION_AND_PRECISION_0_10_AR_EN.md](ZERO_INFLATION_AND_PRECISION_0_10_AR_EN.md) for reference formulas and supporting peer-reviewed literature.
 
 ## SEM, SHAP, t-digest and exact categorical Bayes | إضافات الإحصاء المتخصص
 
