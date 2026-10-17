@@ -5,7 +5,7 @@
 **الكلية:** كلية العلوم الاقتصادية والتجارية وعلوم التسيير (Faculty of Economic, Commercial and Management Sciences)  
 **البريد الإلكتروني المهني:** [ali-khaled@univ-eloued.dz](mailto:ali-khaled@univ-eloued.dz)  
 **الإصدار الرسمي المنشور على PyPI: 0.9.0 (17 أكتوبر 2026)**  
-**نسخة المصدر على main: 0.10.0.dev0 — لم تُنشر بعد؛ النماذج الخطية الجديدة قيد الاختبار على feature/v0.10-general-linear-models**
+**نسخة المصدر على main: 0.10.0.dev0 — لم تُنشر بعد؛ دفعة الإكمال الموحّدة قيد الفحص على feature/v0.10-final-scientific-gapfill**
 
 حزمة Python تعليمية للمقاييس التالية:
 
@@ -354,12 +354,13 @@ print(grade_quiz(questions, answers))
 ## الإصدار الرسمي الحالي والتطوير القادم
 
 - **الإصدار المنشور:** [KhaledDSML 0.9.0 على PyPI](https://pypi.org/project/khaled-dsml/0.9.0/).
-- **التطوير القادم:** `0.10.0.dev0` في `main` بعد PR #9–12؛ الإضافات الجديدة على [feature/v0.10-general-linear-models](https://github.com/noble2013/KhaledDSML/tree/feature/v0.10-general-linear-models) بانتظار CI؛ **غير منشور** إلى PyPI.
+- **التطوير القادم:** `0.10.0.dev0` في `main` بعد PR #9–13؛ الدفعة الجديدة على [feature/v0.10-final-scientific-gapfill](https://github.com/noble2013/KhaledDSML/tree/feature/v0.10-final-scientific-gapfill) قيد CI؛ **غير منشور** إلى PyPI.
 - **التدقيق:** [مراجعة كتالوج 256 بندًا](docs/CATALOG_AUDIT_0_10_AR_EN.md). لا يعني عدد اختبارات pytest اكتمال الكتالوج.
 - **وظائف تجريبية:** Henze–Zirkler بمعايرة Monte Carlo، وتحليل حساسية MNAR بعوامل delta افتراضية؛ انظر [الدليل العلمي](docs/RESEARCH_METHODS_0_10_AR_EN.md). [دفتر Colab 13](notebooks/13_multivariate_mnar_studio.ipynb).
 - **مراقبة البيانات والتحليل البعدي (فرع التطوير):** PSI وJensen–Shannon وWasserstein مع KS، ومتوسط/تباين Welford المتدفق، وSRM، وعدم التجانس Q/I² وDerSimonian–Laird وEgger، جميعها بتفسيرات ثنائية اللغة وتحفظات علمية. [الدليل](docs/MONITORING_META_0_10_AR_EN.md) · [دفتر Colab 15](notebooks/15_monitoring_meta_studio.ipynb).
 - **التحقق من النزاهة البحثية (تطوير 0.10):** اختبار McNemar المزدوج، MAPE الصارم، GRIM لاتساق المتوسطات، إعادة حساب قيم p لاختبار t، عقود جودة DataFrame، وإنذارات Page–Hinkley. نتائج Analytics Studio ثنائية اللغة مع تنبيهات منهجية واضحة. [الدليل](docs/RESEARCH_INTEGRITY_0_10_AR_EN.md) · [دفتر Colab 16](notebooks/16_research_integrity_studio.ipynb). الفحص الحسابي ليس اتهامًا بمخالفة بحثية.\n- **التحقق العلمي لتعلم الآلة (فرع تطوير 0.10):** Nested CV باختيار المعلمات داخل التدريب، واختبار permutation الملصقات بقيمة p مشروطة، وأهمية السمات على مجموعة اختبار مستقلة، ومنحنيات تعلّم، وخط أساس Dummy. تقارير Analytics Studio عربية RTL وإنجليزية LTR. [الدليل](docs/ML_VALIDATION_0_10_AR_EN.md) · [دفتر Colab 17](notebooks/17_ml_validation_studio.ipynb). البيانات الزمنية والمجموعات المترابطة تحتاج مخطط تحقق مختلفًا.
 - **النماذج الخطية العامة (فرع تطوير 0.10):** ANCOVA مع اختبار تجانس الميل، وMANOVA بإحصاءات Wilks/Pillai/Hotelling/Roy، وANOVA للقياسات المتكررة مع تنبيه فرضية الكروية وعدم تطبيق التصحيحات. التقارير بالعربية RTL والإنجليزية LTR. [الدليل](docs/GENERAL_LINEAR_MODELS_0_10_AR_EN.md) · [Colab 18](notebooks/18_general_linear_models_studio.ipynb).
+- **دفعة الإكمال الموحدة (فرع تطوير 0.10):** 21 دالة عامة للتجارب المتتابعة SPRT وCUPED، وWald/LR/Score للانحدار المتداخل، ونسب التحديد الزائفة، والفحوص المتقاطعة المصححة 5×2cv، وHopkins/Gap/Leave-One-Out وثبات البذرة، وتمثيل العيّنة، وHyperLogLog وMinHash/LSH. جميعها محددة القيود وبمخرجات عربية RTL وإنجليزية LTR. [الدليل المتكامل](docs/FINAL_SCIENTIFIC_GAPFILL_0_10_AR_EN.md) · [Colab 19](notebooks/19_final_research_studio.ipynb). **237 بندًا مرشحًا / 19 غير مربوط؛ لا يعني الاعتماد العلمي لكل بند.**
 - **التحليل البايزي التجريبي:** `beta_binomial_posterior` و`beta_binomial_group_comparison` للتقدير البعدي وفحص الفروض البايزية، مع `BF10` محسوب فعليًا؛ [الدليل](docs/BAYESIAN_BINOMIAL_0_10_AR_EN.md) · [Colab 14](notebooks/14_bayesian_binomial_studio.ipynb).
 
 ```powershell

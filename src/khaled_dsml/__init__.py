@@ -204,3 +204,27 @@ from .ml_validation_advanced import (
 from .general_linear_models import (
     ancova_one_factor, manova_one_factor, repeated_measures_one_factor,
 )
+
+# One-batch v0.10 research gapfill: reproducible A/B, OLS, ML, quality and sketches
+from .experiments_advanced import (
+    bernoulli_sprt, cuped_randomized_effect,
+    shard_distribution_consistency, practical_proportion_difference,
+)
+from .regression_inference_advanced import (
+    nested_ols_wald_lr_score, regression_pseudo_r_squared,
+    cohen_f_squared_nested_models, two_sample_power_sensitivity,
+)
+from .ml_validation_completion import (
+    leave_one_out_cv_evaluation, hopkins_cluster_tendency, holdout_noise_robustness,
+)
+from .research_quality_completion import (
+    sample_population_comparison, early_late_nonresponse_screen,
+    scientific_report_alerts,
+)
+from .sketches_advanced import hyperloglog_cardinality, minhash_lsh_candidates
+
+# Paired resampling comparisons and model functional-form/stability
+from .resampling_comparisons import corrected_resampled_t, five_by_two_cv_comparison
+from .model_form_and_stability import (
+    box_tidwell_logistic_screen, prediction_seed_stability, gap_statistic_kmeans,
+)

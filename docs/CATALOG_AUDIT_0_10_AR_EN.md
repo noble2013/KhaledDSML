@@ -1,7 +1,7 @@
 # تدقيق كتالوج KhaledDSML (256 بندًا) | Catalogue coverage audit
 
 **Baseline / نقطة الانطلاق:** `main` release `0.9.0`, snapshot 17 October 2026.
-**Branch / فرع العمل:** source baseline after merged PR #9–12; new classical GLMs on `feature/v0.10-general-linear-models` (`0.10.0.dev0`, unpublished).
+**Branch / فرع العمل:** source baseline after merged PR #9–13; integrated gapfill on `feature/v0.10-final-scientific-gapfill` (`0.10.0.dev0`, unpublished).
 **Provenance / المصدر:** `KhaledDSML_Catalog_Verified_Phase2_2026-10-17.xlsx` saved in the author's Library. The reference workbook, **not** the number of pytest tests, defines the 256 units of work.
 
 ## Scope and historical numbers | النطاق والأرقام التاريخية
@@ -28,9 +28,15 @@ The reference tracker contains exactly **256 items across 12 domains**. Its hist
 
 ## 256-row trace | جدول مطابقة جميع البنود
 
-A machine-assisted and manually enriched **source-trace of all 256 rows** is preserved in [CATALOG_256_SOURCE_TRACE_V010.tsv](CATALOG_256_SOURCE_TRACE_V010.tsv). It identifies **182 rows with public API-name candidates** after source review (initial tracker notes plus 118 manually mapped catalogue rows); **74 rows currently have no public API-name candidate**. **These figures are not completion/absence totals:** the original notes are stale and a compound row may contain both implemented and missing submethods. The TSV preserves each original tracker line verbatim for subsequent independent scientific sign-off. Importability and test-file references can be recomputed with `python tools/catalogue_audit.py --output catalogue_evidence.csv`; this does not assign completion labels.
+A machine-assisted and manually enriched **source-trace of all 256 rows** is preserved in [CATALOG_256_SOURCE_TRACE_V010.tsv](CATALOG_256_SOURCE_TRACE_V010.tsv). It identifies **237 rows with candidate public API names** after source review (initial tracker notes plus 118 manually mapped catalogue rows); **19 rows currently have no public API-name candidate**. **These figures are not completion/absence totals:** the original notes are stale and a compound row may contain both implemented and missing submethods. The TSV preserves each original tracker line verbatim for subsequent independent scientific sign-off. Importability and test-file references can be recomputed with `python tools/catalogue_audit.py --output catalogue_evidence.csv`; this does not assign completion labels.
 
-أعددنا مطابقة نصية لجميع البنود الـ256: **182 بندًا لها مرشحات دوال عامة بعد المطابقة اليدوية**، و**74 بندًا لم نحدد لها بعد اسم دالة عامة مرشحًا**؛ وهذا ليس حكمًا بأنها غير منفذة ولا نسبة إنجاز. يجب ربط كل بند بالأدلة وباختبارات مرجعية قبل اعتماد حالته.
+أعددنا مطابقة نصية لجميع البنود الـ256: **237 بندًا لها مرشحات أسماء دوال عامة مرتبطة**، و**19 بندًا لا يحمل اسم دالة عامة مرشحًا**؛ وهذا ليس حكمًا بأنها غير منفذة ولا نسبة إنجاز. يجب ربط كل بند بالأدلة وباختبارات مرجعية قبل اعتماد حالته.
+
+## Integrated research gapfill | إكمال موحد قابل للتدقيق
+
+This development batch links **25 additional catalogue rows** (new 16 initial APIs plus 5 further resampling/model-stability methods) to source candidates, resulting in **237 of 256 rows with candidate callable mappings** and **19 without**. Some APIs cover several rows and some catalogue rows describe broader procedures than the new API; this is **source evidence**, not verified scientific completeness.
+
+The remaining 19 unlinked items have exact IDs, limitations and suggested specialist verification requirements in [FINAL_SCIENTIFIC_GAPFILL_0_10_AR_EN.md](FINAL_SCIENTIFIC_GAPFILL_0_10_AR_EN.md). Do not substitute placeholder results for methods requiring specialist SEM software, drift libraries or factorial resampling designs.
 
 ## General linear models mapping | ربط النماذج الخطية
 
