@@ -26,14 +26,12 @@ from khaled_dsml import (
 
 monthly_sales = [95, 101, 103, 105, 112, 117, 122, 120, 127, 131, 137, 145]
 trend = mann_kendall_trend_test(monthly_sales)
-print(trend.interpretation_ar)
-print(trend.interpretation_en)
+display_bilingual_result(trend)
 
 series_with_shift = [10] * 20 + [25] * 20
 change = pettitt_change_point_test(series_with_shift)
 print(change["change_index"], change["p_value"])
-print(change["interpretation_ar"])
-print(change["interpretation_en"])
+display_bilingual_result(change)
 ```
 
 - **Mann–Kendall:** اختبار اتجاه رتيب عبر الزمن، باستخدام تقريب طبيعي وتصحيح التكرارات (ties). لا يصح افتراض استقلال القيم في وجود موسمية أو ارتباط ذاتي. / A monotonic-trend test using a tie-adjusted asymptotic approximation, not valid with unaddressed serial dependence or seasonality.
@@ -43,12 +41,12 @@ print(change["interpretation_en"])
 
 ```python
 import numpy as np
-from khaled_dsml import box_pierce_test, arch_lm_test
+from khaled_dsml import box_pierce_test, arch_lm_test, display_bilingual_result
 
 rng = np.random.default_rng(21)
 residuals = rng.normal(size=160)
-print(box_pierce_test(residuals, lags=8).interpretation_en)
-print(arch_lm_test(residuals, lags=5).interpretation_ar)
+display_bilingual_result(box_pierce_test(residuals, lags=8))
+display_bilingual_result(arch_lm_test(residuals, lags=5))
 ```
 
 هاتان الدالتان تحتاجان `statsmodels` (الخيار `khaled-dsml[econometrics]`). **Box–Pierce** يقيس الارتباط الذاتي عبر الإبطاءات المحددة، بينما **ARCH-LM** يختبر نمط الاعتماد في مربعات البواقي؛ يجب أن تنشأ المدخلات من نموذج زمني ملائم. / Both tests use asymptotic p-values and depend on appropriate model residuals. They do **not** demonstrate causality.
@@ -68,8 +66,7 @@ predicted = [168, 182, 189]
 mase = mean_absolute_scaled_error(actual, predicted, train, seasonality=1)
 print(mase)
 report = forecast_accuracy_report(actual, predicted, train)
-print(report["interpretation_ar"])
-print(report["interpretation_en"])
+display_bilingual_result(report)
 ```
 
 `MASE` يقسّم متوسط الخطأ المطلق للتنبؤ على متوسط خطأ التنبؤ الساذج من **عينة التدريب فقط**؛ إذا كانت تلك القيمة صفرًا فالمقياس غير معرّف ويظهر خطأ واضح. يجب حفظ الترتيب الزمني وتساوي أفق التنبؤ في المقارنة. / Baseline is computed **only from pre-forecast training history**. If the baseline denominator vanishes, MASE is undefined.
