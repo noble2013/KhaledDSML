@@ -135,6 +135,7 @@ def test_batches_escape_all_text_and_support_explicit_title():
         [{"ar": "<script>alert(1)</script>", "en": "safe"},
          {"ar": "آمن", "en": "<img src=x onerror=alert(1)>"}],
         title="<title>unsafe</title>",
+        style="plain",
     )
     assert "<script>alert" not in html
     assert "<img " not in html
