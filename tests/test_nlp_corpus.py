@@ -58,3 +58,8 @@ def test_paired_bootstrap_difference_reproducible_without_fake_p_value():
     assert "p_value" not in x
     with pytest.raises(ValueError):
         paired_bootstrap_score_difference(refs,a,b,metric,n_resamples=10)
+
+
+def test_zipf_rejects_uniform_counts_instead_of_nan_r2():
+    with pytest.raises(ValueError, match="distinct token frequencies"):
+        zipf_frequency_analysis(["one","two","three","four","five"])
