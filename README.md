@@ -43,6 +43,26 @@ py -3.13 -m venv .venv
 py -m pip install khaled-dsml
 ```
 
+### KhaledDSML 0.5.0 — استكمال اختبارات البحث العلمي (تطوير)
+
+تم توسيع المكتبة في فرع التطوير باختبارات **Mardia، Box's M، Mauchly، Breusch–Godfrey، Cochran–Armitage، CMH، G-test، TOST**، وفواصل Newcombe، وتحليل القوة، وثبات **Omega/ICC/Krippendorff**، وTrustworthiness وBootstrap للعناقيد، وتحليل النصوص العربية **Zipf وTTR وKeyness**.
+
+تستخدم النتائج واجهة **Analytics Studio** المبتكرة مع محاذاة العربية يمينًا والإنجليزية يسارًا. الإصدار المنشور على PyPI هو **0.4.0**؛ هذه نسخة تطويرية لا تمثل اكتمال البنود الـ256 كلها.
+
+[دليل التطوير 0.5 بالعربية والإنجليزية](docs/METHODS_0_5_AR_EN.md)
+
+```python
+from khaled_dsml import (
+    box_m_covariance_equality, display_analysis_dashboard
+)
+import numpy as np
+rng = np.random.default_rng(5)
+result = box_m_covariance_equality(
+    rng.normal(size=(60, 3)), rng.normal(size=(70, 3))
+)
+display_analysis_dashboard(result, theme="aurora")
+```
+
 ### Academic Analysis Suite 0.4.0 — تحديث شامل للاختبارات البحثية
 
 **مرحلة تطوير غير منشورة بعد على PyPI**؛ الإصدار الرسمي المستقر هو `0.3.0`. أضيفت اختبارات الاستدلال والنسب، وتقييم النماذج ومعايرتها، وموثوقية الاستبيانات، والتحليل العاملي الاستكشافي، وتشخيص الانحدار، والسلاسل الزمنية المتقدمة. تبقى التقارير الإبداعية **Analytics Studio** باللغتين العربية يمينًا والإنجليزية يسارًا.
