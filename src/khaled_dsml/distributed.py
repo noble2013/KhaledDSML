@@ -229,7 +229,9 @@ def spark_monthly_summary(
     from pyspark.sql.types import NumericType
     if not isinstance(spark_df.schema[amount_column].dataType, NumericType):
         raise TypeError(f"{amount_column} must be numeric")
-    month = F.date_format(\n        F.try_to_timestamp(F.col(date_column), F.lit(date_format)), "yyyy-MM"\n    )
+    month = F.date_format(
+        F.try_to_timestamp(F.col(date_column), F.lit(date_format)), "yyyy-MM"
+    )
     working = spark_df.withColumn("__kdsml_month", month)
     return working.where(F.col("__kdsml_month").isNotNull()).groupBy(
         F.col("__kdsml_month")
