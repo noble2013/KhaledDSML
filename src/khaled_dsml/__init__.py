@@ -243,3 +243,10 @@ from .unitroot_specialist import phillips_perron_unit_root
 from .forensic_specialist import (
     grimmer_variance_consistency, pcurve_right_skew_screen,
 )
+
+# Specialist SEM, SHAP explanation stability, t-digest and constrained forensics
+from .sem_fit_scoped import sem_fit_indices, measurement_invariance_nested_ml
+from .shap_stability_scoped import shap_explanation_stability
+from .tdigest_scoped import tdigest_quantile_summary
+from .bayesian_categorical_specialist import dirichlet_multinomial_bayes_factor
+from .sprite_scoped import sprite_integer_constraint_witness
