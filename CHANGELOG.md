@@ -1,5 +1,13 @@
 # سجل التغييرات | Changelog
 
+## 0.9.0 — قيد التطوير / Unreleased
+
+- اختبار Little MCAR chi-square بتقدير متعدد المتغيرات بواسطة EM ودرجات حرية أنماط الفقد.
+- فحص استكشافي point-biserial لارتباط الفقد بالمتغيرات المرصودة مع تصحيح Holm.
+- Multiple imputation numeric باستعمال IterativeImputer stochastic posterior، تدريب على train فقط وتطبيق على test دون إعادة ملاءمة.
+- Rubin scalar pooling لحساب تباينات داخل وبين الاستكمالات وفواصل الثقة دون اختلاق قيمة p.
+- RTL/LTR visual report labels and comprehensive tests; no claims of causal mechanisms or completion of the 256-item catalog.
+
 ## 0.8.0 — قيد التطوير / Unreleased
 
 - `mediation_moderation`: تحليل مسارات OLS للوساطة، Sobel، Bootstrap paired-case، اختبار تعديل HC3 وΔR²، Simple Slopes، Johnson–Neyman داخل نطاق المتغير المعدّل المرصود.
