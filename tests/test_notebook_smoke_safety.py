@@ -70,3 +70,8 @@ def test_deployment_workflows_must_run_research_smoke_and_guard_refs():
     assert "refs/heads/main" in testpy
     assert 'git merge-base --is-ancestor' in stable
     assert "environment:" in stable and "name: pypi" in stable
+
+def test_entire_advanced_notebook_suite_is_mandatory():
+    assert len(smoke.NOTEBOOKS)==10
+    assert smoke.NOTEBOOKS[0].startswith("14_")
+    assert smoke.NOTEBOOKS[-1].startswith("23_")
