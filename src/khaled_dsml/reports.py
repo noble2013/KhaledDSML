@@ -42,7 +42,7 @@ def _p_value(value: float, digits: int) -> str:
     p = float(value)
     threshold = 10 ** (-digits)
     if p < threshold:
-        return f"p < {threshold:.{digits}f}"
+        return f"p &lt; {threshold:.{digits}f}"
     return f"p = {p:.{digits}f}"
 
 
@@ -68,7 +68,7 @@ def render_test_report(
             "<article class=\"result\">"
             f"<h2>{escape(str(item.test))}</h2>"
             f"<p><strong>الفرضية الصفرية:</strong> {escape(str(item.null_hypothesis_ar))}</p>"
-            f"<p><strong>حجم العينة:</strong> <bdi dir=\"ltr\">{item.sample_size}</bdi></p>"
+            f"<p><strong>حجم العينة:</strong> <bdi dir=\"ltr\">{int(item.sample_size)}</bdi></p>"
             f"<p><strong>إحصائية الاختبار:</strong> <bdi dir=\"ltr\">{_number(item.statistic, digits)}</bdi></p>"
             f"<p><strong>مستوى الدلالة:</strong> <bdi dir=\"ltr\">{_number(item.alpha, digits)}</bdi></p>"
             f"<p><strong>القيمة الاحتمالية:</strong> <bdi dir=\"ltr\">{_p_value(item.p_value, digits)}</bdi></p>"
