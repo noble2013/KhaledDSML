@@ -13,7 +13,7 @@ from khaled_dsml.bilingual_display import (
 
 def test_testresult_arabic_right_english_left():
     test = mann_kendall_trend_test([1, 2, 3, 4, 5, 6, 7, 8, 9, 10])
-    html = render_bilingual_result(test)
+    html = render_bilingual_result(test, style="plain")
     assert 'class="kdsml-ar" lang="ar" dir="rtl"' in html
     assert 'class="kdsml-en" lang="en" dir="ltr"' in html
     assert "text-align:right !important" in html
@@ -32,7 +32,7 @@ def test_dictionary_and_other_bilingual_shapes():
         [6, 7, 8], [7, 7, 8], [1, 2, 3, 4, 5],
     )
     for item in [change, forecast, {"ar": "مرحبًا", "en": "Hello"}]:
-        html = render_bilingual_result(item)
+        html = render_bilingual_result(item, style="plain")
         assert 'dir="rtl"' in html
         assert 'dir="ltr"' in html
 
@@ -93,6 +93,7 @@ def test_ipython_display_is_available_with_optional_extra(monkeypatch):
     display_bilingual_result({"ar": "تم", "en": "Done"})
     assert len(recorded) == 1
     assert "text-align:right" in recorded[0].data
+    assert "KHALED DSML" in recorded[0].data
 
 
 def test_plain_multi_result_layout_matches_colab_screenshot():
@@ -100,7 +101,7 @@ def test_plain_multi_result_layout_matches_colab_screenshot():
     trend = mann_kendall_trend_test([1, 2, 3, 4, 5, 6, 7, 8, 9, 10])
     change = pettitt_change_point_test([1] * 20 + [5] * 20)
     forecast = forecast_accuracy_report([6, 7], [5, 7], [1, 2, 3, 4, 5])
-    html = render_bilingual_results([trend, change, forecast], font_size=24)
+    html = render_bilingual_results([trend, change, forecast], font_size=24, style="plain")
     assert html.count('class="kdsml-pair"') == 3
     assert html.count('class="kdsml-ar" lang="ar" dir="rtl"') == 3
     assert html.count('class="kdsml-en" lang="en" dir="ltr"') == 3
@@ -117,7 +118,7 @@ def test_plain_multi_result_layout_matches_colab_screenshot():
 def test_bilingual_batch_accepts_generator_and_rejects_invalid():
     values = iter([{"ar": "النتيجة الأولى", "en": "First result"},
                    {"ar": "النتيجة الثانية", "en": "Second result"}])
-    text = render_bilingual_results(values)
+    text = render_bilingual_results(values, style="plain")
     assert text.count('class="kdsml-pair"') == 2
     with pytest.raises(ValueError):
         render_bilingual_results([])
@@ -149,7 +150,7 @@ def test_save_multiple_html_in_utf8_and_display(monkeypatch, tmp_path):
                {"ar": "المتوسط", "en": "Mean"}]
     path = tmp_path / "group.html"
     save_bilingual_results(records, path)
-    assert path.read_text(encoding="utf-8").count('class="kdsml-pair"') == 2
+    assert path.read_text(encoding="utf-8").count('class="kdsml-result"') == 2
     pytest.importorskip("IPython")
     import IPython.display
     rendered = []
@@ -157,3 +158,18 @@ def test_save_multiple_html_in_utf8_and_display(monkeypatch, tmp_path):
     display_bilingual_results(records)
     assert len(rendered) == 1
     assert rendered[0].data.count('class="kdsml-en"') == 2
+
+
+def test_studio_default_and_legacy_plain_style_are_both_supported():
+    result = {"ar": "تفسير واضح", "en": "Clear interpretation"}
+    designed = render_bilingual_results(result)
+    assert 'class="kdsml-studio"' in designed
+    assert 'KHALED DSML' in designed
+    assert 'linear-gradient' in designed
+    assert 'text-align:right !important' in designed
+    assert 'text-align:left !important' in designed
+    minimal = render_bilingual_results(result, style="plain")
+    assert 'class="kdsml-pair"' in minimal
+    assert 'class="kdsml-studio"' not in minimal
+    with pytest.raises(ValueError):
+        render_bilingual_results(result, style="invalid")
