@@ -148,6 +148,6 @@ def verify_reproducibility_manifest(manifest: dict, files) -> dict:
         "interpretation_en": (
             "Input file hashes match the record; analysis rerun is not verified."
             if matched else
-            "Input file hashes differ from the record; inspect provenance.",
+            "Input file hashes differ from the record; inspect provenance."
         ),
     }
