@@ -3,6 +3,7 @@ from __future__ import annotations
 
 from pathlib import Path
 import json
+import re
 import pytest
 
 
@@ -38,8 +39,12 @@ def test_recent_colab_notebooks_are_complete_and_use_active_source(file_name):
         if cell["cell_type"]=="code":
             assert cell["execution_count"] is None
             assert not cell["outputs"]
-    if "git+https://github.com/noble2013/KhaledDSML.git@" in text:
-        assert "git+https://github.com/noble2013/KhaledDSML.git@main" in text
+    remote_refs=re.findall(
+        r"git\\+https://github\\.com/noble2013/KhaledDSML\\.git@([^\\"\\s]+)",
+        text,
+    )
+    if remote_refs:
+        assert set(remote_refs)=={"main"}, f"Invalid source install refs: {remote_refs}"
 
 
 def test_release_docs_acknowledge_prerelease_and_scientific_limitations():
