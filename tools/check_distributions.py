@@ -63,11 +63,17 @@ def inspect_dist(dist,version):
 
 
 def main(argv=None):
-    from tools.release_gate import read_versions
+    from importlib.util import module_from_spec, spec_from_file_location
+    gate_path=Path(__file__).with_name('release_gate.py')
+    spec=spec_from_file_location('khaled_dsml_release_gate',gate_path)
+    if spec is None or spec.loader is None:
+        raise ValueError('Release gate module missing')
+    module=module_from_spec(spec)
+    spec.loader.exec_module(module)
     parser=argparse.ArgumentParser(description=__doc__)
     parser.add_argument("dist_dir",nargs="?",default="dist")
     args=parser.parse_args(argv)
-    r=inspect_dist(args.dist_dir,read_versions())
+    r=inspect_dist(args.dist_dir,module.read_versions())
     print("VALIDATED WHEEL:",r["wheel"])
     print("VALIDATED SOURCE:",r["sdist"])
     print("CATALOGUE ROWS:",r["source_catalogue_rows"])
