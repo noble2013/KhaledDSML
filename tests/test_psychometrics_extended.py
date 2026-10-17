@@ -4,7 +4,7 @@ import pandas as pd
 import pytest
 from sklearn.metrics import cohen_kappa_score
 from khaled_dsml import (
-    item_total_statistics, split_half_reliability, test_retest_correlation,
+    item_total_statistics, split_half_reliability, test_retest_correlation as retest_correlation,
     cohen_kappa_agreement, fleiss_kappa_agreement, factor_scree_table,
     parallel_analysis, exploratory_factor_analysis, convergent_validity,
     htmt_ratio, fornell_larcker_matrix, harman_single_factor,
@@ -34,7 +34,7 @@ def test_split_half_and_test_retest(items):
     other=split_half_reliability(items,method="first_second")
     assert other["half_correlation"]>.7
     score=items.sum(axis=1)
-    r=test_retest_correlation(score,score+.1*np.arange(len(items)))
+    r=retest_correlation(score,score+.1*np.arange(len(items)))
     assert -1<=r["correlation"]<=1 and 0<=r["p_value"]<=1
 
 
