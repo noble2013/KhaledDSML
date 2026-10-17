@@ -118,3 +118,18 @@ def test_bayesian_results_use_bilingual_analytics_studio_without_false_p_value()
         assert item["interpretation_ar"] in html
         assert item["interpretation_en"] in html
         assert "p_value" not in item
+
+
+def test_bayesian_notebook_is_valid_bilingual_and_unexecuted():
+    import json
+    from pathlib import Path
+
+    path = Path(__file__).resolve().parents[1] / "notebooks" / "14_bayesian_binomial_studio.ipynb"
+    nb = json.loads(path.read_text(encoding="utf-8"))
+    assert nb["nbformat"] == 4
+    text = "\n".join("".join(cell["source"]) for cell in nb["cells"])
+    assert "0.10.0.dev0" in text
+    assert "beta_binomial_posterior" in text
+    assert "beta_binomial_group_comparison" in text
+    assert "التحليل البايزي" in text
+    assert all(not cell.get("outputs") for cell in nb["cells"] if cell["cell_type"] == "code")
