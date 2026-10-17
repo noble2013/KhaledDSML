@@ -128,6 +128,29 @@ model.fit(X_train, y_train)
 print(regression_metrics(y_test, model.predict(X_test)))
 ```
 
+### Dask وApache Spark لتحليل البيانات الضخمة (تطوير 0.2.0)
+
+المكتبة تدعم تشغيل المحركين محليًا باعتماديات اختيارية. يقوم Dask بمعالجة الملفات على أجزاء وينفذ التجميع عند الطلب، بينما يعيد Spark نتائج موزعة دون تحويل الملفات الكبيرة إلى pandas.
+
+```python
+from khaled_dsml import dask_group_summary, dask_missingness_report
+# تنفيذ مؤجل؛ تسترجع الجداول الصغيرة فقط إلى الذاكرة
+summary = dask_group_summary("transactions.csv", group_by="wilaya",
+                             amount_column="montant_da", compute=True)
+print(summary)
+print(dask_missingness_report("transactions.csv"))
+```
+
+```python
+from khaled_dsml import create_spark_session, spark_read_csv, spark_group_summary
+spark = create_spark_session(master="local[2]")
+df = spark_read_csv(spark, "transactions.csv")
+spark_group_summary(df).show()
+spark.stop()
+```
+
+**<a href="docs/DASK_SPARK_AR_EN.md">دليل Dask وSpark بالعربية والإنجليزية</a>** — أمثلة للتجميع الشهري والمفقودات، وطريقة التثبيت في Colab وWindows. يجب تثبيت الإضافات الاختيارية أولًا، وSpark يحتاج Java. هذه الوظائف الموسعة ضمن **فرع تطوير 0.2.0** ولم تُنشر على PyPI بعد.
+
 ### مليون معاملة والتجميع بالأجزاء
 
 ```python
@@ -165,7 +188,7 @@ print(grade_quiz(questions, answers))
 | `bigdata` | `generate_transactions`, `csv_chunk_summary`, `csv_chunk_missing`, `csv_chunk_monthly`, `map_reduce_word_count`, `json_documents_to_table` |
 | `sqltools` | `sqlite_import_frame`, `sqlite_group_summary` (SQLite محلي لتجارب SQL) |
 | `timeseries` | `lagged_features` (خصائص مؤخرة دون تسرب للمستقبل) |
-| `distributed` | `dask_csv_summary`, `spark_group_summary` (تثبيت `[dask]` أو `[spark]` واستخدام محرك فعلي) |
+| `distributed` | `dask_read_csv`, `dask_group_summary`, `dask_missingness_report`, `dask_monthly_summary`, `spark_read_csv`, `spark_group_summary`, `spark_missingness_report`, `spark_monthly_summary` (تثبيت اختياري `[dask]` أو `[spark]` أو `[distributed]`) |
 | `econometrics` | `adf_test`, `vif_table`, `breusch_pagan_test`, `ljung_box_test`, `cronbach_alpha` (تثبيت `econometrics`) |
 | `plots` | `plot_missingness`, `plot_monthly`, `plot_confusion` (تثبيت `plots`) |
 | `quizzes` | `get_questions`, `grade_quiz` |
@@ -177,7 +200,7 @@ print(grade_quiz(questions, answers))
 ## الإصدار الرسمي الحالي والتطوير القادم
 
 - **PyPI الحالي:** [KhaledDSML 0.1.0](https://pypi.org/project/khaled-dsml/0.1.0/) — مستقر للاستخدام.
-- **التطوير 0.2.0:** تقارير عربية/إنجليزية RTL/LTR، والإحصاء الوصفي الشامل، واختبارات إضافية وتدقيق البيانات وفحص الافتراضات من كتالوج المستخدم، وتقييم التصنيف الثنائي وROC-AUC؛ قيد الاختبارات على فرع مستقل.
+- **التطوير 0.2.0:** تقارير عربية/إنجليزية RTL/LTR، والإحصاء الوصفي الشامل، واختبارات إضافية وتدقيق البيانات وفحص الافتراضات من كتالوج المستخدم، مع تحليل اختياري بـ Dask وSpark وتقييم التصنيف الثنائي وROC-AUC؛ قيد الاختبارات على فرع مستقل.
 - **المنهجية:** لا يُنشر الإصدار 0.2.0 رسميًا قبل نجاح GitHub Actions ومراجعة التغييرات. راجع [دليل النشر](docs/PUBLISH_AR.md).
 
 ## Notes (English)
