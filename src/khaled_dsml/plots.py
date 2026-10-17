@@ -39,3 +39,33 @@ def plot_confusion(confusion):
     ax.set(xlabel="Predicted", ylabel="Actual", title="Confusion matrix")
     fig.tight_layout()
     return fig, ax
+
+
+def plot_roc_curve(y_true, y_probability, *, positive_label=1, ax=None):
+    """Plot a binary ROC curve from held-out positive-class probabilities.
+
+    Returns (figure, axes). Install the optional [plots] extra for matplotlib.
+    The diagonal is the performance of a random ranking, not a fitted model.
+    """
+    from .ml_evaluation import binary_classification_metrics, roc_curve_table
+
+    plt = _plt()
+    points = roc_curve_table(y_true, y_probability, positive_label=positive_label)
+    auc = binary_classification_metrics(
+        y_true, y_probability, positive_label=positive_label
+    )["roc_auc"]
+    if ax is None:
+        fig, ax = plt.subplots()
+    else:
+        fig = ax.figure
+    ax.plot(points["fpr"], points["tpr"], label=f"ROC (AUC={auc:.3f})")
+    ax.plot([0, 1], [0, 1], linestyle="--", label="Random ranking")
+    ax.set(
+        xlabel="False positive rate",
+        ylabel="True positive rate",
+        title="Binary ROC curve",
+        xlim=(0, 1), ylim=(0, 1),
+    )
+    ax.legend()
+    fig.tight_layout()
+    return fig, ax
