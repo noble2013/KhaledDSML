@@ -18,6 +18,8 @@ def mcar_frame():
     x=rng.multivariate_normal([2,4,6],cov,size=220)
     mask=rng.random(x.shape)<.18
     mask[np.arange(20),:]=False
+    # Little's implementation explicitly excludes completely unobserved rows.
+    mask[np.all(mask,axis=1),0]=False
     x[mask]=np.nan
     return pd.DataFrame(x,columns=["الدخل","التعلم","الاستهلاك"])
 
