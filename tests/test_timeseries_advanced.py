@@ -42,6 +42,8 @@ def test_pettitt_step_change_location_and_significance():
     assert r["first_segment_size"] == 20
     assert r["reject_null"]
     assert r["p_value"] < 0.001
+    assert isinstance(r["interpretation_ar"], str)
+    assert isinstance(r["interpretation_en"], str)
     assert "independent observations" in r["interpretation_en"]
 
 
