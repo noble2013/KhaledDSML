@@ -12,7 +12,7 @@ import pandas as pd
 from scipy import stats
 
 
-def _numeric(data, *, min_rows=30, min_cols=2):
+def _numeric(data, *, min_rows=30, min_cols=2, min_observed=8):
     if not isinstance(data, pd.DataFrame):
         raise TypeError("Expected a pandas DataFrame with numeric research columns")
     if (len(data)<min_rows or data.shape[1]<min_cols
@@ -23,7 +23,7 @@ def _numeric(data, *, min_rows=30, min_cols=2):
     x=data.to_numpy(dtype=float)
     if np.isinf(x).any():
         raise ValueError("Infinite values are not missing data and must be handled explicitly")
-    if any(np.isfinite(x[:,j]).sum()<8 for j in range(x.shape[1])):
+    if any(np.isfinite(x[:,j]).sum()<min_observed for j in range(x.shape[1])):
         raise ValueError("Each column requires at least eight observed values")
     return x
 
@@ -215,7 +215,7 @@ def multiple_impute_train_test_numeric(
     if type(max_iter) is not int or max_iter<2 or max_iter>100:
         raise ValueError("max_iter must lie between 2 and 100")
     train_x=_numeric(train,min_rows=15)
-    test_x=_numeric(test,min_rows=1)
+    test_x=_numeric(test,min_rows=1,min_observed=0)
     if list(train.columns)!=list(test.columns):
         raise ValueError("Train and test column names/order must match exactly")
     if any(np.isfinite(train_x[:,k]).sum()<8 for k in range(train_x.shape[1])):
