@@ -199,3 +199,8 @@ from .ml_validation_advanced import (
     holdout_permutation_importance, learning_curve_diagnostic,
     dummy_baseline_cv,
 )
+
+# Classical general linear models, statsmodels optional/lazy, v0.10
+from .general_linear_models import (
+    ancova_one_factor, manova_one_factor, repeated_measures_one_factor,
+)
