@@ -74,6 +74,11 @@ def render_test_report(
             f"<p><strong>القيمة الاحتمالية:</strong> <bdi dir=\"ltr\">{_p_value(item.p_value, digits)}</bdi></p>"
             f"<p><strong>القرار:</strong> {decision}</p>"
             f"<p class=\"interpretation\">{escape(str(item.interpretation_ar))}</p>"
+            '<div class="english" dir="ltr" lang="en">'
+            f'<p><strong>Null hypothesis:</strong> {escape(str(item.null_hypothesis_en))}</p>'
+            f'<p><strong>Interpretation:</strong> {escape(str(item.interpretation_en))}</p>'
+            f'{("<p>" + escape(str(item.notes_en)) + "</p>") if item.notes_en else ""}'
+            '</div>'
             f"{note}</article>"
         )
     heading = escape(str(title))
@@ -91,7 +96,7 @@ def render_test_report(
         ".khaled-dsml-report .result{border:1px solid #bfc4cf;border-radius:10px;"
         "padding:1.2rem;margin:1rem 0;break-inside:avoid}\n"
         ".khaled-dsml-report .result p{margin:.35rem 0}.khaled-dsml-report .interpretation{font-weight:600}"
-        ".khaled-dsml-report .note{font-size:.93rem;color:#555}\n"
+        ".khaled-dsml-report .note{font-size:.93rem;color:#555}\n"\n        ".khaled-dsml-report .english{direction:ltr;text-align:left;border-top:1px solid #ddd;margin-top:.8rem;padding-top:.5rem}\n"
         ".khaled-dsml-report bdi{font-family:Consolas,monospace;unicode-bidi:isolate}\n"
         "@media print{.khaled-dsml-report{margin:0;max-width:none}.khaled-dsml-report .result{border:1px solid #aaa}}\n"
         "</style>\n</head>\n<body>\n" 
