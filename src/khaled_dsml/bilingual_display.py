@@ -55,14 +55,27 @@ def render_bilingual_results(
     *,
     title: str | None = None,
     font_size: int = 23,
+    style: str = "studio",
+    theme: str = "aurora",
+    chart_data=None,
 ) -> str:
-    """Render one or many bilingual interpretations in a borderless document.
+    """Render bold bilingual interpretations in studio (default) or plain style.
 
     Arabic: right aligned, 700 weight, RTL. English: left aligned, 700 weight,
     LTR. Default title is omitted to match the compact Google Colab example.
     The complete HTML string is also suitable for printing in a browser.
     """
     _validate_options(title, font_size)
+    if style not in ("studio", "plain"):
+        raise ValueError("style must be 'studio' or 'plain'")
+    if style == "studio":
+        from .visual_reports import render_analysis_dashboard
+        return render_analysis_dashboard(
+            results, title_ar=title or "لوحة التحليل الإحصائي",
+            theme=theme, font_size=font_size, chart_data=chart_data,
+        )
+    if theme != "aurora" or chart_data is not None:
+        raise ValueError("theme and chart_data require style='studio'")
     items = _normalize_results(results)
     panels = []
     for item in items:
@@ -113,53 +126,85 @@ def render_bilingual_result(
     result: TestResult | Mapping, *,
     title: str | None = None,
     font_size: int = 23,
+    style: str = "studio",
+    theme: str = "aurora",
+    chart_data=None,
 ) -> str:
-    """Backward-compatible singular alias with the new plain notebook style."""
-    return render_bilingual_results(result, title=title, font_size=font_size)
+    """Render a single bilingual result; the studio style is the default."""
+    return render_bilingual_results(
+        result, title=title, font_size=font_size, style=style,
+        theme=theme, chart_data=chart_data,
+    )
 
 
 def display_bilingual_results(
     results: TestResult | Mapping | Iterable, *,
     title: str | None = None,
     font_size: int = 23,
+    style: str = "studio",
+    theme: str = "aurora",
+    chart_data=None,
 ) -> None:
-    """Display multiple Arabic-right / English-left interpretations in one cell."""
+    """Display creative Arabic-right / English-left insights inside one cell."""
     try:
         from IPython.display import HTML, display
     except ImportError as exc:
         raise ImportError(
             'Install IPython or khaled-dsml[notebooks] to display HTML reports'
         ) from exc
-    display(HTML(render_bilingual_results(results, title=title, font_size=font_size)))
+    display(HTML(render_bilingual_results(
+        results, title=title, font_size=font_size,
+        style=style, theme=theme, chart_data=chart_data,
+    )))
 
 
 def display_bilingual_result(
     result: TestResult | Mapping, *,
     title: str | None = None,
     font_size: int = 23,
+    style: str = "studio",
+    theme: str = "aurora",
+    chart_data=None,
 ) -> None:
-    """Display one bilingual result (Jupyter/Colab, no surrounding card)."""
-    display_bilingual_results(result, title=title, font_size=font_size)
+    """Display a single result using the studio or legacy plain view."""
+    display_bilingual_results(
+        result, title=title, font_size=font_size,
+        style=style, theme=theme, chart_data=chart_data,
+    )
 
 
 def save_bilingual_results(
-    results: TestResult | Mapping | Iterable, path: str | Path, *,
+    results: TestResult | Mapping | Iterable,
+    path: str | Path, *,
     title: str | None = None,
     font_size: int = 23,
+    style: str = "studio",
+    theme: str = "aurora",
+    chart_data=None,
 ) -> Path:
-    """Write UTF-8 HTML with all interpretations, ready for browser printing."""
+    """Write a self-contained, offline UTF-8 HTML dashboard."""
     destination = Path(path)
     destination.write_text(
-        render_bilingual_results(results, title=title, font_size=font_size),
+        render_bilingual_results(
+            results, title=title, font_size=font_size,
+            style=style, theme=theme, chart_data=chart_data,
+        ),
         encoding="utf-8",
     )
     return destination
 
 
 def save_bilingual_result(
-    result: TestResult | Mapping, path: str | Path, *,
+    result: TestResult | Mapping,
+    path: str | Path, *,
     title: str | None = None,
     font_size: int = 23,
+    style: str = "studio",
+    theme: str = "aurora",
+    chart_data=None,
 ) -> Path:
-    """Backward-compatible singular save helper."""
-    return save_bilingual_results(result, path, title=title, font_size=font_size)
+    """Save a single bilingual result as UTF-8 HTML."""
+    return save_bilingual_results(
+        result, path, title=title, font_size=font_size,
+        style=style, theme=theme, chart_data=chart_data,
+    )
