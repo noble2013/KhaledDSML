@@ -2,7 +2,7 @@
 
 <div dir="rtl" lang="ar" align="right">
 
-## بطاقة المؤلف | Author Profile
+<h2 align="right" dir="rtl">بطاقة المؤلف | Author Profile</h2>
 
 <table dir="rtl">
   <tr><th align="right">البيان</th><th align="right">المعلومات</th></tr>
@@ -19,7 +19,7 @@
 
 <div lang="en" dir="ltr" align="left">
 
-**Author:** Khaled Ali · **Academic title used in this project:** Professor / Dr. · **University:** University of El Oued (Echahid Hamma Lakhdar), Algeria · **Faculty:** Faculty of Economic, Commercial and Management Sciences.
+<p><strong>Author:</strong> Khaled Ali · <strong>Academic title used in this project:</strong> Professor / Dr. · <strong>University:</strong> University of El Oued (Echahid Hamma Lakhdar), Algeria · <strong>Faculty:</strong> Faculty of Economic, Commercial and Management Sciences.</p>
 
 </div>
 **الإصدار الرسمي الأحدث: [KhaledDSML 0.10.0 على PyPI](https://pypi.org/project/khaled-dsml/0.10.0/) — منشور بتاريخ 17 أكتوبر 2026.**  
