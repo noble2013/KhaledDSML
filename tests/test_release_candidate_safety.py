@@ -29,14 +29,14 @@ release=_module("release_gate_tests","tools/release_gate.py")
 distcheck=_module("check_dist_tests","tools/check_distributions.py")
 
 
-def test_release_candidate_source_version_is_single_source_of_truth():
-    assert release.read_versions(ROOT)=="0.10.0rc1"
+def test_stable_source_version_is_single_source_of_truth():
+    assert release.read_versions(ROOT)=="0.10.0"
     data=release.validate_trace(ROOT)
     assert data["catalogue_rows"]==256
     assert data["mapped_candidate_rows"]==256
     assert data["restricted_substitute_ids"]==(85,117)
     assert data["scientifically_signed_off"] is None
-    assert release.validate_target("0.10.0rc1","source").startswith("SOURCE")
+    assert release.validate_target("0.10.0","source").startswith("SOURCE")
 
 
 def test_source_version_mismatch_and_pep440_bad_versions_rejected(tmp_path):
