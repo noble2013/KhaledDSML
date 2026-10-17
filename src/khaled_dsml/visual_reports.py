@@ -17,6 +17,20 @@ from ._results import TestResult
 
 _METRICS = (
     ("n_samples", "حجم العينة", "Sample size"),
+    ("n_patterns", "أنماط الفقد", "Missingness patterns"),
+    ("small_patterns", "أنماط بعينات صغيرة", "Sparse patterns"),
+    ("em_iterations", "تكرارات خوارزمية EM", "EM iterations"),
+    ("degrees_of_freedom", "درجات الحرية", "Degrees of freedom"),
+    ("tested_pairs", "الأزواج المختبرة", "Tested pairs"),
+    ("n_imputations", "مرات الاستكمال", "Imputations"),
+    ("n_train", "حجم التدريب", "Training rows"),
+    ("n_test", "حجم الاختبار", "Testing rows"),
+    ("estimate", "المعامل المجمّع", "Pooled estimate"),
+    ("standard_error", "الخطأ المعياري", "Std. error"),
+    ("within_variance", "التباين داخل الاستكمال", "Within variance"),
+    ("between_variance", "التباين بين الاستكمالات", "Between variance"),
+    ("total_variance", "إجمالي التباين", "Total variance"),
+
     ("n_covariates", "عدد متغيرات الضبط", "Covariates"),
     ("a_path", "معامل المسار أ", "Path a"),
     ("b_path", "معامل المسار ب", "Path b"),

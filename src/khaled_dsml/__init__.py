@@ -1,5 +1,5 @@
 """KhaledDSML: educational statistics, ML and big data in Python."""
-__version__ = "0.8.0"
+__version__ = "0.9.0"
 
 from .statistics import (normality_test, shapiro_test, jarque_bera_test,
     independent_t_test, paired_t_test, mann_whitney_test, wilcoxon_test,
@@ -153,4 +153,10 @@ from .distributed_analytics import (
 from .mediation_moderation import (
     mediation_paths, sobel_mediation_test, bootstrap_mediation_interval,
     moderation_interaction_test, simple_slopes_table, johnson_neyman_region,
+)
+
+# Missing-data methodology — unreleased v0.9
+from .missing_data_advanced import (
+    little_mcar_test, missingness_association_screen,
+    multiple_impute_train_test_numeric, rubin_pool_scalar,
 )
