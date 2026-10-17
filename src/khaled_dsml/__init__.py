@@ -164,3 +164,8 @@ from .missing_data_advanced import (
 # Research methods under development for v0.10.0 (not yet on PyPI)
 from .multivariate_normality import henze_zirkler_normality_test
 from .missing_data_sensitivity import mnar_delta_sensitivity
+
+# Bayesian conjugate binomial research methods, v0.10
+from .bayesian_binomial import (
+    beta_binomial_posterior, beta_binomial_group_comparison,
+)
