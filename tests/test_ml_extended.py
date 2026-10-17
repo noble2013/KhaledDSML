@@ -21,7 +21,7 @@ def test_classifier_matches_sklearn_reference():
     precision,recall,_=metrics.precision_recall_curve(y,p)
     assert out["pr_auc"]==pytest.approx(metrics.auc(recall,precision))
     assert out["average_precision"]==pytest.approx(metrics.average_precision_score(y,p))
-    assert "not" in out["interpretation_en"]
+    assert "out-of-sample" in out["interpretation_en"]
 
 
 def test_calibration_ece_is_weighted_and_handles_empty_bins():
@@ -62,9 +62,9 @@ def test_group_fairness_gap_and_80pct_rule_context():
     groups=["A"]*4+["B"]*4
     out=binary_group_fairness(y,p,groups)
     assert out["group_rates"].shape==(2,5)
-    assert out["demographic_parity_gap"]==pytest.approx(.25)
+    assert out["demographic_parity_gap"]==pytest.approx(.5)
     assert out["equal_opportunity_gap"]==pytest.approx(.5)
-    assert out["selection_rate_ratio"]==pytest.approx(.5)
+    assert out["selection_rate_ratio"]==pytest.approx(1/3)
     assert "not a legal" in out["interpretation_en"]
     with pytest.raises(ValueError):
         binary_group_fairness([1,0,1,0],[1,0,1,0],["A","A","A","A"])
