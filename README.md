@@ -4,7 +4,8 @@
 **الجامعة:** جامعة الشهيد حمه لخضر – الوادي، الجزائر (University of El Oued, Algeria)  
 **الكلية:** كلية العلوم الاقتصادية والتجارية وعلوم التسيير (Faculty of Economic, Commercial and Management Sciences)  
 **البريد الإلكتروني المهني:** [ali-khaled@univ-eloued.dz](mailto:ali-khaled@univ-eloued.dz)  
-**الإصدار الرسمي الحالي على PyPI: 0.3.0 — إصدار 0.4.0 قيد التطوير**
+**الإصدار الرسمي المنشور على PyPI: 0.9.0 (17 أكتوبر 2026)**  
+**فرع التطوير الجاري: 0.10.0.dev0 — لم يُنشر بعد**
 
 حزمة Python تعليمية للمقاييس التالية:
 
@@ -43,7 +44,7 @@ py -3.13 -m venv .venv
 py -m pip install khaled-dsml
 ```
 
-### KhaledDSML 0.9.0 — البيانات المفقودة والاستكمال المتعدد (قيد التطوير)
+### KhaledDSML 0.9.0 — البيانات المفقودة والاستكمال المتعدد (منشور)
 
 أربع أدوات أكاديمية إضافية: **Little MCAR** مع تقدير EM، وفحص ارتباط غياب المتغيرات المرصودة وتصحيح Holm، وتعويض متعدد باحتمالات مع عزل بيانات التدريب عن الاختبار، ودمج تقديرات Rubin.
 
@@ -51,9 +52,9 @@ py -m pip install khaled-dsml
 
 [الدليل العلمي للبيانات المفقودة 0.9 بالعربية والإنجليزية](docs/MISSING_DATA_0_9_AR_EN.md) · [دفتر Colab 12 بلوحات إحصائية إبداعية](notebooks/12_missing_data_studio.ipynb).
 
-**0.9.0 تطويري غير منشور بعد**؛ النسخة الرسمية الحالية على PyPI هي **0.8.0**.
+**0.9.0 منشور رسميًا** على [PyPI](https://pypi.org/project/khaled-dsml/0.9.0/).
 
-### KhaledDSML 0.8.0 — الوساطة والتعديل الإحصائي (قيد التطوير)
+### KhaledDSML 0.8.0 — الوساطة والتعديل الإحصائي (منشور)
 
 إضافة **6 وظائف بحثية**: مسارات الوساطة `a/b/c/c′`، واختبار **Sobel**، وفواصل **Bootstrap** للارتباط غير المباشر، واختبار التفاعل `X×W` مع `ΔR²`، والميول المشروطة **Simple Slopes**، وحدود **Johnson–Neyman**.
 
@@ -61,19 +62,19 @@ py -m pip install khaled-dsml
 
 [الدليل العلمي 0.8 بالعربية والإنجليزية](docs/MEDIATION_MODERATION_0_8_AR_EN.md) · [دفتر Colab 11 التفاعلي](notebooks/11_mediation_moderation_studio.ipynb)
 
-`0.8.0` إصدار تطويري غير منشور بعد؛ النسخة الرسمية المتاحة على PyPI: **0.7.0**. دلالات نماذج الوساطة *ارتباطية* ولا تثبت سببًا.
+`0.8.0` إصدار منشور سابق. دلالات نماذج الوساطة *ارتباطية* ولا تثبت سببًا.
 
-### KhaledDSML 0.7.0 — PySpark وDask للتحليل الموزع (قيد التطوير)
+### KhaledDSML 0.7.0 — PySpark وDask للتحليل الموزع (منشور)
 
 **PySpark مُضافة منذ إصدار 0.2.0** ضمن الإضافة الاختيارية `[spark]`، ولا تتطلب النسخة الأساسية تثبيتها. يوسّع 0.7 استخدام Spark وDask ليشمل: فحص NULL وNaN والسلاسل الفارغة، قياس التكرارات، جداول إحصائية رقمية، تقسيمًا زمنيًا لا يفقد التواريخ المعطوبة، وتدريب نموذج تصنيف لوجستي وتقييم ROC-AUC/PR-AUC موزّعًا عبر Spark ML.
 
 ```powershell
-py -3.13 -m pip install --upgrade "khaled-dsml[distributed]==0.6.0"
+py -3.13 -m pip install --upgrade "khaled-dsml[distributed]==0.9.0"
 ```
 
-استخدم الإصدار الرسمي 0.6.0 حاليًا؛ فإضافات 0.7 **غير منشورة بعد**. للاطلاع على الواجهات الجديدة: [دليل PySpark وDask](docs/PYSPARK_DASK_0_7_AR_EN.md) · [دفتر Colab بالتصميم الإبداعي](notebooks/10_pyspark_dask_analytics.ipynb). تبقى العربية RTL يمينًا والإنجليزية LTR يسارًا في تقارير Analytics Studio.
+وظائف 0.7 متاحة في الإصدار الرسمي 0.9.0. للاطلاع على الواجهات: [دليل PySpark وDask](docs/PYSPARK_DASK_0_7_AR_EN.md) · [دفتر Colab بالتصميم الإبداعي](notebooks/10_pyspark_dask_analytics.ipynb). تبقى العربية RTL يمينًا والإنجليزية LTR يسارًا في تقارير Analytics Studio.
 
-### KhaledDSML 0.6.0 — المقارنات البعدية ومقارنة ROC-AUC (قيد التطوير)
+### KhaledDSML 0.6.0 — المقارنات البعدية ومقارنة ROC-AUC (منشور)
 
 إضافة خمس اختبارات مقارنة بعدية: **Tukey HSD وGames–Howell وDunn وDunnett وNemenyi–Friedman**، مع اختبار **DeLong المترابط** لمقارنة ROC-AUC لنموذجين على الأشخاص أنفسهم، وBootstrap مزدوج بفاصل ثقة.
 
@@ -97,13 +98,13 @@ display_analysis_dashboard(
 
 [دفتر Colab الأكاديمي 09](notebooks/09_posthoc_roc_studio.ipynb) · [دليل 0.6 بالعربية والإنجليزية](docs/POSTHOC_ROC_0_6_AR_EN.md)
 
-الإصدار الرسمي على PyPI **0.5.0**. 0.6.0 غير منشور بعد، ولا يمثل إنهاءً لكل بنود الكتالوج الـ256.
+0.6.0 إصدار منشور سابق، ولا يمثل إنهاءً لكل بنود الكتالوج الـ256.
 
 ### KhaledDSML 0.5.0 — استكمال اختبارات البحث العلمي (تطوير)
 
 تم توسيع المكتبة في فرع التطوير باختبارات **Mardia، Box's M، Mauchly، Breusch–Godfrey، Cochran–Armitage، CMH، G-test، TOST**، وفواصل Newcombe، وتحليل القوة، وثبات **Omega/ICC/Krippendorff**، وTrustworthiness وBootstrap للعناقيد، وتحليل النصوص العربية **Zipf وTTR وKeyness**.
 
-تستخدم النتائج واجهة **Analytics Studio** المبتكرة مع محاذاة العربية يمينًا والإنجليزية يسارًا. الإصدار المنشور على PyPI هو **0.4.0**؛ هذه نسخة تطويرية لا تمثل اكتمال البنود الـ256 كلها.
+تستخدم النتائج واجهة **Analytics Studio** المبتكرة مع محاذاة العربية يمينًا والإنجليزية يسارًا. وظائف 0.5.0 منشورة، ولا يعني ذلك اكتمال البنود الـ256.
 
 [دليل التطوير 0.5 بالعربية والإنجليزية](docs/METHODS_0_5_AR_EN.md) · [دفتر Colab جاهز باختبارات متعددة ولوحات أنيقة](notebooks/08_advanced_methods.ipynb)
 
@@ -121,7 +122,7 @@ display_analysis_dashboard(result, theme="aurora")
 
 ### Academic Analysis Suite 0.4.0 — تحديث شامل للاختبارات البحثية
 
-**مرحلة تطوير غير منشورة بعد على PyPI**؛ الإصدار الرسمي المستقر هو `0.3.0`. أضيفت اختبارات الاستدلال والنسب، وتقييم النماذج ومعايرتها، وموثوقية الاستبيانات، والتحليل العاملي الاستكشافي، وتشخيص الانحدار، والسلاسل الزمنية المتقدمة. تبقى التقارير الإبداعية **Analytics Studio** باللغتين العربية يمينًا والإنجليزية يسارًا.
+**مرحلة 0.4.0 منشورة سابقًا على PyPI**. أضيفت اختبارات الاستدلال والنسب، وتقييم النماذج ومعايرتها، وموثوقية الاستبيانات، والتحليل العاملي الاستكشافي، وتشخيص الانحدار، والسلاسل الزمنية المتقدمة. تبقى التقارير الإبداعية **Analytics Studio** باللغتين العربية يمينًا والإنجليزية يسارًا.
 
 ```python
 from khaled_dsml import (
@@ -159,7 +160,7 @@ display_analysis_dashboard(result, theme="ocean", chart_data=data)
 save_analysis_dashboard(result, "report_ar_en.html", chart_data=data)
 ```
 
-**[دفتر Colab جاهز بتصميم مبهر](notebooks/06_analytics_studio.ipynb)** · **[دليل الاستخدام بالعربية والإنجليزية](docs/ANALYTICS_STUDIO_AR_EN.md)**. ما زال هذا التطوير ضمن `0.3.0` غير المنشور، والإصدار الرسمي على PyPI هو `0.2.0`.
+**[دفتر Colab جاهز بتصميم مبهر](notebooks/06_analytics_studio.ipynb)** · **[دليل الاستخدام بالعربية والإنجليزية](docs/ANALYTICS_STUDIO_AR_EN.md)**. أصبحت هذه الوظائف ضمن الإصدارات المنشورة بدءًا من `0.3.0`.
 
 ### التطوير 0.3.0: السلاسل الزمنية وقابلية إعادة البحث
 
@@ -352,13 +353,19 @@ print(grade_quiz(questions, answers))
 
 ## الإصدار الرسمي الحالي والتطوير القادم
 
-- **PyPI الحالي:** [KhaledDSML 0.2.0](https://pypi.org/project/khaled-dsml/0.2.0/) — متاح للتثبيت رسميًا.
-- **التطوير 0.3.0:** Mann–Kendall وPettitt وBox–Pierce وARCH-LM وMASE وبصمات بيانات البحث؛ ما يزال على فرع مستقل.
-- **المنهجية:** لا يُنشر الإصدار 0.3.0 قبل نجاح GitHub Actions ومراجعة التغييرات. راجع [دليل النشر](docs/PUBLISH_AR.md).
+- **الإصدار المنشور:** [KhaledDSML 0.9.0 على PyPI](https://pypi.org/project/khaled-dsml/0.9.0/).
+- **التطوير القادم:** `0.10.0.dev0` على فرع [feature/v0.10-catalog-henze-zirkler](https://github.com/noble2013/KhaledDSML/tree/feature/v0.10-catalog-henze-zirkler)؛ **غير منشور**، ولا يُدمج قبل نجاح GitHub Actions.
+- **التدقيق:** [مراجعة كتالوج 256 بندًا](docs/CATALOG_AUDIT_0_10_AR_EN.md). لا يعني عدد اختبارات pytest اكتمال الكتالوج.
+- **وظائف تجريبية:** Henze–Zirkler بمعايرة Monte Carlo، وتحليل حساسية MNAR بعوامل delta افتراضية؛ انظر [الدليل العلمي](docs/RESEARCH_METHODS_0_10_AR_EN.md). [دفتر Colab 13](notebooks/13_multivariate_mnar_studio.ipynb).
+- **التحليل البايزي التجريبي:** `beta_binomial_posterior` و`beta_binomial_group_comparison` للتقدير البعدي وفحص الفروض البايزية، مع `BF10` محسوب فعليًا؛ [الدليل](docs/BAYESIAN_BINOMIAL_0_10_AR_EN.md) · [Colab 14](notebooks/14_bayesian_binomial_studio.ipynb).
+
+```powershell
+py -3.13 -m pip install --upgrade "khaled-dsml[econometrics,distributed]==0.9.0"
+```
 
 ## Notes (English)
 
-KhaledDSML is an **educational** Python toolkit; it wraps proven NumPy, pandas, SciPy and scikit-learn primitives rather than reinventing statistical algorithms. Optional statistics are backed by statsmodels. It is not a distributed processing engine: the MapReduce example runs locally; Optional Dask and Spark adapters are included, but need real engines and are not validated on a Spark cluster in the published version 0.2.0. Do not fit preprocessing on test data. Hypothesis-test interpretations should be checked against sampling design and assumptions. An MIT license covers this original wrapper code, not a claim of authorship over third-party algorithms.
+KhaledDSML is an **educational** Python toolkit; it wraps proven NumPy, pandas, SciPy and scikit-learn primitives rather than reinventing statistical algorithms. Optional statistics are backed by statsmodels. It is not a distributed processing engine: the MapReduce example runs locally; Optional Dask and Spark adapters are included, and require compatible engines; real local Spark and Dask integration tests were executed for the published v0.9.0. Do not fit preprocessing on test data. Hypothesis-test interpretations should be checked against sampling design and assumptions. An MIT license covers this original wrapper code, not a claim of authorship over third-party algorithms.
 
 ## حقوق الاستخدام
 
