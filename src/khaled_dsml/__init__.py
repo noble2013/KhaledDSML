@@ -178,3 +178,11 @@ from .meta_analysis import (
     meta_analysis_heterogeneity, meta_analysis_random_effects,
     egger_small_study_effects_test,
 )
+
+# Paired ML research diagnostics, research arithmetic and data integrity (v0.10)
+from .research_diagnostics import (
+    mcnemar_paired_predictions, mean_absolute_percentage_error_strict,
+    grim_mean_consistency, recalculate_t_test_p,
+)
+from .data_contracts import validate_dataframe_contract
+from .sequential_monitoring import page_hinkley_change_monitor
