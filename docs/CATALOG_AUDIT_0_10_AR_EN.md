@@ -1,7 +1,7 @@
 # تدقيق كتالوج KhaledDSML (256 بندًا) | Catalogue coverage audit
 
 **Baseline / نقطة الانطلاق:** `main` release `0.9.0`, snapshot 17 October 2026.
-**Branch / فرع العمل:** source baseline after merged PR #9–14; specialist source methods on `feature/v0.10-specialized-inference-monitoring` (`0.10.0.dev0`, unpublished).
+**Branch / فرع العمل:** source baseline after merged PR #9–15; PP and research arithmetic on `feature/v0.10-unitroot-forensic-pcurve` (`0.10.0.dev0`, unpublished).
 **Provenance / المصدر:** `KhaledDSML_Catalog_Verified_Phase2_2026-10-17.xlsx` saved in the author's Library. The reference workbook, **not** the number of pytest tests, defines the 256 units of work.
 
 ## Scope and historical numbers | النطاق والأرقام التاريخية
@@ -28,9 +28,15 @@ The reference tracker contains exactly **256 items across 12 domains**. Its hist
 
 ## 256-row trace | جدول مطابقة جميع البنود
 
-A machine-assisted and manually enriched **source-trace of all 256 rows** is preserved in [CATALOG_256_SOURCE_TRACE_V010.tsv](CATALOG_256_SOURCE_TRACE_V010.tsv). It identifies **245 rows with candidate public API names** after source review (initial tracker notes plus 118 manually mapped catalogue rows); **11 rows currently have no public API-name candidate**. **These figures are not completion/absence totals:** the original notes are stale and a compound row may contain both implemented and missing submethods. The TSV preserves each original tracker line verbatim for subsequent independent scientific sign-off. Importability and test-file references can be recomputed with `python tools/catalogue_audit.py --output catalogue_evidence.csv`; this does not assign completion labels.
+A machine-assisted and manually enriched **source-trace of all 256 rows** is preserved in [CATALOG_256_SOURCE_TRACE_V010.tsv](CATALOG_256_SOURCE_TRACE_V010.tsv). It identifies **248 rows with candidate public API names** after source review (initial tracker notes plus 118 manually mapped catalogue rows); **8 rows currently have no public API-name candidate**. **These figures are not completion/absence totals:** the original notes are stale and a compound row may contain both implemented and missing submethods. The TSV preserves each original tracker line verbatim for subsequent independent scientific sign-off. Importability and test-file references can be recomputed with `python tools/catalogue_audit.py --output catalogue_evidence.csv`; this does not assign completion labels.
 
-أعددنا مطابقة نصية لجميع البنود الـ256: **245 بندًا لها مرشحات أسماء دوال عامة مرتبطة**، و**11 بندًا لا يحمل اسم دالة عامة مرشحًا**؛ وهذا ليس حكمًا بأنها غير منفذة ولا نسبة إنجاز. يجب ربط كل بند بالأدلة وباختبارات مرجعية قبل اعتماد حالته.
+أعددنا مطابقة نصية لجميع البنود الـ256: **248 بندًا لها مرشحات أسماء دوال عامة مرتبطة**، و**8 بنود لا تحمل اسم دالة عامة مرشحًا**؛ وهذا ليس حكمًا بأنها غير منفذة ولا نسبة إنجاز. يجب ربط كل بند بالأدلة وباختبارات مرجعية قبل اعتماد حالته.
+
+## PP, GRIMMER and half-p-curve | فيليبس–بيرون وGRIMMER ومنحنى p
+
+Three new source-level callable candidates map **#198 Phillips–Perron**, **#240 bounded-integer sample-SD GRIMMER**, and **#243 restricted half-p-curve screen only**. The half-curve function must not be advertised as complete p-curve inference; none of these source mappings implies misconduct findings, causality or independent scientific sign-off.
+
+**Revised audit:** 248/256 candidate-linked original rows and 8 currently unmapped. The remaining work is detailed in [UNITROOT_GRIMMER_PCURVE_0_10_AR_EN.md](UNITROOT_GRIMMER_PCURVE_0_10_AR_EN.md).
 
 ## Specialized inferential and export mappings / الاستدلال المتخصص والتقارير
 
