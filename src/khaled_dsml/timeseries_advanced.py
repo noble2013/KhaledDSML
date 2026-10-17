@@ -105,13 +105,13 @@ def pettitt_change_point_test(values, *, alpha=0.05) -> dict:
             f"أقوى نقطة مرشحة للتغير تقع بعد المشاهدة رقم {position + 1}. "
             + ("توجد قرينة إحصائية على تغير بالموقع." if reject
                else "لا نرفض فرضية غياب تغير بالموقع؛ لا يعني هذا إثبات الثبات.")
-            + " الاختبار تقريبي ويفترض استقلال المشاهدات.",
+            + " الاختبار تقريبي ويفترض استقلال المشاهدات."
         ),
         "interpretation_en": (
             f"The strongest candidate split is after observation {position + 1}. "
             + ("Evidence suggests a change in location." if reject
                else "No change in location is detected at the selected alpha; stability is not proven.")
-            + " This is an approximation requiring independent observations.",
+            + " This is an approximation requiring independent observations."
         ),
     }
 
