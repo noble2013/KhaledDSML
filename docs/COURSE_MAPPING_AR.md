@@ -1,4 +1,4 @@
-# خريطة الوظائف حسب المقاييس — KhaledDSML 0.1.0
+# خريطة الوظائف حسب المقاييس — KhaledDSML (0.1.0 المنشور، و0.2.0 قيد التطوير)
 
 ## 1. علم البيانات وتعلم الآلة — السنة الثالثة ليسانس
 
@@ -9,9 +9,9 @@
 | إحصاء وصفي واستدلالي | `descriptive_summary`, `shapiro_test`, `jarque_bera_test`, `independent_t_test`, `paired_t_test`, `anova_test`, `kruskal_test`, `chi_square_test`, `pearson_test`, `spearman_test`, `levene_test` | التحقق من الفرضيات بحسب تصميم الدراسة |
 | تقسيم وتسرّب البيانات | `split_data`, `make_regressor`, `make_classifier` (Pipeline) | مراجعة تسرب الميزات المرتبطة بالهدف |
 | الانحدار | Linear Regression, Ridge, Lasso, Random Forest, Decision Tree؛ `regression_metrics` | تفسير المعاملات والتشخيص المتعمق |
-| التصنيف | Logistic Regression, KNN, Decision Tree, Random Forest؛ `classification_metrics` | ROC-AUC والمعايرة في الإصدارات التالية |
+| التصنيف | Logistic Regression, KNN, Decision Tree, Random Forest؛ `classification_metrics` | أضيف في فرع 0.2.0: ROC-AUC، Average Precision، مقارنة النماذج، وتقارير التصنيف العربية؛ معايرة الاحتمالات ما زالت ضمن التوسعات |
 | التجميع | K-means, Hierarchical، Silhouette، Davies–Bouldin، PCA | خوارزميات تجميع أخرى |
-| مقارنة النماذج | `cross_validation_summary` | بحث المعاملات الشبكي وتوصيات عامة |
+| مقارنة النماذج | `cross_validation_summary`؛ و`compare_classifiers` في فرع 0.2.0 | بحث المعاملات الشبكي وتوصيات عامة |
 | التقويم | `get_questions`, `grade_quiz` | أسئلة وتمارين إضافية لكل TD |
 
 ## 2. تحليل البيانات الضخمة — السنة الثانية ماستر اقتصاد كمي
@@ -29,7 +29,15 @@
 | الاقتصاد القياسي والتسلسل الزمني | `econometrics.adf_test`, `ljung_box_test`, `vif_table`, `breusch_pagan_test` | `lagged_features` متاحة؛ لم تُنفذ نماذج التنبؤ الآني الكاملة |
 | الخصوصية والحوكمة | تمارين التقويم | تتطلب سياسات وحوكمة مؤسسية خارج نطاق المكتبة |
 
-## 3. اختبارات إضافية
+## 3. المستجدات التجريبية (0.2.0)
+
+- `binary_classification_metrics`: مؤشرات ROC-AUC وAverage Precision وF1 والنوعية والإحكام والاسترجاع والدقة المتوازنة للتصنيف الثنائي.
+- `roc_curve_table` و`plots.plot_roc_curve`: البيانات والرسم البياني لمنحنى ROC.
+- `compare_classifiers`: مقارنة نماذج التصنيف باستخدام `Pipeline` على بيانات تدريب واختبار منفصلة.
+- `render_classification_report` و`save_classification_report` و`display_classification_report`: تقارير عربية RTL لنتائج التصنيف.
+- هذه الخصائص لم تُنشر بعد على PyPI الرسمي؛ الوثائق: [ML_EVALUATION_AR.md](ML_EVALUATION_AR.md).
+
+## 4. اختبارات إضافية
 
 - `stats`: Shapiro–Wilk، Jarque–Bera، Welch، Student، T المزدوج، Mann–Whitney، Wilcoxon، ANOVA، Kruskal–Wallis، Levene، Chi-square، Pearson، Spearman، KS لعينيّتين.
 - `econometrics`: ADF، Ljung–Box، Breusch–Pagan، VIF، Cronbach alpha.
@@ -37,7 +45,7 @@
 - لا تشمل النسخة 0.1.0 اختبارات Little MCAR أو EFA/CFA أو PLS-SEM، لأن تقديمها بطريقة صحيحة يتطلب طبقة منهجية مستقلة وحالات تحقق معيارية.
 - مستندات المقياسين التي استُخدمت للتصميم هي مواد بيداغوجية مُعدة سابقًا، وليست بطاقة رسمية نهائية؛ **لا يجوز وصف المكتبة بأنها تغطي جميع الاختبارات المقررة رسميًا دون مقارنة ببطاقة التكوين المعتمدة**.
 
-## 4. ملاحظات على التفسير
+## 5. ملاحظات على التفسير
 
 - `p_value < alpha` يعني رفض H0 في شروط الاختبار ولا يثبت الأهمية العملية أو السببية.
 - الاختبارات المعلمية تفترض شروطًا متنوعة (استقلالية، اعتدالية أخطاء أو عينات، تجانس التباين حسب الاختبار).
