@@ -17,6 +17,22 @@ from ._results import TestResult
 
 _METRICS = (
     ("n_samples", "حجم العينة", "Sample size"),
+    ("n_covariates", "عدد متغيرات الضبط", "Covariates"),
+    ("a_path", "معامل المسار أ", "Path a"),
+    ("b_path", "معامل المسار ب", "Path b"),
+    ("direct_effect", "الأثر المباشر", "Direct association"),
+    ("indirect_effect", "الأثر غير المباشر", "Indirect association"),
+    ("total_effect", "الأثر الكلي", "Total association"),
+    ("indirect_se", "الخطأ المعياري للوساطة", "Indirect SE"),
+    ("interaction_coefficient", "معامل التفاعل", "Interaction coefficient"),
+    ("delta_r2", "الزيادة في معامل التحديد", "Delta R²"),
+    ("r2_main_effects", "تحديد النموذج الأساسي", "Main-effects R²"),
+    ("r2_interaction", "تحديد نموذج التفاعل", "Interaction R²"),
+    ("nested_f", "إحصائية مقارنة النموذجين", "Nested F"),
+    ("nested_f_p_value", "دلالة مقارنة النموذجين", "Nested F p-value"),
+    ("moderator_min", "أدنى مستوى للمعدل", "Observed W minimum"),
+    ("moderator_max", "أعلى مستوى للمعدل", "Observed W maximum"),
+
     ("n_variables", "عدد المتغيرات", "Variables"),
     ("n_items", "عدد البنود", "Items"),
     ("n_targets", "عدد الحالات", "Targets"),
