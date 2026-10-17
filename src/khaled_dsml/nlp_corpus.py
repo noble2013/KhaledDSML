@@ -52,6 +52,8 @@ def zipf_frequency_analysis(text_or_tokens, *, min_types=5):
     if len(freqs)<min_types or min_types<3:
         raise ValueError("At least min_types>=3 distinct word types required")
     f = np.array([n for _,n in freqs],dtype=float)
+    if np.ptp(f) == 0:
+        raise ValueError("Zipf log-rank fit needs at least two distinct token frequencies")
     ranks = np.arange(1,len(f)+1,dtype=float)
     slope, intercept, corr, p, _ = stats.linregress(np.log(ranks),np.log(f))
     table = pd.DataFrame({"rank":ranks.astype(int),
