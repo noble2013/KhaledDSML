@@ -2,6 +2,7 @@
 import numpy as np
 import pytest
 from scipy import stats
+from scipy.special import expit
 from sklearn.cluster import KMeans
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.datasets import make_classification
@@ -47,7 +48,7 @@ def test_box_tidwell_coefficient_matches_statsmodels_glm():
     import statsmodels.api as sm
     rng=np.random.default_rng(42)
     x=np.exp(rng.normal(1,.5,160))
-    probabilities=stats.expit(-1+.9*x-.24*x*np.log(x))
+    probabilities=expit(-1+.9*x-.24*x*np.log(x))
     y=rng.binomial(1,probabilities)
     result=box_tidwell_logistic_screen(y,x)
     design=np.column_stack([np.ones(len(x)),x,x*np.log(x)])
@@ -96,7 +97,7 @@ def test_gap_statistic_matches_manual_kmeans_and_box_reference():
 def test_added_methods_render_arabic_and_english_without_external_fonts():
     rng=np.random.default_rng(7)
     x=np.exp(rng.normal(size=100))
-    y=rng.binomial(1,stats.expit(-1+1.2*x))
+    y=rng.binomial(1,expit(-1+1.2*x))
     items=[
         corrected_resampled_t(np.arange(8)*.03+.01,n_train=50,n_test=20),
         five_by_two_cv_comparison(
