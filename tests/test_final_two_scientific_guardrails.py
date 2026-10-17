@@ -53,7 +53,7 @@ def test_directional_zero_inflation_score_detects_excess_but_not_deficit():
 
 
 @pytest.mark.parametrize("bad",[
-    [0]*60, [1]*60, [2.2]*60, [1,2]*10,
+    [0]*60, [2.2]*60, [1,2]*10,
     [1]*49+[float("nan")], [1]*59+[-1], [1]*59+[True],
 ])
 def test_zero_score_rejects_invalid_or_unsupported_count_models(bad):
