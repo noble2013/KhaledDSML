@@ -84,20 +84,21 @@ def render_test_report(
         '<meta name="viewport" content="width=device-width, initial-scale=1">\n'
         f"<title>{heading}</title>\n"
         "<style>\n"
-        "body{font-family:Tahoma,Arial,sans-serif;direction:rtl;text-align:right;"
+        ".khaled-dsml-report{font-family:Tahoma,Arial,sans-serif;direction:rtl;text-align:right;"
         "max-width:880px;margin:2rem auto;padding:0 1rem;color:#25243a;"
         "background:#fff;line-height:1.9}\n"
-        "h1{font-size:1.5rem}h2{font-size:1.16rem;margin:0 0 .75rem}\n"
-        ".result{border:1px solid #bfc4cf;border-radius:10px;"
+        ".khaled-dsml-report h1{font-size:1.5rem}.khaled-dsml-report h2{font-size:1.16rem;margin:0 0 .75rem}\n"
+        ".khaled-dsml-report .result{border:1px solid #bfc4cf;border-radius:10px;"
         "padding:1.2rem;margin:1rem 0;break-inside:avoid}\n"
-        ".result p{margin:.35rem 0}.interpretation{font-weight:600}"
-        ".note{font-size:.93rem;color:#555}\n"
-        "bdi{font-family:Consolas,monospace;unicode-bidi:isolate}\n"
-        "@media print{body{margin:0;max-width:none}.result{border:1px solid #aaa}}\n"
-        "</style>\n</head>\n<body>\n"
+        ".khaled-dsml-report .result p{margin:.35rem 0}.khaled-dsml-report .interpretation{font-weight:600}"
+        ".khaled-dsml-report .note{font-size:.93rem;color:#555}\n"
+        ".khaled-dsml-report bdi{font-family:Consolas,monospace;unicode-bidi:isolate}\n"
+        "@media print{.khaled-dsml-report{margin:0;max-width:none}.khaled-dsml-report .result{border:1px solid #aaa}}\n"
+        "</style>\n</head>\n<body>\n" 
+        '<div class="khaled-dsml-report" dir="rtl" lang="ar">\n'
         f"<h1>{heading}</h1>\n"
         '<p>النتائج إحصائية وليست إثباتًا للسببية. عدم رفض الفرضية الصفرية لا يثبت صحتها.</p>\n'
-        f"{cards}\n</body>\n</html>\n"
+        f"{cards}\n</div>\n</body>\n</html>\n"
     )
 
 
