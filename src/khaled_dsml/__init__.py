@@ -29,3 +29,11 @@ from .descriptive import (
     weighted_mean, gini_coefficient, covariance_correlation, interpret_descriptive,
     render_descriptive_report, save_descriptive_report, display_descriptive_report,
 )
+
+from .catalog_tests import (
+    one_sample_t_test, dagostino_normality_test, bartlett_test,
+    fligner_test, kendall_test, fisher_exact_test, chi_square_gof_test,
+    friedman_test, sign_test, adjust_pvalues, cohen_d, cliffs_delta,
+    bootstrap_mean_ci, permutation_mean_test,
+)
+from .ml_evaluation import interpret_classification_metrics
