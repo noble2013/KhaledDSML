@@ -2,6 +2,7 @@
 import numpy as np
 import pytest
 from scipy import stats
+from html import unescape
 
 from khaled_dsml import (
     meta_analysis_heterogeneity, meta_analysis_random_effects,
@@ -112,5 +113,5 @@ def test_meta_results_have_bilingual_studio_rendering():
         html = render_analysis_dashboard(r, theme="ocean")
         assert 'dir="rtl"' in html
         assert r["interpretation_ar"] in html
-        assert r["interpretation_en"] in html
+        assert r["interpretation_en"] in unescape(html)
         assert "table" in html.lower()
