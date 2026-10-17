@@ -43,6 +43,16 @@ py -3.13 -m venv .venv
 py -m pip install khaled-dsml
 ```
 
+### KhaledDSML 0.7.0 — PySpark وDask للتحليل الموزع (قيد التطوير)
+
+**PySpark مُضافة منذ إصدار 0.2.0** ضمن الإضافة الاختيارية `[spark]`، ولا تتطلب النسخة الأساسية تثبيتها. يوسّع 0.7 استخدام Spark وDask ليشمل: فحص NULL وNaN والسلاسل الفارغة، قياس التكرارات، جداول إحصائية رقمية، تقسيمًا زمنيًا لا يفقد التواريخ المعطوبة، وتدريب نموذج تصنيف لوجستي وتقييم ROC-AUC/PR-AUC موزّعًا عبر Spark ML.
+
+```powershell
+py -3.13 -m pip install --upgrade "khaled-dsml[distributed]==0.6.0"
+```
+
+استخدم الإصدار الرسمي 0.6.0 حاليًا؛ فإضافات 0.7 **غير منشورة بعد**. للاطلاع على الواجهات الجديدة: [دليل PySpark وDask](docs/PYSPARK_DASK_0_7_AR_EN.md) · [دفتر Colab بالتصميم الإبداعي](notebooks/10_pyspark_dask_analytics.ipynb). تبقى العربية RTL يمينًا والإنجليزية LTR يسارًا في تقارير Analytics Studio.
+
 ### KhaledDSML 0.6.0 — المقارنات البعدية ومقارنة ROC-AUC (قيد التطوير)
 
 إضافة خمس اختبارات مقارنة بعدية: **Tukey HSD وGames–Howell وDunn وDunnett وNemenyi–Friedman**، مع اختبار **DeLong المترابط** لمقارنة ROC-AUC لنموذجين على الأشخاص أنفسهم، وBootstrap مزدوج بفاصل ثقة.

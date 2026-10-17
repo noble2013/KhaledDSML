@@ -1,5 +1,5 @@
 """KhaledDSML: educational statistics, ML and big data in Python."""
-__version__ = "0.6.0"
+__version__ = "0.7.0"
 
 from .statistics import (normality_test, shapiro_test, jarque_bera_test,
     independent_t_test, paired_t_test, mann_whitney_test, wilcoxon_test,
@@ -139,4 +139,12 @@ from .posthoc_comparisons import (
 )
 from .roc_comparison import (
     delong_auc_comparison, stratified_paired_auc_bootstrap,
+)
+
+# Advanced optional PySpark / Dask engines — v0.7
+from .distributed_analytics import (
+    spark_missingness_detailed, spark_duplicate_summary,
+    spark_numeric_profile, spark_time_holdout,
+    spark_fit_logistic_classifier, spark_binary_classification_metrics,
+    dask_duplicate_summary, dask_numeric_profile, dask_time_holdout,
 )

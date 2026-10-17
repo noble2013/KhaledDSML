@@ -1,5 +1,12 @@
 # سجل التغييرات | Changelog
 
+## 0.7.0 — قيد التطوير / Unreleased
+
+- توسيع PySpark: تجميع فحص NULL وNaN والفراغات، إحصاءات وصفية عددية، تقرير التكرارات، تقسيم زمني دون إسقاط صامت، وتدريب لوجستي وتقييم ROC/PR وconfusion matrix عبر Spark ML.
+- توسيع Dask: ملخص التكرارات، إحصاءات أعمدة رقمية، وتقسيم زمني كسول بثلاث مجموعات واضحة.
+- الحفاظ على الإضافة الاختيارية `pip install "khaled-dsml[distributed]"`؛ لا تضخيم الاعتماديات الأساسية ولا تحميل سجلات البيانات الخام محليًا.
+- اختبارات تكامل على محركات Spark/Dask الحقيقية، وتوثيق ثنائي اللغة، ودفتر Colab 10.
+
 ## 0.6.0 — قيد التطوير / Unreleased
 
 - `posthoc_comparisons`: Tukey HSD, Games–Howell, Dunn (Holm/Bonferroni), Dunnett مقابل مجموعة ضابطة، وNemenyi للقياسات المترابطة بعد Friedman.
