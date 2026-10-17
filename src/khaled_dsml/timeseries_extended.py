@@ -75,7 +75,10 @@ def granger_predictivity_tests(target, candidate, *, maxlag=3, alpha=.05) -> dic
     if len(x)!=len(y) or type(maxlag) is not int or not 1<=maxlag<=min(12,(len(y)-5)//3):
         raise ValueError("Need aligned series and maxlag small relative to n")
     sample=np.column_stack([y,x])
-    result=ts.grangercausalitytests(sample,maxlag=maxlag,verbose=False)
+    from contextlib import redirect_stdout
+    from io import StringIO
+    with redirect_stdout(StringIO()):
+        result=ts.grangercausalitytests(sample,maxlag=maxlag)
     rows=[]
     for lag in sorted(result):
         f,p,df,dfnum=result[lag][0]["ssr_ftest"]
