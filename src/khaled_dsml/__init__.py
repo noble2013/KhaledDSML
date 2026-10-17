@@ -17,3 +17,9 @@ from .timeseries import lagged_features
 from .sqltools import sqlite_import_frame, sqlite_group_summary
 
 from .reports import render_test_report, save_test_report, display_test_report
+
+from .ml_evaluation import (
+    binary_classification_metrics, roc_curve_table, compare_classifiers,
+    render_classification_report, save_classification_report,
+    display_classification_report,
+)
