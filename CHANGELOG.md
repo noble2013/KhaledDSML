@@ -1,6 +1,16 @@
 # سجل التغييرات | Changelog
 
-## 0.3.0 — قيد التطوير / Unreleased
+## 0.4.0 — قيد التطوير / Unreleased
+
+- `inference_extended`: Welch ANOVA، Brunner-Munzel، Mood median، McNemar، Cochran Q، z للنسب، Wilson، ارتباطات جزئية، أحجام الأثر ونسب المخاطر.
+- `psychometrics_extended`: ارتباط البند بالمجموع وتصحيح alpha، split-half، اتفاق المحكّمين، EFA، Parallel analysis، AVE/CR، HTMT وFornell-Larcker.
+- `ml_extended`: MCC، κ، PR-AUC، Brier، Log loss، ECE، Calinski-Harabasz، ARI/NMI، فجوات الإنصاف، تقسيم السلاسل الزمني.
+- `regression_extended`: White، Goldfeld-Quandt، RESET، Rainbow، Cook's D، Leverage، DFFITS، DFBETAS، Chow، CUSUM، AIC/BIC، Hosmer-Lemeshow، two-way ANOVA.
+- `timeseries_extended`: KPSS، Zivot-Andrews، Granger predictivity، Engle-Granger، Johansen، Diebold-Mariano.
+- منهجية الاختبارات: توثيق عربي/إنجليزي، وضبط حالات الإدخال، ومقارنة مرجعية مع SciPy وstatsmodels وscikit-learn.
+- الإصدار 0.3.0 المنشور يظل دون تعديل. لا نعدّ كل كتالوج 256 بندًا منجزًا.
+
+## 0.3.0 — منشور رسميًا على PyPI / Published
 
 - **Analytics Studio:** تصميم أكاديمي جديد بترويسة متدرجة، بطاقات مؤشرات، تفسير ثنائي اللغة ومحاذاة صحيحة، وثيمات Aurora/Ocean/Amethyst؛ مع SVG اختياري مستمد من البيانات الحقيقية.
 - صيغة عرض افتراضية `style="studio"` وإبقاء `style="plain"` للتوافق، مع حفظ HTML صالح للطباعة ودفتر Colab إبداعي.
