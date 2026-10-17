@@ -152,7 +152,11 @@ def spark_time_holdout(spark_df, *, date_column="date", cutoff):
     F = _as_spark_frame(spark_df)
     _require_columns(spark_df, [date_column])
     _date_cutoff(cutoff)
-    date_value = F.to_date(F.col(date_column))
+    # ANSI Spark raises on malformed strings with to_date; try_to_timestamp
+    # returns NULL and lets the third partition keep invalid original rows.
+    date_value = F.to_date(
+        F.try_to_timestamp(F.col(date_column), F.lit("yyyy-MM-dd"))
+    )
     threshold = F.lit(cutoff).cast("date")
     return {
         "train": spark_df.where(date_value < threshold),
@@ -274,27 +278,50 @@ def dask_numeric_profile(source, *, columns=None, blocksize="64MB"):
     numeric=[n for n in names if pd.api.types.is_numeric_dtype(frame[n].dtype)]
     if not numeric:
         raise ValueError("No numeric fields to summarize")
-    summary=frame[numeric].agg(["count","mean","std","min","max"]).compute().T
-    summary = summary.rename(columns={"count":"n_valid"})
-    summary["n_samples"]=int(frame.shape[0].compute())
-    return summary[["n_samples","n_valid","mean","std","min","max"]]
+    dd = _dask()
+    # Dask DataFrame has no general .agg([...]) API in newer dask-expr.
+    # Build independent lazy scalar/Series reductions and compute jointly.
+    count,mean,std,minimum,maximum,total = dd.compute(
+        frame[numeric].count(),frame[numeric].mean(),frame[numeric].std(),
+        frame[numeric].min(),frame[numeric].max(),frame.shape[0],
+    )
+    result=pd.DataFrame({
+        "n_samples":int(total),"n_valid":count,"mean":mean,"std":std,
+        "min":minimum,"max":maximum,
+    })
+    return result[["n_samples","n_valid","mean","std","min","max"]]
+
+
+def _partition_by_time(part, date_column, threshold, kind):
+    """Pandas per-partition filter, so Dask metadata/index remain aligned."""
+    import pandas as pd
+    timestamps=pd.to_datetime(part[date_column],errors="coerce",utc=True)
+    if kind=="train":
+        mask=timestamps<threshold
+    elif kind=="test":
+        mask=timestamps>=threshold
+    else:
+        mask=timestamps.isna()
+    return part.loc[mask]
 
 
 def dask_time_holdout(
     source, *, date_column="date", cutoff, blocksize="64MB",
 ):
-    """Lazy Dask chronological split with explicit invalid/missing-date partition."""
+    """Lazy Dask chronological split; preserve malformed/missing dates explicitly."""
     import pandas as pd
-    dd=_dask()
     frame=_as_dask_frame(source,blocksize)
     _require_columns(frame,[date_column])
     _date_cutoff(cutoff)
-    stamps=dd.to_datetime(frame[date_column],errors="coerce",utc=True)
     date_limit=pd.Timestamp(cutoff).tz_localize("UTC")
+    def selected(kind):
+        return frame.map_partitions(
+            _partition_by_time, date_column, date_limit, kind, meta=frame._meta
+        )
     return {
-        "train":frame[stamps<date_limit],
-        "test":frame[stamps>=date_limit],
-        "invalid":frame[stamps.isna()],
+        "train":selected("train"),
+        "test":selected("test"),
+        "invalid":selected("invalid"),
         "interpretation_ar": "تقسيم زمني كسول مع مجموعة مخصصة للتواريخ غير الصالحة.",
-        "interpretation_en": "Lazy chronological split with an explicit malformed/missing dates partition.",
+        "interpretation_en": "Lazy per-partition chronological split; invalid dates are retained separately.",
     }
