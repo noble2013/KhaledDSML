@@ -1,5 +1,5 @@
 """KhaledDSML: educational statistics, ML and big data in Python."""
-__version__ = "0.1.0"
+__version__ = "0.2.0"
 
 from .statistics import (normality_test, shapiro_test, jarque_bera_test,
     independent_t_test, paired_t_test, mann_whitney_test, wilcoxon_test,
@@ -15,3 +15,5 @@ from .bigdata import (generate_transactions, csv_chunk_summary, csv_chunk_missin
 from .quizzes import Question, get_questions, grade_quiz
 from .timeseries import lagged_features
 from .sqltools import sqlite_import_frame, sqlite_group_summary
+
+from .reports import render_test_report, save_test_report, display_test_report
