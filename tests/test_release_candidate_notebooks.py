@@ -40,7 +40,7 @@ def test_recent_colab_notebooks_are_complete_and_use_active_source(file_name):
             assert cell["execution_count"] is None
             assert not cell["outputs"]
     remote_refs=re.findall(
-        r"git\\+https://github\\.com/noble2013/KhaledDSML\\.git@([^\\"\\s]+)",
+        r'git\+https://github\.com/noble2013/KhaledDSML\.git@([^"\s]+)',
         text,
     )
     if remote_refs:
