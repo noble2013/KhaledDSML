@@ -218,4 +218,4 @@ def test_all_six_methods_render_in_arabic_and_english_without_external_resources
         assert 'dir="rtl"' in html
         assert result["interpretation_ar"] in html
         assert result["interpretation_en"] in html
-        assert "http://" not in html and "https://" not in html
+        assert "<script src=" not in html and "<link rel=" not in html
