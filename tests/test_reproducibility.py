@@ -45,6 +45,8 @@ def test_manifest_save_verify_and_detect_input_change(tmp_path):
     data.write_text("x\n6\n", encoding="utf-8")
     result = verify_reproducibility_manifest(parsed, data)
     assert not result["inputs_match"]
+    assert isinstance(result["interpretation_ar"], str)
+    assert isinstance(result["interpretation_en"], str)
     assert "not" in result["interpretation_en"] or "differ" in result["interpretation_en"]
 
 
