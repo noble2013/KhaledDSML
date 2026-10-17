@@ -1,6 +1,15 @@
 # سجل التغييرات | Changelog
 
-## 0.9.0 — قيد التطوير / Unreleased
+## 0.10.0.dev0 — قيد التطوير / Unreleased
+
+- إضافة اختبار Henze–Zirkler للاعتدالية متعددة المتغيرات بإحصائية kernel ومعايرة Monte Carlo مستقلة وقابلة لإعادة الإنتاج؛ إعادة تقدير التغاير بكل محاكاة، دون تقريب p غير متحقق.
+- إضافة تحليل حساسية delta افتراضي لقيم MNAR المستكملة، يعرض المتوسطات الوصفية دون اختلاق p-values أو فواصل ثقة.
+- ربط الدوال بتقارير Analytics Studio الثنائية، مع حفاظ العربية على RTL والإنجليزية على LTR.
+- تدقيق مرجعي لكتالوج 256 بندًا: الأرقام التاريخية ليست تقييمًا آليًا للتغطية الحالية؛ يتطلب إثبات كل بند مقارنة علمية واختبارًا مستقلًا.
+- هذا إصدار تطويري خاص بالفرع؛ لم يُنشر إلى PyPI، ولا يُدمج قبل نجاح فحوص CI.
+
+
+## 0.9.0 — منشور رسميًا / Published
 
 - اختبار Little MCAR chi-square بتقدير متعدد المتغيرات بواسطة EM ودرجات حرية أنماط الفقد.
 - فحص استكشافي point-biserial لارتباط الفقد بالمتغيرات المرصودة مع تصحيح Holm.
@@ -8,28 +17,28 @@
 - Rubin scalar pooling لحساب تباينات داخل وبين الاستكمالات وفواصل الثقة دون اختلاق قيمة p.
 - RTL/LTR visual report labels and comprehensive tests; no claims of causal mechanisms or completion of the 256-item catalog.
 
-## 0.8.0 — قيد التطوير / Unreleased
+## 0.8.0 — منشور رسميًا / Published
 
 - `mediation_moderation`: تحليل مسارات OLS للوساطة، Sobel، Bootstrap paired-case، اختبار تعديل HC3 وΔR²، Simple Slopes، Johnson–Neyman داخل نطاق المتغير المعدّل المرصود.
 - لم تُختلق قيم p لـ Bootstrap، ولا ادعاءات سببية مستنتجة من معاملات الانحدار.
 - Analytics Studio: عناوين أعمدة الجداول بالعربية RTL بخط أوضح، يليها المصطلح الإنجليزي LTR؛ تحسين مقياس بطاقات الوساطة والتفاعل.
 - اختبارات مرجعية لـ statsmodels واختبار دفتر Colab 11 ووثائق عربية/إنجليزية، مع المحافظة على النسخة الرسمية السابقة 0.7.0.
 
-## 0.7.0 — قيد التطوير / Unreleased
+## 0.7.0 — منشور رسميًا / Published
 
 - توسيع PySpark: تجميع فحص NULL وNaN والفراغات، إحصاءات وصفية عددية، تقرير التكرارات، تقسيم زمني دون إسقاط صامت، وتدريب لوجستي وتقييم ROC/PR وconfusion matrix عبر Spark ML.
 - توسيع Dask: ملخص التكرارات، إحصاءات أعمدة رقمية، وتقسيم زمني كسول بثلاث مجموعات واضحة.
 - الحفاظ على الإضافة الاختيارية `pip install "khaled-dsml[distributed]"`؛ لا تضخيم الاعتماديات الأساسية ولا تحميل سجلات البيانات الخام محليًا.
 - اختبارات تكامل على محركات Spark/Dask الحقيقية، وتوثيق ثنائي اللغة، ودفتر Colab 10.
 
-## 0.6.0 — قيد التطوير / Unreleased
+## 0.6.0 — منشور رسميًا / Published
 
 - `posthoc_comparisons`: Tukey HSD, Games–Howell, Dunn (Holm/Bonferroni), Dunnett مقابل مجموعة ضابطة، وNemenyi للقياسات المترابطة بعد Friedman.
 - `roc_comparison`: DeLong المترابط لتقدير فرق ROC-AUC وقيمته الاحتمالية وفاصل الثقة، وBootstrap طبقي مزدوج للفاصل دون اختلاق p-value.
 - مخرجات Analytics Studio ذات اتجاه RTL العربي وLTR الإنجليزي، وجداول مقارنة النتائج، ودفتر Colab تعليمي متكامل.
-- اختبارات مرجعية ومراجعة علمية مستقلة قبل الاعتماد. الإصدار الرسمي الحالي 0.5.0.
+- اختبارات مرجعية ومراجعة علمية مستقلة؛ نُشر الإصدار لاحقًا.
 
-## 0.5.0 — قيد التطوير / Unreleased
+## 0.5.0 — منشور رسميًا / Published
 
 - اختبارات افتراضات متعددة المتغيرات Mardia، Box M، Mauchly، Breusch–Godfrey وLevene mean.
 - اختبارات الاتجاه الفئوي، G²، CMH، Newcombe، Welch TOST وحساب القوة المسبقة.
@@ -37,7 +46,7 @@
 - دعم مدونات Unicode العربية/الإنجليزية: Zipf، TTR، Dunning G²، وفواصل paired bootstrap.
 - يحافظ على تقارير Analytics Studio الإبداعية ذات محاذاة اللغة الصحيحة.
 
-## 0.4.0 — قيد التطوير / Unreleased
+## 0.4.0 — منشور رسميًا / Published
 
 - `inference_extended`: Welch ANOVA، Brunner-Munzel، Mood median، McNemar، Cochran Q، z للنسب، Wilson، ارتباطات جزئية، أحجام الأثر ونسب المخاطر.
 - `psychometrics_extended`: ارتباط البند بالمجموع وتصحيح alpha، split-half، اتفاق المحكّمين، EFA، Parallel analysis، AVE/CR، HTMT وFornell-Larcker.
@@ -45,7 +54,7 @@
 - `regression_extended`: White، Goldfeld-Quandt، RESET، Rainbow، Cook's D، Leverage، DFFITS، DFBETAS، Chow، CUSUM، AIC/BIC، Hosmer-Lemeshow، two-way ANOVA.
 - `timeseries_extended`: KPSS، Zivot-Andrews، Granger predictivity، Engle-Granger، Johansen، Diebold-Mariano.
 - منهجية الاختبارات: توثيق عربي/إنجليزي، وضبط حالات الإدخال، ومقارنة مرجعية مع SciPy وstatsmodels وscikit-learn.
-- الإصدار 0.3.0 المنشور يظل دون تعديل. لا نعدّ كل كتالوج 256 بندًا منجزًا.
+- لا يُعدّ نشر 0.4.0 دليلًا على إنجاز جميع بنود الكتالوج الـ256.
 
 ## 0.3.0 — منشور رسميًا على PyPI / Published
 
@@ -58,7 +67,7 @@
 - مقاييس جودة التنبؤ MAE وRMSE وMASE وsMAPE باستخدام مرجع موسمي محسوب من عينة التدريب.
 - وحدات SHA-256 وبصمة ملفات البيانات وقائمة إصدارات البرامج وملف JSON لإعادة الإنتاج، دون حفظ مسارات شخصية مطلقة.
 - حالات اختبار مرجعية تحافظ على ترتيب الزمن وتتحقق من حدود العينات والتوثيق ثنائي اللغة.
-- التنفيذ على فرع مستقل؛ لم تُنشر النسخة على PyPI بعد.
+- طُوّر أولًا على فرع مستقل ثم نُشر 0.3.0 رسميًا.
 
 ## 0.2.0 — منشور رسميًا على PyPI
 
