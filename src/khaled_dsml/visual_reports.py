@@ -52,6 +52,13 @@ _METRICS = (
     ("p_value", "القيمة الاحتمالية", "p-value"),
     ("alpha", "مستوى الدلالة", "Significance"),
     ("roc_auc", "المساحة تحت ROC", "ROC-AUC"),
+    ("roc_auc_a", "مساحة ROC للنموذج الأول", "ROC-AUC A"),
+    ("roc_auc_b", "مساحة ROC للنموذج الثاني", "ROC-AUC B"),
+    ("auc_difference", "فرق المساحة تحت ROC", "ROC-AUC difference"),
+    ("variance_difference", "تباين فرق AUC", "AUC diff. variance"),
+    ("significant_comparisons", "مقارنات دالة إحصائيًا", "Significant pairs"),
+    ("n_groups", "عدد المجموعات", "Number of groups"),
+
     ("balanced_accuracy", "الدقة المتوازنة", "Balanced accuracy"),
     ("mcc", "معامل ماثيوز", "MCC"),
     ("cohen_kappa", "اتفاق كابا", "Cohen κ"),

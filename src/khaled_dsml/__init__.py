@@ -1,5 +1,5 @@
 """KhaledDSML: educational statistics, ML and big data in Python."""
-__version__ = "0.5.0"
+__version__ = "0.6.0"
 
 from .statistics import (normality_test, shapiro_test, jarque_bera_test,
     independent_t_test, paired_t_test, mann_whitney_test, wilcoxon_test,
@@ -130,4 +130,13 @@ from .psychometrics_dimension import (
 from .nlp_corpus import (
     corpus_tokens, lexical_diversity, zipf_frequency_analysis,
     dunning_corpus_keyness, paired_bootstrap_score_difference,
+)
+
+# Post-hoc and correlated ROC comparison (0.6 development)
+from .posthoc_comparisons import (
+    tukey_hsd_comparisons, games_howell_comparisons, dunn_posthoc,
+    dunnett_control_comparisons, nemenyi_friedman_posthoc,
+)
+from .roc_comparison import (
+    delong_auc_comparison, stratified_paired_auc_bootstrap,
 )
