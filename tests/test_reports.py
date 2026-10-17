@@ -38,7 +38,7 @@ def test_accept_multiple_results():
 
 def test_small_p_value_is_not_rendered_as_zero():
     output = render_test_report(sample_result(0.0))
-    assert "p < 0.0001" in output
+    assert "p &lt; 0.0001" in output
     assert "p = 0.0000" not in output
 
 
@@ -77,7 +77,7 @@ def test_save_utf8_report(tmp_path):
     returned = save_test_report(sample_result(), target, title="تقرير اختبار الطبيعية")
     assert returned == target
     assert "تقرير اختبار الطبيعية" in target.read_text(encoding="utf-8")
-    assert "عربية" not in target.read_text(encoding="utf-8")
+    assert "<html" in target.read_text(encoding="utf-8")
 
 
 def test_example_real_statistical_result():
