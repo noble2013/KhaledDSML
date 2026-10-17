@@ -1,5 +1,5 @@
 """KhaledDSML: educational statistics, ML and big data in Python."""
-__version__ = "0.2.0"
+__version__ = "0.3.0"
 
 from .statistics import (normality_test, shapiro_test, jarque_bera_test,
     independent_t_test, paired_t_test, mann_whitney_test, wilcoxon_test,
@@ -55,4 +55,14 @@ from .distributed import (
     dask_missingness_report, dask_monthly_summary,
     create_spark_session, spark_read_csv, spark_group_summary,
     spark_csv_summary, spark_missingness_report, spark_monthly_summary,
+)
+
+from .timeseries_advanced import (
+    mann_kendall_trend_test, pettitt_change_point_test,
+    box_pierce_test, arch_lm_test, mean_absolute_scaled_error,
+    forecast_accuracy_report,
+)
+from .reproducibility import (
+    sha256_file, software_versions, reproducibility_manifest,
+    save_reproducibility_manifest, verify_reproducibility_manifest,
 )
