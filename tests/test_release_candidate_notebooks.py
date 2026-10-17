@@ -31,7 +31,7 @@ def test_recent_colab_notebooks_are_complete_and_use_active_source(file_name):
     assert notebook["metadata"]["kernelspec"]["name"]=="python3"
     assert "@feature/v0.10-" not in text
     assert "0.10.0.dev0" not in text
-    assert "0.10.0rc1" in text
+    assert "0.10.0" in text and "0.10.0rc1" not in text
     assert any(cell["cell_type"]=="code" for cell in notebook["cells"])
     for cell in notebook["cells"]:
         assert isinstance(cell["source"],list)
@@ -51,7 +51,7 @@ def test_release_docs_acknowledge_prerelease_and_scientific_limitations():
     readme=(ROOT/"README.md").read_text(encoding="utf-8")
     docs=(ROOT/"docs/RELEASE_CANDIDATE_0_10_AR_EN.md").read_text(encoding="utf-8")
     guide=(ROOT/"docs/PUBLISH_AR.md").read_text(encoding="utf-8")
-    assert "0.10.0rc1" in readme and "0.9.0" in readme
+    assert "0.10.0" in readme and "0.9.0" in readme
     assert "256" in docs and "#85" in docs and "#117" in docs
     assert "scientific" in docs.lower()
     assert "TESTPYPI" in guide
