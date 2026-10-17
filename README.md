@@ -66,6 +66,17 @@ save_test_report(result, "report.html")  # تقرير قابل للطباعة د
 
 **تنبيه:** هذه الدوال ضمن الفرع التجريبي `feature/rtl-reporting-v0.2.0`، ولم تصل بعد إلى إصدار PyPI المنشور `0.1.0`. تعليمات تجربة الفرع في [التوثيق العربي](docs/RTL_REPORTS_AR.md).
 
+### تقييم التصنيف الثنائي وROC-AUC — تطوير 0.2.0
+
+```python
+from khaled_dsml import binary_classification_metrics, display_classification_report
+
+metrics = binary_classification_metrics([0, 0, 1, 1], [0.1, 0.4, 0.35, 0.8])
+display_classification_report(metrics)
+```
+
+لرسم ROC ومقارنة نماذج الانحدار اللوجستي وأشجار القرار دون تسرّب بيانات التدريب، راجع [دليل تقييم التصنيف العربي](docs/ML_EVALUATION_AR.md).
+
 ### كشف مشاكل البيانات
 
 ```python
@@ -116,7 +127,7 @@ print(grade_quiz(questions, answers))
 |---|---|
 | `reports` (التطوير 0.2.0) | `render_test_report`, `display_test_report`, `save_test_report` (تقارير عربية RTL) |\n| `statistics` | `normality_test`, `independent_t_test`, `paired_t_test`, `anova_test`, `kruskal_test`, `chi_square_test`, `pearson_test`, `spearman_test`, `levene_test`, `ks_two_sample_test` |
 | `quality` | `quality_report`, `missingness_report`, `iqr_outliers`, `fill_missing_numeric`, `optimize_memory`, `distribution_drift_test` |
-| `ml` | `make_regressor`, `make_classifier`, `cross_validation_summary`, `classification_metrics`, `regression_metrics`, `cluster_data`, `pca_summary` |
+| `ml_evaluation` (0.2.0) | `binary_classification_metrics`, `roc_curve_table`, `compare_classifiers`, `render_classification_report`, `display_classification_report` |\n| `ml` | `make_regressor`, `make_classifier`, `cross_validation_summary`, `classification_metrics`, `regression_metrics`, `cluster_data`, `pca_summary` |
 | `bigdata` | `generate_transactions`, `csv_chunk_summary`, `csv_chunk_missing`, `csv_chunk_monthly`, `map_reduce_word_count`, `json_documents_to_table` |
 | `sqltools` | `sqlite_import_frame`, `sqlite_group_summary` (SQLite محلي لتجارب SQL) |
 | `timeseries` | `lagged_features` (خصائص مؤخرة دون تسرب للمستقبل) |
@@ -132,7 +143,7 @@ print(grade_quiz(questions, answers))
 ## الإصدار الرسمي الحالي والتطوير القادم
 
 - **PyPI الحالي:** [KhaledDSML 0.1.0](https://pypi.org/project/khaled-dsml/0.1.0/) — مستقر للاستخدام.
-- **التطوير 0.2.0:** عرض الاختبارات بالعربية RTL؛ قيد الاختبارات والمراجعة على فرع مستقل.
+- **التطوير 0.2.0:** تقارير عربية RTL، وتقييم التصنيف الثنائي وROC-AUC ومقارنة النماذج؛ قيد الاختبارات على فرع مستقل.
 - **المنهجية:** لا يُنشر الإصدار 0.2.0 رسميًا قبل نجاح GitHub Actions ومراجعة التغييرات. راجع [دليل النشر](docs/PUBLISH_AR.md).
 
 ## Notes (English)
