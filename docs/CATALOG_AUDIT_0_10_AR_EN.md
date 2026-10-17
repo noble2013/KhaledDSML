@@ -1,7 +1,7 @@
 # تدقيق كتالوج KhaledDSML (256 بندًا) | Catalogue coverage audit
 
 **Baseline / نقطة الانطلاق:** `main` release `0.9.0`, snapshot 17 October 2026.
-**Branch / فرع العمل:** `feature/v0.10-catalog-henze-zirkler` (`0.10.0.dev0`, unpublished).
+**Branch / فرع العمل:** source baseline from merged PR #9; additional mappings under `feature/v0.10-research-gapfill` (`0.10.0.dev0`, unpublished).
 **Provenance / المصدر:** `KhaledDSML_Catalog_Verified_Phase2_2026-10-17.xlsx` saved in the author's Library. The reference workbook, **not** the number of pytest tests, defines the 256 units of work.
 
 ## Scope and historical numbers | النطاق والأرقام التاريخية
@@ -31,6 +31,12 @@ The reference tracker contains exactly **256 items across 12 domains**. Its hist
 A machine-assisted and manually enriched **source-trace of all 256 rows** is preserved in [CATALOG_256_SOURCE_TRACE_V010.tsv](CATALOG_256_SOURCE_TRACE_V010.tsv). It identifies **182 rows with public API-name candidates** after source review (initial tracker notes plus 118 manually mapped catalogue rows); **74 rows currently have no public API-name candidate**. **These figures are not completion/absence totals:** the original notes are stale and a compound row may contain both implemented and missing submethods. The TSV preserves each original tracker line verbatim for subsequent independent scientific sign-off. Importability and test-file references can be recomputed with `python tools/catalogue_audit.py --output catalogue_evidence.csv`; this does not assign completion labels.
 
 أعددنا مطابقة نصية لجميع البنود الـ256: **182 بندًا لها مرشحات دوال عامة بعد المطابقة اليدوية**، و**74 بندًا لم نحدد لها بعد اسم دالة عامة مرشحًا**؛ وهذا ليس حكمًا بأنها غير منفذة ولا نسبة إنجاز. يجب ربط كل بند بالأدلة وباختبارات مرجعية قبل اعتماد حالته.
+
+## Additional verifiable callable links | ربط مرشحات وظائف جديدة
+
+Eight original rows (#214, #215, #216, #224, #228, #244, #245, #246) now carry candidates from the monitoring and study meta-analysis modules. These are **source mapping candidates**, not definitive scientific completion. A row may require other algorithms or end-to-end verification before it is marked complete. The mapping trace and CLI re-evaluate importability and test references after checkout.
+
+ثمانية بنود أصبحت مرتبطة بدوال مرشحة جديدة، مع بقاء حالة الاعتماد العلمي لكل بند منفصلة عن وجود الدالة أو نجاح اختبار تقني.
 
 ## Verified source-level changes relative to the tracker | اختلافات مثبتة بالكود
 
