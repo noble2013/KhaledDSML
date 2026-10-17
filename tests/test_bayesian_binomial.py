@@ -128,7 +128,8 @@ def test_bayesian_notebook_is_valid_bilingual_and_unexecuted():
     nb = json.loads(path.read_text(encoding="utf-8"))
     assert nb["nbformat"] == 4
     text = "\n".join("".join(cell["source"]) for cell in nb["cells"])
-    assert "0.10.0.dev0" in text
+    from khaled_dsml import __version__
+    assert __version__ in text
     assert "beta_binomial_posterior" in text
     assert "beta_binomial_group_comparison" in text
     assert "التحليل البايزي" in text
