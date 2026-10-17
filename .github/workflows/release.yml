@@ -17,27 +17,21 @@ jobs:
         uses: actions/setup-python@v5
         with:
           python-version: '3.13'
-      - name: Verify release tag matches package version
+      - name: Refuse prerelease/dev source on stable PyPI
         env:
           RELEASE_TAG: ${{ github.event.release.tag_name }}
-        run: |
-          python - <<'PY'
-          import os
-          import tomllib
-          from pathlib import Path
-          version = tomllib.loads(Path('pyproject.toml').read_text(encoding='utf-8'))['project']['version']
-          tag = os.environ['RELEASE_TAG']
-          if tag != f'v{version}':
-              raise SystemExit(f'Release tag {tag!r} must match v{version}')
-          PY
+          RELEASE_IS_PRERELEASE: ${{ github.event.release.prerelease }}
+        run: python tools/release_gate.py --target pypi --tag "$RELEASE_TAG" --prerelease "$RELEASE_IS_PRERELEASE"
       - name: Install validation dependencies
-        run: python -m pip install --upgrade build twine '.[dev,econometrics,plots]'
+        run: python -m pip install --upgrade build twine '.[dev,econometrics,plots,exports,unitroot,quantiles]'
       - name: Run tests
         run: python -m pytest
       - name: Build distributions
         run: python -m build
       - name: Validate distributions
-        run: python -m twine check dist/*
+        run: |
+          python -m twine check dist/*
+          python tools/check_distributions.py dist
       - name: Upload distributions
         uses: actions/upload-artifact@v4
         with:

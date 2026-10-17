@@ -5,7 +5,11 @@
 **الكلية:** كلية العلوم الاقتصادية والتجارية وعلوم التسيير (Faculty of Economic, Commercial and Management Sciences)  
 **البريد الإلكتروني المهني:** [ali-khaled@univ-eloued.dz](mailto:ali-khaled@univ-eloued.dz)  
 **الإصدار الرسمي المنشور على PyPI: 0.9.0 (17 أكتوبر 2026)**  
-**نسخة المصدر على main: 0.10.0.dev0 — لم تُنشر بعد؛ دفعة الإكمال الموحّدة قيد الفحص على feature/v0.10-final-scientific-gapfill**
+**النسخة التجريبية المصدرية قيد الاختبار: 0.10.0rc1 (Release Candidate 1) — ليست منشورة على PyPI بعد.**
+
+**ملاحظة للمراجعين:** مصدر الكتالوج يتضمن 256/256 ربطًا برمجيًا مرشحًا، لكن عدد البنود المكتملة علميًا غير مُعتمد آليًا. البندان #85 و#117 مرتبطان ببدائل محدودة لا تعادل اختبار القدرة المرصودة أو Vuong في Poisson/ZIP. لا تساوِ بين تغطية الواجهة والاعتماد العلمي.
+
+**[دليل إعداد إصدار 0.10.0rc1 واختبار PyPI](docs/PUBLISH_AR.md)** · **[نتائج التدقيق المصدرية](docs/CATALOG_AUDIT_0_10_AR_EN.md)** · **[الضوابط الخاصة بالقدرة وفائض الأصفار](docs/ZERO_INFLATION_AND_PRECISION_0_10_AR_EN.md)**
 
 حزمة Python تعليمية للمقاييس التالية:
 
@@ -354,7 +358,7 @@ print(grade_quiz(questions, answers))
 ## الإصدار الرسمي الحالي والتطوير القادم
 
 - **الإصدار المنشور:** [KhaledDSML 0.9.0 على PyPI](https://pypi.org/project/khaled-dsml/0.9.0/).
-- **التطوير القادم:** `0.10.0.dev0` في `main` بعد PR #9–17؛ الإضافات التحفظية على [feature/v0.10-scientific-final-gap-guards](https://github.com/noble2013/KhaledDSML/tree/feature/v0.10-scientific-final-gap-guards) قيد CI، **غير منشور** إلى PyPI.
+- **تحضير 0.10.0rc1 للنشر الاختباري:** المصدر يضم بنود الكتالوج الـ256 مع التحفظات العلمية، وبوابة إصدار تمنع رفع النسخة التجريبية إلى PyPI المستقر. لا يحدث النشر تلقائيًا. راجع [دليل النشر الآمن](docs/PUBLISH_AR.md).
 - **التدقيق:** [مراجعة كتالوج 256 بندًا](docs/CATALOG_AUDIT_0_10_AR_EN.md). لا يعني عدد اختبارات pytest اكتمال الكتالوج.
 - **وظائف تجريبية:** Henze–Zirkler بمعايرة Monte Carlo، وتحليل حساسية MNAR بعوامل delta افتراضية؛ انظر [الدليل العلمي](docs/RESEARCH_METHODS_0_10_AR_EN.md). [دفتر Colab 13](notebooks/13_multivariate_mnar_studio.ipynb).
 - **مراقبة البيانات والتحليل البعدي (فرع التطوير):** PSI وJensen–Shannon وWasserstein مع KS، ومتوسط/تباين Welford المتدفق، وSRM، وعدم التجانس Q/I² وDerSimonian–Laird وEgger، جميعها بتفسيرات ثنائية اللغة وتحفظات علمية. [الدليل](docs/MONITORING_META_0_10_AR_EN.md) · [دفتر Colab 15](notebooks/15_monitoring_meta_studio.ipynb).
