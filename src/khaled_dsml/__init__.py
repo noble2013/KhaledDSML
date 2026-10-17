@@ -186,3 +186,16 @@ from .research_diagnostics import (
 )
 from .data_contracts import validate_dataframe_contract
 from .sequential_monitoring import page_hinkley_change_monitor
+
+# Leakage-aware model validation, v0.10 development
+# Previously implemented statsmodels-backed tests; imports stay lightweight
+# because econometrics imports optional statsmodels only inside its functions.
+from .econometrics import (
+    adf_test, breusch_pagan_test, ljung_box_test, cronbach_alpha, vif_table,
+)
+
+from .ml_validation_advanced import (
+    nested_cv_model_evaluation, permutation_score_significance,
+    holdout_permutation_importance, learning_curve_diagnostic,
+    dummy_baseline_cv,
+)

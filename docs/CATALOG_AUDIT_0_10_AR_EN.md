@@ -1,7 +1,7 @@
 # تدقيق كتالوج KhaledDSML (256 بندًا) | Catalogue coverage audit
 
 **Baseline / نقطة الانطلاق:** `main` release `0.9.0`, snapshot 17 October 2026.
-**Branch / فرع العمل:** source baseline after merged PR #9 and PR #10; additional candidates on `feature/v0.10-diagnostics-integrity` (`0.10.0.dev0`, unpublished).
+**Branch / فرع العمل:** source baseline after merged PR #9, #10 and #11; additional candidates on `feature/v0.10-ml-validation-expansion` (`0.10.0.dev0`, unpublished).
 **Provenance / المصدر:** `KhaledDSML_Catalog_Verified_Phase2_2026-10-17.xlsx` saved in the author's Library. The reference workbook, **not** the number of pytest tests, defines the 256 units of work.
 
 ## Scope and historical numbers | النطاق والأرقام التاريخية
@@ -31,6 +31,10 @@ The reference tracker contains exactly **256 items across 12 domains**. Its hist
 A machine-assisted and manually enriched **source-trace of all 256 rows** is preserved in [CATALOG_256_SOURCE_TRACE_V010.tsv](CATALOG_256_SOURCE_TRACE_V010.tsv). It identifies **182 rows with public API-name candidates** after source review (initial tracker notes plus 118 manually mapped catalogue rows); **74 rows currently have no public API-name candidate**. **These figures are not completion/absence totals:** the original notes are stale and a compound row may contain both implemented and missing submethods. The TSV preserves each original tracker line verbatim for subsequent independent scientific sign-off. Importability and test-file references can be recomputed with `python tools/catalogue_audit.py --output catalogue_evidence.csv`; this does not assign completion labels.
 
 أعددنا مطابقة نصية لجميع البنود الـ256: **182 بندًا لها مرشحات دوال عامة بعد المطابقة اليدوية**، و**74 بندًا لم نحدد لها بعد اسم دالة عامة مرشحًا**؛ وهذا ليس حكمًا بأنها غير منفذة ولا نسبة إنجاز. يجب ربط كل بند بالأدلة وباختبارات مرجعية قبل اعتماد حالته.
+
+## Model validation audit and recovered mappings | تدقيق تقييم نماذج التعلّم
+
+Mapping candidates added for #167 nested CV, #177 predictive label permutation significance, #178 the shared predictive Y-randomization scope, #179 Dummy benchmark, #187 heldout permutation importance, and #193 learning curve. Existing implementations reconciled on #26/#200 Ljung–Box, #98 Breusch–Pagan, #125 Cronbach alpha, #196 ADF, #207 regression *residual* CUSUM (not generic stream detection), #227 p-value multiple-testing adjustment (not a comprehensive sequential design). This yields 209 candidate-matched versus 47 unmapped items. All are **source-level candidates**, not counts of complete scientific implementations.
 
 ## Integrity and reproducibility research mapping / ربط أدوات نزاهة البحث
 
