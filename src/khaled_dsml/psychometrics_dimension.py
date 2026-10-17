@@ -108,7 +108,7 @@ def krippendorff_nominal_alpha(ratings) -> dict:
     if expected<=0:
         raise ValueError("Nominal disagreement expected by chance must be positive")
     return {
-        "alpha":float(1-disagreement/expected),
+        "krippendorff_alpha":float(1-disagreement/expected),
         "n_pairable_units":n_pairable_units,
         "n_valid_ratings":N,
         "interpretation_ar":"ألفا كريبندورف الاسمية تسمح بفقد بعض تقييمات المحكّمين؛ الاتفاق يعتمد على تعريف الفئات.",
