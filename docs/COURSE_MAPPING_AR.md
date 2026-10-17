@@ -21,9 +21,9 @@
 | TD1 توليد وفحص مليون معاملة | `generate_transactions`, `quality_report`, `missingness_report` | توليد DataFrame كامل يحتاج RAM |
 | TD1 التنظيف والتجميع | `fill_missing_numeric`, `csv_chunk_summary`, `csv_chunk_monthly` | معالجات الأجزاء تتطلب ملف CSV |
 | TD1 تحسين الذاكرة | `memory_report`, `optimize_memory`, `csv_chunk_missing` | تحجيم الفاصلة العائمة قد يغير الدقة وهو غير مفعل افتراضيًا |
-| MapReduce | `map_reduce_word_count` | مثال محلي **غير موزّع** |
+| MapReduce | `map_reduce_word_count` | المثال المحلي غير موزّع؛ أدوات Dask/Spark الإضافية تستخدم محركات حقيقية عند تشغيلها |
 | قواعد بيانات وNoSQL | `json_documents_to_table`, `sqlite_import_frame`, `sqlite_group_summary` | يتوفر محول Spark اختياري للتجميع فقط؛ اتصال MongoDB/Redis غير متاح |
-| تنظيف وإعداد خصائص | `quality`, `ml.make_classifier`, `ml.make_regressor` | تتوفر محولات Dask وSpark الاختيارية؛ الاختبارات الحالية تغطي المعالجة المحلية |
+| تنظيف وإعداد خصائص | `quality`, `ml.make_classifier`, `ml.make_regressor` | Dask/Spark في فرع 0.2.0: CSV وتجميع الولاية والشهر وفحص المفقودات؛ اختبار تكامل محلي وليس أداء عنقود كامل |
 | Lasso/Ridge والغابات | `make_regressor`, `make_classifier`, `cross_validation_summary` | حجم بيانات التدريب محكوم بذاكرة الجهاز |
 | تنقيب النصوص | `map_reduce_word_count` | التحليل الدلالي/المشاعر المتقدم مؤجل |
 | الاقتصاد القياسي والتسلسل الزمني | `econometrics.adf_test`, `ljung_box_test`, `vif_table`, `breusch_pagan_test` | `lagged_features` متاحة؛ لم تُنفذ نماذج التنبؤ الآني الكاملة |
@@ -36,6 +36,8 @@
 - `compare_classifiers`: مقارنة نماذج التصنيف باستخدام `Pipeline` على بيانات تدريب واختبار منفصلة.
 - `render_classification_report` و`save_classification_report` و`display_classification_report`: تقارير عربية RTL لنتائج التصنيف.
 - هذه الخصائص لم تُنشر بعد على PyPI الرسمي؛ الوثائق: [ML_EVALUATION_AR.md](ML_EVALUATION_AR.md).
+
+- **محركات Dask وSpark** في 0.2.0: `dask_read_csv`, `dask_group_summary`, `dask_missingness_report`, `dask_monthly_summary`, `create_spark_session`, `spark_read_csv`, `spark_group_summary`, `spark_missingness_report`, `spark_monthly_summary`. التوثيق: [DASK_SPARK_AR_EN.md](DASK_SPARK_AR_EN.md).
 
 ## 4. اختبارات إضافية
 
