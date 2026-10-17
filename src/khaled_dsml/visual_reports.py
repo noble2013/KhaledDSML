@@ -17,6 +17,12 @@ from ._results import TestResult
 
 _METRICS = (
     ("n_samples", "حجم العينة", "Sample size"),
+    ("n_resamples", "محاكاة مونت كارلو", "Monte Carlo replicates"),
+    ("monte_carlo_exceedances", "محاكاة تجاوزت الإحصائية", "Null exceedances"),
+    ("beta", "معلمة التنعيم", "HZ smoothing beta"),
+    ("n_scenarios", "سيناريوهات الحساسية", "Sensitivity scenarios"),
+    ("n_missing", "القيم المستكملة محل الدراسة", "Imputed target cells"),
+    ("baseline_mean", "المتوسط المرجعي دون إزاحة", "Mean at zero shift"),
     ("n_patterns", "أنماط الفقد", "Missingness patterns"),
     ("small_patterns", "أنماط بعينات صغيرة", "Sparse patterns"),
     ("em_iterations", "تكرارات خوارزمية EM", "EM iterations"),
@@ -126,6 +132,8 @@ _METRICS = (
     ("missing_cells", "الخلايا المفقودة", "Missing cells"),
 )
 _TITLES = {
+    "Henze-Zirkler multivariate normality (Monte Carlo)": ("اختبار هينز–زيركلر للاعتدالية متعددة المتغيرات", "Henze–Zirkler multivariate normality"),
+    "MNAR delta-shift sensitivity (descriptive)": ("تحليل حساسية دلتا للبيانات المفقودة", "MNAR delta-shift sensitivity"),
     "Mann-Kendall trend (normal approximation)": ("اختبار اتجاه مان–كندال", "Mann–Kendall trend"),
     "Pettitt single change-point": ("اختبار نقطة التغيّر", "Pettitt change point"),
     "Shapiro-Wilk": ("اختبار شابيرو–ويلك", "Shapiro–Wilk"),
