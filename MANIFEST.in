@@ -6,4 +6,5 @@ recursive-include tests *.py
 recursive-include .github *.yml
 recursive-include notebooks *.ipynb
 include CHANGELOG.md
+recursive-include tools *.py
 include MANIFEST.in
