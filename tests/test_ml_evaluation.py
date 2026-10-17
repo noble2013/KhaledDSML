@@ -119,3 +119,18 @@ def test_html_report_is_rtl_and_escapes_title(tmp_path):
 def test_html_requires_complete_metrics():
     with pytest.raises(ValueError):
         render_classification_report({"roc_auc": .7})
+
+
+def test_plot_roc_curve_optional_matplotlib():
+    import matplotlib
+    matplotlib.use("Agg")
+    from khaled_dsml.plots import plot_roc_curve
+
+    fig, ax = plot_roc_curve([0, 0, 1, 1], [.1, .4, .35, .8])
+    try:
+        assert len(ax.lines) == 2
+        assert "AUC=0.750" in ax.lines[0].get_label()
+        assert ax.get_xlabel() == "False positive rate"
+    finally:
+        import matplotlib.pyplot as plt
+        plt.close(fig)
