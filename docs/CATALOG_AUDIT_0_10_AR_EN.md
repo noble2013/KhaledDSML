@@ -26,6 +26,12 @@ The reference tracker contains exactly **256 items across 12 domains**. Its hist
 | report | 4 | Actual HTML/print, RTL/LTR, exports, usability and accessibility |
 | **Total** | **256** | **No verified completion claim yet** |
 
+## 256-row trace | جدول مطابقة جميع البنود
+
+A machine-assisted **source-trace of all 256 rows** is preserved in [CATALOG_256_SOURCE_TRACE_V010.tsv](CATALOG_256_SOURCE_TRACE_V010.tsv). It conservatively identifies **64 rows with exact public API-name candidates** from their tracker notes (plus explicit v0.9/v0.10 differences); **192 rows have no exact match recorded**. **These figures are not completion/absence totals:** the original notes are stale and a compound row may contain both implemented and missing submethods. The TSV preserves each original tracker line verbatim for subsequent independent scientific sign-off.
+
+أعددنا مطابقة نصية لجميع البنود الـ256: **64 بندًا لها مرشحات أسماء دوال عامة**، و**192 بندًا لا تحمل تطابق اسمًا صريحًا في التعليقات القديمة**؛ وهذا ليس حكمًا بأنها غير منفذة ولا نسبة إنجاز. يجب ربط كل بند بالأدلة وباختبارات مرجعية قبل اعتماد حالته.
+
 ## Verified source-level changes relative to the tracker | اختلافات مثبتة بالكود
 
 - **Item #2, audit:** `missing_pattern_report` + `little_mcar_test` exist in v0.9.0, with tests in `tests/test_missing_data_advanced.py`. This establishes presence and some tests, **not** blanket validation of missingness mechanisms.
