@@ -222,3 +222,9 @@ from .research_quality_completion import (
     scientific_report_alerts,
 )
 from .sketches_advanced import hyperloglog_cardinality, minhash_lsh_candidates
+
+# Paired resampling comparisons and model functional-form/stability
+from .resampling_comparisons import corrected_resampled_t, five_by_two_cv_comparison
+from .model_form_and_stability import (
+    box_tidwell_logistic_screen, prediction_seed_stability, gap_statistic_kmeans,
+)
