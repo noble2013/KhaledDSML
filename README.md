@@ -4,7 +4,7 @@
 **الجامعة:** جامعة الشهيد حمه لخضر – الوادي، الجزائر (University of El Oued, Algeria)  
 **الكلية:** كلية العلوم الاقتصادية والتجارية وعلوم التسيير (Faculty of Economic, Commercial and Management Sciences)  
 **البريد الإلكتروني المهني:** [ali-khaled@univ-eloued.dz](mailto:ali-khaled@univ-eloued.dz)  
-**الإصدار التجريبي: 0.1.0 — أكتوبر 2026**
+**الإصدار المستقر المنشور: 0.1.0 — نسخة التطوير القادمة: 0.2.0**
 
 حزمة Python تعليمية للمقاييس التالية:
 
@@ -37,7 +37,7 @@ py -3.13 -m venv .venv
 
 بعض بيئات Windows تستعمل `py` بدل `py -3.13` عند عدم توفر الفرع 3.13.
 
-*لاحقًا وبعد النشر الفعلي على PyPI فقط:*
+*الإصدار الرسمي الحالي على PyPI:*
 
 ```powershell
 py -m pip install khaled-dsml
@@ -53,6 +53,59 @@ result = normality_test([12, 13, 15, 17, 16, 14, 13, 18])
 print(result.interpretation_ar)
 print(result.p_value)
 ```
+
+### تقارير عربية بتنسيق RTL — تطوير 0.2.0
+
+```python
+from khaled_dsml import normality_test, display_test_report, save_test_report
+
+result = normality_test([12, 13, 15, 17, 16, 14, 13, 18])
+display_test_report(result)  # عرض منسق داخل Jupyter أو Google Colab
+save_test_report(result, "report.html")  # تقرير قابل للطباعة دون اتصال
+```
+
+**تنبيه:** هذه الدوال ضمن الفرع التجريبي `feature/rtl-reporting-v0.2.0`، ولم تصل بعد إلى إصدار PyPI المنشور `0.1.0`. تعليمات تجربة الفرع في [التوثيق العربي](docs/RTL_REPORTS_AR.md).
+
+### تقييم التصنيف الثنائي وROC-AUC — تطوير 0.2.0
+
+```python
+from khaled_dsml import binary_classification_metrics, display_classification_report
+
+metrics = binary_classification_metrics([0, 0, 1, 1], [0.1, 0.4, 0.35, 0.8])
+display_classification_report(metrics)
+```
+
+لرسم ROC ومقارنة نماذج الانحدار اللوجستي وأشجار القرار دون تسرّب بيانات التدريب، راجع [دليل تقييم التصنيف العربي](docs/ML_EVALUATION_AR.md).
+
+### إحصاءات وصفية شاملة + شرح عربي وإنجليزي (تطوير 0.2.0)
+
+```python
+from khaled_dsml import describe_numeric, display_descriptive_report
+
+summary = describe_numeric([10, 12, 12, 14, 18, 20, None])
+display_descriptive_report(summary)  # Arabic RTL + English LTR
+```
+
+تشمل النزعة المركزية، والتشتت، والجداول التكرارية، والربيعيات والقيم المئوية، والالتواء والتفرطح، والمتوسط المشذب والهندسي والتوافقي، والارتباط والتغاير، ومعامل جيني، والتقارير الثنائية اللغة.
+
+**[الدليل الأكاديمي عربي–إنجليزي](docs/DESCRIPTIVES_BILINGUAL_AR_EN.md)** | **[كتالوج المستخدم: متابعة 256 بندًا](docs/DESCRIPTIVES_BILINGUAL_AR_EN.md#5-حدود-التغطية--catalogue-coverage)**
+
+### تدقيق جودة البيانات والافتراضات | Data audit and assumption checks (0.2.0)
+
+```python
+import pandas as pd
+from IPython.display import HTML, display
+from khaled_dsml import audit_dataset, render_audit_report, anderson_darling_normality
+
+df = pd.DataFrame({"price": [100, 110, None, 110], "sales": [5, 7, 8, 7]})
+audit = audit_dataset(df)
+display(HTML(render_audit_report(audit)))
+print(anderson_darling_normality([1.1, 1.2, 1.5, 1.8, 2.1, 2.4, 2.6, 3.0]))
+```
+
+توفر وحدة `audit` كشف التكرارات التامة، أنماط الفقد، الأعمدة شبه الثابتة، القيم الشاذة، بنفورد، الأرقام النهائية، وتداخل التدريب والاختبار. تضم `assumptions_extra` اختبارات Anderson–Darling وLilliefors وRuns واختبار Bartlett للكروية وKMO وDurbin–Watson وVIF.
+
+**[التوثيق الأكاديمي بالعربية والإنجليزية](docs/AUDIT_ASSUMPTIONS_AR_EN.md)**. وظائف هذا القسم موجودة **على فرع تطوير 0.2.0 فقط**، ولم تُنشر بعد على PyPI.
 
 ### كشف مشاكل البيانات
 
@@ -74,6 +127,29 @@ model = make_regressor(X_train, "ridge", alpha=1.0)
 model.fit(X_train, y_train)
 print(regression_metrics(y_test, model.predict(X_test)))
 ```
+
+### Dask وApache Spark لتحليل البيانات الضخمة (تطوير 0.2.0)
+
+المكتبة تدعم تشغيل المحركين محليًا باعتماديات اختيارية. يقوم Dask بمعالجة الملفات على أجزاء وينفذ التجميع عند الطلب، بينما يعيد Spark نتائج موزعة دون تحويل الملفات الكبيرة إلى pandas.
+
+```python
+from khaled_dsml import dask_group_summary, dask_missingness_report
+# تنفيذ مؤجل؛ تسترجع الجداول الصغيرة فقط إلى الذاكرة
+summary = dask_group_summary("transactions.csv", group_by="wilaya",
+                             amount_column="montant_da", compute=True)
+print(summary)
+print(dask_missingness_report("transactions.csv"))
+```
+
+```python
+from khaled_dsml import create_spark_session, spark_read_csv, spark_group_summary
+spark = create_spark_session(master="local[2]")
+df = spark_read_csv(spark, "transactions.csv")
+spark_group_summary(df).show()
+spark.stop()
+```
+
+**<a href="docs/DASK_SPARK_AR_EN.md">دليل Dask وSpark بالعربية والإنجليزية</a>** — أمثلة للتجميع الشهري والمفقودات، وطريقة التثبيت في Colab وWindows. يجب تثبيت الإضافات الاختيارية أولًا، وSpark يحتاج Java. هذه الوظائف الموسعة ضمن **فرع تطوير 0.2.0** ولم تُنشر على PyPI بعد.
 
 ### مليون معاملة والتجميع بالأجزاء
 
@@ -102,13 +178,17 @@ print(grade_quiz(questions, answers))
 
 | الوحدة | أمثلة الدوال |
 |---|---|
-| `statistics` | `normality_test`, `independent_t_test`, `paired_t_test`, `anova_test`, `kruskal_test`, `chi_square_test`, `pearson_test`, `spearman_test`, `levene_test`, `ks_two_sample_test` |
+| `reports` (التطوير 0.2.0) | `render_test_report`, `display_test_report`, `save_test_report` (تقارير عربية RTL) |\n| `statistics` | `normality_test`, `independent_t_test`, `paired_t_test`, `anova_test`, `kruskal_test`, `chi_square_test`, `pearson_test`, `spearman_test`, `levene_test`, `ks_two_sample_test` |
 | `quality` | `quality_report`, `missingness_report`, `iqr_outliers`, `fill_missing_numeric`, `optimize_memory`, `distribution_drift_test` |
-| `ml` | `make_regressor`, `make_classifier`, `cross_validation_summary`, `classification_metrics`, `regression_metrics`, `cluster_data`, `pca_summary` |
+| `audit` (0.2.0) | `audit_dataset`, `missing_pattern_report`, `duplicate_rows_report`, `modified_z_outliers`, `mahalanobis_outliers`, `ml_outliers` |
+| `assumptions_extra` (0.2.0) | `anderson_darling_normality`, `lilliefors_normality`, `runs_test`, `kmo_sampling_adequacy`, `condition_number_vif` |
+| `descriptive` (0.2.0) | `describe_numeric`, `descriptive_table`, `frequency_table`, `describe_categorical`, `display_descriptive_report` |
+| `catalog_tests` (0.2.0) | `one_sample_t_test`, `fisher_exact_test`, `dagostino_normality_test`, `bootstrap_mean_ci`, `adjust_pvalues`, `cohen_d` |
+| `ml_evaluation` (0.2.0) | `binary_classification_metrics`, `roc_curve_table`, `compare_classifiers`, `render_classification_report`, `display_classification_report` |\n| `ml` | `make_regressor`, `make_classifier`, `cross_validation_summary`, `classification_metrics`, `regression_metrics`, `cluster_data`, `pca_summary` |
 | `bigdata` | `generate_transactions`, `csv_chunk_summary`, `csv_chunk_missing`, `csv_chunk_monthly`, `map_reduce_word_count`, `json_documents_to_table` |
 | `sqltools` | `sqlite_import_frame`, `sqlite_group_summary` (SQLite محلي لتجارب SQL) |
 | `timeseries` | `lagged_features` (خصائص مؤخرة دون تسرب للمستقبل) |
-| `distributed` | `dask_csv_summary`, `spark_group_summary` (تثبيت `[dask]` أو `[spark]` واستخدام محرك فعلي) |
+| `distributed` | `dask_read_csv`, `dask_group_summary`, `dask_missingness_report`, `dask_monthly_summary`, `spark_read_csv`, `spark_group_summary`, `spark_missingness_report`, `spark_monthly_summary` (تثبيت اختياري `[dask]` أو `[spark]` أو `[distributed]`) |
 | `econometrics` | `adf_test`, `vif_table`, `breusch_pagan_test`, `ljung_box_test`, `cronbach_alpha` (تثبيت `econometrics`) |
 | `plots` | `plot_missingness`, `plot_monthly`, `plot_confusion` (تثبيت `plots`) |
 | `quizzes` | `get_questions`, `grade_quiz` |
@@ -117,22 +197,16 @@ print(grade_quiz(questions, answers))
 
 **لإنشاء المستودع ونشر الحزمة بأمان عبر GitHub Actions وTrusted Publishing (بدون حفظ مفتاح API)، راجع [دليل النشر العربي](docs/PUBLISH_AR.md).**
 
-## نشر الحزمة على TestPyPI وPyPI باستخدام GitHub Actions
+## الإصدار الرسمي الحالي والتطوير القادم
 
-هذه المكتبة **غير منشورة بعد** على PyPI أو TestPyPI؛ لا تستخدم أمر `pip install khaled-dsml` من PyPI إلى حين نشرها.
-
-1. تابع نتائج الاختبارات والبناء في [GitHub Actions](https://github.com/noble2013/KhaledDSML/actions).
-2. أنشئ حسابًا منفصلًا على [TestPyPI](https://test.pypi.org/account/register/) وبيئة `testpypi` في `Settings → Environments` بمستودع GitHub.
-3. أضف في [TestPyPI Trusted Publishing](https://test.pypi.org/manage/account/publishing/) ناشرًا معلقًا للاسم `khaled-dsml` ومعلومات المستودع `noble2013/KhaledDSML`، وملف `testpypi.yml`، والبيئة `testpypi`.
-4. بعد نجاح البناء، نفذ `Actions → Publish to TestPyPI (manual) → Run workflow`.
-5. بعد نجاح التجربة، أنشئ البيئة `pypi` وناشرًا موثوقًا للاسم نفسه على [PyPI](https://pypi.org/manage/account/publishing/) باستخدام `release.yml` والبيئة `pypi`، ثم انشر GitHub Release يحمل الوسم `v0.1.0`.
-
-يوصى بحماية بيئة `pypi` بمراجعة يدوية. لا تضع كلمات مرور أو رموز API داخل GitHub. اقرأ [دليل النشر العربي](docs/PUBLISH_AR.md) للمزيد.
+- **PyPI الحالي:** [KhaledDSML 0.1.0](https://pypi.org/project/khaled-dsml/0.1.0/) — مستقر للاستخدام.
+- **التطوير 0.2.0:** تقارير عربية/إنجليزية RTL/LTR، والإحصاء الوصفي الشامل، واختبارات إضافية وتدقيق البيانات وفحص الافتراضات من كتالوج المستخدم، مع تحليل اختياري بـ Dask وSpark وتقييم التصنيف الثنائي وROC-AUC؛ قيد الاختبارات على فرع مستقل.
+- **المنهجية:** لا يُنشر الإصدار 0.2.0 رسميًا قبل نجاح GitHub Actions ومراجعة التغييرات. راجع [دليل النشر](docs/PUBLISH_AR.md).
 
 ## Notes (English)
 
-KhaledDSML is an **educational** Python toolkit; it wraps proven NumPy, pandas, SciPy and scikit-learn primitives rather than reinventing statistical algorithms. Optional statistics are backed by statsmodels. It is not a distributed processing engine: the MapReduce example runs locally; Optional Dask and Spark adapters are included, but need real engines and are not validated on a Spark cluster in version 0.1.0. Do not fit preprocessing on test data. Hypothesis-test interpretations should be checked against sampling design and assumptions. An MIT license covers this original wrapper code, not a claim of authorship over third-party algorithms.
+KhaledDSML is an **educational** Python toolkit; it wraps proven NumPy, pandas, SciPy and scikit-learn primitives rather than reinventing statistical algorithms. Optional statistics are backed by statsmodels. It is not a distributed processing engine: the MapReduce example runs locally; Optional Dask and Spark adapters are included, but need real engines and are not validated on a Spark cluster in the published version 0.1.0. Do not fit preprocessing on test data. Hypothesis-test interpretations should be checked against sampling design and assumptions. An MIT license covers this original wrapper code, not a claim of authorship over third-party algorithms.
 
 ## حقوق الاستخدام
 
-الترخيص MIT. الاسم المقترح للنشر هو `khaled-dsml` (يلزم التحقق من توفره عند رفع الحزمة). كل الإضافات يمكن مراجعتها عبر اختبارات `pytest` قبل النشر. حقوق المنهجيات والخوارزميات الأساسية محفوظة لمؤلفيها ومشروعاتها الأصلية.
+الترخيص MIT. اسم التوزيع المنشور على PyPI هو `khaled-dsml`. كل الإضافات يمكن مراجعتها عبر اختبارات `pytest` قبل النشر. حقوق المنهجيات والخوارزميات الأساسية محفوظة لمؤلفيها ومشروعاتها الأصلية.
