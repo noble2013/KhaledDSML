@@ -94,10 +94,10 @@ from khaled_dsml import (
 )
 
 rng=np.random.default_rng(24)
-rows=[(float(x),float(x>0)) for x in rng.normal(size=200)]
-records=spark.createDataFrame(rows,["predictor","label"])
-train=records.limit(140)
-test=records.subtract(train)  # illustration only: use an explicit ID/cutoff in real research
+rows=[(i, float(x),float(x>0)) for i,x in enumerate(rng.normal(size=200))]
+records=spark.createDataFrame(rows,["record_id","predictor","label"])
+train=records.where("record_id < 140")
+test=records.where("record_id >= 140")  # illustration: IDs follow known ordering
 model=spark_fit_logistic_classifier(train,feature_columns=["predictor"])
 prediction=model.transform(test)
 metrics=spark_binary_classification_metrics(prediction)
