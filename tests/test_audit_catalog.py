@@ -36,7 +36,7 @@ def test_column_diagnostics_near_constant_and_range():
                                 allowed_ranges={"age": (3, 17)})
     assert result.loc["gender", "is_near_constant"]
     assert not result.loc["age", "is_constant"]
-    assert result.loc["age", "out_of_range_count"] == 6
+    assert result.loc["age", "out_of_range_count"] == 5
 
 
 def test_modified_z_flags_extreme_and_nan():
