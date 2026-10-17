@@ -40,7 +40,7 @@ py -3.13 -m venv .venv
 
 ## 2. التحقق من GitHub Actions
 
-يجب نجاح ست مهام `.github/workflows/python-tests.yml`: أربع مصفوفات Python (3.10، 3.11، 3.12، 3.13)، اختبار Dask/PySpark الحقيقي، ثم بناء ملفات `wheel` و`sdist` والتحقق منهما.
+يجب نجاح **سبع مهام** `.github/workflows/python-tests.yml`: أربع مصفوفات Python (3.10، 3.11، 3.12، 3.13)، اختبار Dask/PySpark الحقيقي، **تنفيذ Colab 19–23 فعليًا دون شبكة مع التحقق من ملفات DOCX وXLSX**، ثم بناء ملفات `wheel` و`sdist` والتحقق منهما.
 
 التحقق الجديد `tools/release_gate.py` يطابق نسختي `pyproject.toml` و`khaled_dsml.__version__`، ويتأكد من البنود الـ256 وتوثيق القيود في #85 و#117. وفحص `tools/check_distributions.py` يتحقق من وجود سجل الكتالوج الكامل **داخل أرشيف المصدر**، ومن توافق إصدارات الملفات الناتجة.
 
