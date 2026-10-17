@@ -151,7 +151,7 @@ def measurement_invariance_nested_ml(less_restricted_chi_square,
             "measurement invariance CFA models with genuinely nested "
             "restrictions and identical cases. No invariance fitting "
             "or verification of identification is performed. Scaled/"
-            "robust and ordinal estimators need dedicated difference tests; "
+            "robust and ordinal (e.g. WLSMV) estimators need dedicated difference tests; "
             "failure to reject cannot prove invariance."
         ),
     }
