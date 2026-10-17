@@ -81,3 +81,9 @@ jobs:
       - name: Verify clean wheel AND clean source distribution installs
         timeout-minutes: 24
         run: python tools/install_dist_smoke.py dist
+      - name: Save validated release artifacts for manual inspection
+        uses: actions/upload-artifact@v4
+        with:
+          name: khaled-dsml-0.10.0-validated-distributions
+          path: dist/
+          if-no-files-found: error
