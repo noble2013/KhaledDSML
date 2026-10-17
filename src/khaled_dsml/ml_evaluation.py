@@ -138,6 +138,45 @@ _AR_METRIC_NAMES = (
 )
 
 
+def interpret_classification_metrics(metrics: Mapping) -> dict:
+    """Interpret binary performance cautiously, in Arabic and English.
+
+    No rating such as 'excellent' is assigned to AUC: validity depends on
+    domain, baseline, class balance, calibration and test set design.
+    """
+    needed = ("roc_auc", "f1", "recall", "specificity", "prevalence", "threshold",
+              "fp", "fn")
+    if not isinstance(metrics, Mapping) or any(key not in metrics for key in needed):
+        raise ValueError("Pass metrics from binary_classification_metrics")
+    auc = float(metrics["roc_auc"])
+    f1 = float(metrics["f1"])
+    recall = float(metrics["recall"])
+    spec = float(metrics["specificity"])
+    prevalence = float(metrics["prevalence"])
+    threshold = float(metrics["threshold"])
+    return {
+        "ar": (
+            f"تبلغ ROC-AUC القيمة {auc:.3f}، وهي تلخص قدرة النموذج على ترتيب "
+            "الحالات الموجبة فوق السالبة عبر العتبات، ولا تثبت معايرة الاحتمالات. "
+            f"عند العتبة {threshold:.2f} يبلغ الاسترجاع {recall:.3f} "
+            f"والنوعية {spec:.3f} ومؤشر F1 {f1:.3f}. "
+            f"انتشار الفئة الموجبة في عينة التقييم {prevalence:.1%}؛ "
+            f"الإيجابيات الكاذبة {int(metrics['fp'])} والسلبيات الكاذبة {int(metrics['fn'])}. "
+            "فسّر النتائج في ضوء تكاليف الأخطاء، وتوازن الفئات، وتقسيم البيانات."
+        ),
+        "en": (
+            f"ROC-AUC is {auc:.3f}; it summarizes ranking of positive above "
+            "negative cases over thresholds, not probability calibration. "
+            f"At threshold {threshold:.2f}, recall is {recall:.3f}, "
+            f"specificity {spec:.3f}, and F1 {f1:.3f}. "
+            f"Positive-class prevalence in this test set is {prevalence:.1%}; "
+            f"there are {int(metrics['fp'])} false positives and "
+            f"{int(metrics['fn'])} false negatives. Interpret performance in "
+            "the context of error costs, class balance, and data splitting."
+        ),
+    }
+
+
 def render_classification_report(metrics: Mapping, *, title="تقرير تقييم نموذج التصنيف") -> str:
     """Render a printable, escaped Arabic RTL report from binary metrics."""
     if not isinstance(metrics, Mapping) or any(k not in metrics for k, _ in _AR_METRIC_NAMES):
