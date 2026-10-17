@@ -201,7 +201,7 @@ def render_classification_report(metrics: Mapping, *, title="تقرير تقيي
         '<meta charset="utf-8">\n'
         '<meta name="viewport" content="width=device-width,initial-scale=1">\n'
         f"<title>{heading}</title>\n"
-        '<style>.kdsml-classifier{font-family:Tahoma,Arial,sans-serif;'
+        '<style>.kdsml-classifier{font-family:Tahoma,Arial,sans-serif;font-size:19px;font-weight:600;'
         'direction:rtl;text-align:right;max-width:820px;margin:2rem auto;'
         'padding:1rem;line-height:1.8;background:white;color:#24243a}'
         '.kdsml-classifier table{border-collapse:collapse;width:100%}'
