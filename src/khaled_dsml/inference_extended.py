@@ -225,7 +225,8 @@ def partial_correlation_test(a, b, controls, *, alpha=.05):
         raise ValueError("Collinear controls are not supported")
     xr = x-design@np.linalg.lstsq(design, x, rcond=None)[0]
     yr = y-design@np.linalg.lstsq(design, y, rcond=None)[0]
-    if np.std(xr) == 0 or np.std(yr) == 0:
+    if (np.linalg.norm(xr) <= 1e-10*max(1.0,np.linalg.norm(x)) or
+        np.linalg.norm(yr) <= 1e-10*max(1.0,np.linalg.norm(y))):
         raise ValueError("Zero residual variation after controlling for covariates")
     rho = float(np.corrcoef(xr, yr)[0, 1])
     df = n-k-2
