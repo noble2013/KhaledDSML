@@ -4,7 +4,7 @@
 **الجامعة:** جامعة الشهيد حمه لخضر – الوادي، الجزائر (University of El Oued, Algeria)  
 **الكلية:** كلية العلوم الاقتصادية والتجارية وعلوم التسيير (Faculty of Economic, Commercial and Management Sciences)  
 **البريد الإلكتروني المهني:** [ali-khaled@univ-eloued.dz](mailto:ali-khaled@univ-eloued.dz)  
-**الإصدار التجريبي: 0.1.0 — أكتوبر 2026**
+**الإصدار المستقر المنشور: 0.1.0 — نسخة التطوير القادمة: 0.2.0**
 
 حزمة Python تعليمية للمقاييس التالية:
 
@@ -37,7 +37,7 @@ py -3.13 -m venv .venv
 
 بعض بيئات Windows تستعمل `py` بدل `py -3.13` عند عدم توفر الفرع 3.13.
 
-*لاحقًا وبعد النشر الفعلي على PyPI فقط:*
+*الإصدار الرسمي الحالي على PyPI:*
 
 ```powershell
 py -m pip install khaled-dsml
@@ -53,6 +53,18 @@ result = normality_test([12, 13, 15, 17, 16, 14, 13, 18])
 print(result.interpretation_ar)
 print(result.p_value)
 ```
+
+### تقارير عربية بتنسيق RTL — تطوير 0.2.0
+
+```python
+from khaled_dsml import normality_test, display_test_report, save_test_report
+
+result = normality_test([12, 13, 15, 17, 16, 14, 13, 18])
+display_test_report(result)  # عرض منسق داخل Jupyter أو Google Colab
+save_test_report(result, "report.html")  # تقرير قابل للطباعة دون اتصال
+```
+
+**تنبيه:** هذه الدوال ضمن الفرع التجريبي `feature/rtl-reporting-v0.2.0`، ولم تصل بعد إلى إصدار PyPI المنشور `0.1.0`. تعليمات تجربة الفرع في [التوثيق العربي](docs/RTL_REPORTS_AR.md).
 
 ### كشف مشاكل البيانات
 
@@ -102,7 +114,7 @@ print(grade_quiz(questions, answers))
 
 | الوحدة | أمثلة الدوال |
 |---|---|
-| `statistics` | `normality_test`, `independent_t_test`, `paired_t_test`, `anova_test`, `kruskal_test`, `chi_square_test`, `pearson_test`, `spearman_test`, `levene_test`, `ks_two_sample_test` |
+| `reports` (التطوير 0.2.0) | `render_test_report`, `display_test_report`, `save_test_report` (تقارير عربية RTL) |\n| `statistics` | `normality_test`, `independent_t_test`, `paired_t_test`, `anova_test`, `kruskal_test`, `chi_square_test`, `pearson_test`, `spearman_test`, `levene_test`, `ks_two_sample_test` |
 | `quality` | `quality_report`, `missingness_report`, `iqr_outliers`, `fill_missing_numeric`, `optimize_memory`, `distribution_drift_test` |
 | `ml` | `make_regressor`, `make_classifier`, `cross_validation_summary`, `classification_metrics`, `regression_metrics`, `cluster_data`, `pca_summary` |
 | `bigdata` | `generate_transactions`, `csv_chunk_summary`, `csv_chunk_missing`, `csv_chunk_monthly`, `map_reduce_word_count`, `json_documents_to_table` |
@@ -117,22 +129,16 @@ print(grade_quiz(questions, answers))
 
 **لإنشاء المستودع ونشر الحزمة بأمان عبر GitHub Actions وTrusted Publishing (بدون حفظ مفتاح API)، راجع [دليل النشر العربي](docs/PUBLISH_AR.md).**
 
-## نشر الحزمة على TestPyPI وPyPI باستخدام GitHub Actions
+## الإصدار الرسمي الحالي والتطوير القادم
 
-هذه المكتبة **غير منشورة بعد** على PyPI أو TestPyPI؛ لا تستخدم أمر `pip install khaled-dsml` من PyPI إلى حين نشرها.
-
-1. تابع نتائج الاختبارات والبناء في [GitHub Actions](https://github.com/noble2013/KhaledDSML/actions).
-2. أنشئ حسابًا منفصلًا على [TestPyPI](https://test.pypi.org/account/register/) وبيئة `testpypi` في `Settings → Environments` بمستودع GitHub.
-3. أضف في [TestPyPI Trusted Publishing](https://test.pypi.org/manage/account/publishing/) ناشرًا معلقًا للاسم `khaled-dsml` ومعلومات المستودع `noble2013/KhaledDSML`، وملف `testpypi.yml`، والبيئة `testpypi`.
-4. بعد نجاح البناء، نفذ `Actions → Publish to TestPyPI (manual) → Run workflow`.
-5. بعد نجاح التجربة، أنشئ البيئة `pypi` وناشرًا موثوقًا للاسم نفسه على [PyPI](https://pypi.org/manage/account/publishing/) باستخدام `release.yml` والبيئة `pypi`، ثم انشر GitHub Release يحمل الوسم `v0.1.0`.
-
-يوصى بحماية بيئة `pypi` بمراجعة يدوية. لا تضع كلمات مرور أو رموز API داخل GitHub. اقرأ [دليل النشر العربي](docs/PUBLISH_AR.md) للمزيد.
+- **PyPI الحالي:** [KhaledDSML 0.1.0](https://pypi.org/project/khaled-dsml/0.1.0/) — مستقر للاستخدام.
+- **التطوير 0.2.0:** عرض الاختبارات بالعربية RTL؛ قيد الاختبارات والمراجعة على فرع مستقل.
+- **المنهجية:** لا يُنشر الإصدار 0.2.0 رسميًا قبل نجاح GitHub Actions ومراجعة التغييرات. راجع [دليل النشر](docs/PUBLISH_AR.md).
 
 ## Notes (English)
 
-KhaledDSML is an **educational** Python toolkit; it wraps proven NumPy, pandas, SciPy and scikit-learn primitives rather than reinventing statistical algorithms. Optional statistics are backed by statsmodels. It is not a distributed processing engine: the MapReduce example runs locally; Optional Dask and Spark adapters are included, but need real engines and are not validated on a Spark cluster in version 0.1.0. Do not fit preprocessing on test data. Hypothesis-test interpretations should be checked against sampling design and assumptions. An MIT license covers this original wrapper code, not a claim of authorship over third-party algorithms.
+KhaledDSML is an **educational** Python toolkit; it wraps proven NumPy, pandas, SciPy and scikit-learn primitives rather than reinventing statistical algorithms. Optional statistics are backed by statsmodels. It is not a distributed processing engine: the MapReduce example runs locally; Optional Dask and Spark adapters are included, but need real engines and are not validated on a Spark cluster in the published version 0.1.0. Do not fit preprocessing on test data. Hypothesis-test interpretations should be checked against sampling design and assumptions. An MIT license covers this original wrapper code, not a claim of authorship over third-party algorithms.
 
 ## حقوق الاستخدام
 
-الترخيص MIT. الاسم المقترح للنشر هو `khaled-dsml` (يلزم التحقق من توفره عند رفع الحزمة). كل الإضافات يمكن مراجعتها عبر اختبارات `pytest` قبل النشر. حقوق المنهجيات والخوارزميات الأساسية محفوظة لمؤلفيها ومشروعاتها الأصلية.
+الترخيص MIT. اسم التوزيع المنشور على PyPI هو `khaled-dsml`. كل الإضافات يمكن مراجعتها عبر اختبارات `pytest` قبل النشر. حقوق المنهجيات والخوارزميات الأساسية محفوظة لمؤلفيها ومشروعاتها الأصلية.
