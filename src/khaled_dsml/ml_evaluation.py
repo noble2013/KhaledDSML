@@ -193,6 +193,7 @@ def render_classification_report(metrics: Mapping, *, title="تقرير تقيي
             f"<tr><th scope=\"row\">{escape(label)}</th>"
             f"<td dir=\"ltr\">{escape(shown)}</td></tr>"
         )
+    interpretation = interpret_classification_metrics(metrics)
     heading = escape(str(title))
     body = "\n".join(rows)
     return (
@@ -212,6 +213,9 @@ def render_classification_report(metrics: Mapping, *, title="تقرير تقيي
         "<p>الأرقام محسوبة على بيانات التقييم؛ لا تثبت السببية أو صلاحية النموذج "
         "خارج هذه العينة. يجب تحديد الفئة الموجبة ومراجعة اختلال توازن الفئات.</p>\n"
         f"<table><tbody>{body}</tbody></table>\n"
+        f'<h2>التفسير بالعربية</h2><p>{escape(interpretation["ar"])}</p>'
+        f'<h2>English interpretation</h2>'
+        f'<p dir="ltr" lang="en" style="text-align:left">{escape(interpretation["en"])}</p>'
         "<p>ROC-AUC يقيس قدرة ترتيب الحالات، ولا يقيس معايرة الاحتمالات. "
         "Average Precision يختلف عن المساحة الهندسية تحت منحنى Precision-Recall.</p>"
         "\n</section>\n</body></html>\n"
