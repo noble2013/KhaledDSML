@@ -23,6 +23,8 @@ def test_basic_rtl_html_report():
     output = render_test_report(sample_result())
     assert '<html lang="ar" dir="rtl">' in output
     assert '<meta charset="utf-8">' in output
+    assert '<div class="khaled-dsml-report" dir="rtl" lang="ar">' in output
+    assert '.khaled-dsml-report h1{' in output
     assert "Shapiro-Wilk" in output
     assert "p = 0.0100" in output
     assert "رفض الفرضية الصفرية" in output
