@@ -176,7 +176,7 @@ def missingness_association_screen(data, *, alpha=.05):
     probs=frame["raw_p_value"].to_numpy()
     ix=np.argsort(probs)
     corrected=np.maximum.accumulate(
-        np.minimum(1,probs[ix]*(len(probs)-np.arange(len(probs)))
+        np.minimum(1,probs[ix]*(len(probs)-np.arange(len(probs))))
     )
     adjusted=np.empty_like(corrected)
     adjusted[ix]=corrected
