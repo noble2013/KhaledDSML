@@ -41,7 +41,7 @@ def test_recent_colab_notebooks_are_complete_and_use_active_source(file_name):
             assert not cell["outputs"]
     remote_refs=re.findall(
         r'git\+https://github\.com/noble2013/KhaledDSML\.git@([^"\s]+)',
-        text,
+        "\n".join("".join(c["source"]) for c in notebook["cells"]),
     )
     if remote_refs:
         assert set(remote_refs)=={"main"}, f"Invalid source install refs: {remote_refs}"
