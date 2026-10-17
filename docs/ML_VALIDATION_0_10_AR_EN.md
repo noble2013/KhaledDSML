@@ -63,7 +63,7 @@ For importance, partition the data first, fit the estimator on the training subs
 
 - **Five new callable candidates:** IDs #167, #177, #179, #187 and #193.
 - **One shared method scope** (#178): Y-randomization via the label-permutation predictive-score test. This is not evidence of every form of Y-randomization.
-- **Seven existing APIs recovered from stale tracker metadata:** #26 and #200 (`ljung_box_test`), #98 (`breusch_pagan_test`), #125 (`cronbach_alpha`), #196 (`adf_test`), #207 (`regression_cusum_test`, specifically **regression residual** CUSUM), and #227 (`adjust_pvalues`, not a full experimental sequential correction protocol).
+- **Seven legacy implementations/API references reconciled:** #26 and #200 (`ljung_box_test`), #98 (`breusch_pagan_test`), #125 (`cronbach_alpha`), #196 (`adf_test`), #207 (`regression_cusum_test`, specifically **regression residual** CUSUM), and #227 (`adjust_pvalues`, not a full experimental sequential correction protocol). For #26/#200/#98/#125/#196 the existing functions in `econometrics.py` were newly exported at package root, without importing statsmodels eagerly.
 - **209 / 256** catalogue rows now have candidate public callable evidence, **47** remain unmapped. These are mapping figures, NOT scientifically validated completion counts. Review each composite method and every independent numerical assumption before sign-off.
 
 ## Quality gate | بوابة الجودة
