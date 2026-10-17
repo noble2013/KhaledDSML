@@ -33,7 +33,7 @@ py -3.13 -m venv "$HOME\KhaledDSML-bigdata"
 
 ```python
 %pip install --no-cache-dir --force-reinstall --no-deps "git+https://github.com/noble2013/KhaledDSML.git@feature/rtl-reporting-v0.2.0"
-%pip install "dask[dataframe]" pyspark
+%pip install "dask[dataframe]" pyspark "pandas<3"
 ```
 
 أعد تشغيل جلسة Colab ثم اختبر:
