@@ -37,3 +37,15 @@ from .catalog_tests import (
     bootstrap_mean_ci, permutation_mean_test,
 )
 from .ml_evaluation import interpret_classification_metrics
+
+from .audit import (
+    duplicate_rows_report, missing_pattern_report, column_diagnostics,
+    modified_z_outliers, mahalanobis_outliers, ml_outliers,
+    survey_straightlining, benford_first_digit_test, terminal_digit_test,
+    train_test_overlap, audit_dataset, render_audit_report, save_audit_report,
+)
+from .assumptions_extra import (
+    anderson_darling_normality, lilliefors_normality, runs_test,
+    durbin_watson_statistic, kmo_sampling_adequacy,
+    bartlett_sphericity_test, condition_number_vif,
+)
