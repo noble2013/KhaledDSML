@@ -228,3 +228,12 @@ from .resampling_comparisons import corrected_resampled_t, five_by_two_cv_compar
 from .model_form_and_stability import (
     box_tidwell_logistic_screen, prediction_seed_stability, gap_statistic_kmeans,
 )
+
+# Specialized ordinal, dependent correlations, change monitors and exports
+from .specialized_inference import (
+    williams_steiger_overlapping_correlations, effect_size_r_from_z,
+    conover_iman_posthoc, polychoric_latent_correlation,
+)
+from .changepoints_advanced import pelt_mean_shift, ddm_binary_error_monitor
+from .adwin_advanced import adwin_bounded_mean_monitor
+from .bilingual_exports import save_analysis_xlsx, save_analysis_docx
