@@ -70,6 +70,7 @@ def _parse_result(item) -> tuple[str, str, str, str, dict]:
             "statistic": item.statistic, "p_value": item.p_value,
             "alpha": item.alpha, "n_samples": item.sample_size,
             "reject_null": item.reject_null,
+            "notes": item.notes, "notes_en": item.notes_en,
         }
         label = item.test
     elif isinstance(item, Mapping):
@@ -333,8 +334,8 @@ def render_analysis_dashboard(
     """
     if theme not in _PALETTES:
         raise ValueError(f"theme must be one of {', '.join(_PALETTES)}")
-    if type(font_size) is not int or not 14 <= font_size <= 28:
-        raise ValueError("font_size must be an integer from 14 to 28")
+    if type(font_size) is not int or not 14 <= font_size <= 36:
+        raise ValueError("font_size must be an integer from 14 to 36")
     if not isinstance(title_ar, str) or not isinstance(title_en, str):
         raise TypeError("titles must be strings")
     items = _entries(results)
