@@ -43,6 +43,32 @@ py -3.13 -m venv .venv
 py -m pip install khaled-dsml
 ```
 
+### KhaledDSML 0.6.0 — المقارنات البعدية ومقارنة ROC-AUC (قيد التطوير)
+
+إضافة خمس اختبارات مقارنة بعدية: **Tukey HSD وGames–Howell وDunn وDunnett وNemenyi–Friedman**، مع اختبار **DeLong المترابط** لمقارنة ROC-AUC لنموذجين على الأشخاص أنفسهم، وBootstrap مزدوج بفاصل ثقة.
+
+تظهر النتائج في جداول تفاعلية بالتمرير ضمن **Analytics Studio**، مع تدرجات Aurora/Ocean/Amethyst، ومحاذاة العربية يمينًا والإنجليزية يسارًا، وتصدير HTML ملائم للطباعة.
+
+```python
+from khaled_dsml import (
+    games_howell_comparisons, display_analysis_dashboard
+)
+import numpy as np
+rng=np.random.default_rng(19)
+groups={
+    "الوادي":rng.normal(50,10,30),
+    "بسكرة":rng.normal(56,14,30),
+    "الجزائر":rng.normal(60,11,30),
+}
+display_analysis_dashboard(
+    games_howell_comparisons(groups), theme="aurora"
+)
+```
+
+[دفتر Colab الأكاديمي 09](notebooks/09_posthoc_roc_studio.ipynb) · [دليل 0.6 بالعربية والإنجليزية](docs/POSTHOC_ROC_0_6_AR_EN.md)
+
+الإصدار الرسمي على PyPI **0.5.0**. 0.6.0 غير منشور بعد، ولا يمثل إنهاءً لكل بنود الكتالوج الـ256.
+
 ### KhaledDSML 0.5.0 — استكمال اختبارات البحث العلمي (تطوير)
 
 تم توسيع المكتبة في فرع التطوير باختبارات **Mardia، Box's M، Mauchly، Breusch–Godfrey، Cochran–Armitage، CMH، G-test، TOST**، وفواصل Newcombe، وتحليل القوة، وثبات **Omega/ICC/Krippendorff**، وTrustworthiness وBootstrap للعناقيد، وتحليل النصوص العربية **Zipf وTTR وKeyness**.
