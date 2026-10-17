@@ -43,8 +43,12 @@ def pelt_mean_shift(values, *, penalty, min_segment_size=5, max_observations=300
     # Candidate start s enters at t=s+min_segment_size and can be
     # dropped only after its segment has become valid.
     candidates=[]
+    # Pruning is delayed by min_segment_size: a proposed new segment
+    # beginning at t is not admissible until t+min_segment_size.
+    scheduled_prune={}
     evaluated=0
     for t in range(min_segment_size,n+1):
+        candidates=[c for c in candidates if scheduled_prune.get(c,n+1)>t]
         s=t-min_segment_size
         if np.isfinite(dp[s]):candidates.append(s)
         if not candidates:continue
@@ -55,12 +59,13 @@ def pelt_mean_shift(values, *, penalty, min_segment_size=5, max_observations=300
             evaluated+=1
         best,split=min(costs)
         dp[t]=best;prev[t]=split
-        # PELT pruning requires F(s)+C(s,t) <= F(t) for retaining s;
-        # equality is retained for correctness under ties.
-        candidates=[
-            start for val,start in costs
-            if val-penalty <= best+1e-10*max(1.,abs(best))
-        ]
+        # Under SSE superadditivity, prune s after t becomes an
+        # admissible cut for the NEXT segment (u >= t+min_size).
+        # Pruning immediately would be incorrect with min_size > 1.
+        for val,start in costs:
+            if val-penalty > best+1e-10*max(1.,abs(best)):
+                scheduled_prune[start]=min(scheduled_prune.get(start,n+1),
+                                           t+min_segment_size)
     if not np.isfinite(dp[n]) or prev[n]<0:
         raise ValueError("No permissible segmentation found")
     endpoints=[]
