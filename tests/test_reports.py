@@ -4,12 +4,12 @@ from dataclasses import replace
 import pytest
 
 from khaled_dsml import normality_test
-from khaled_dsml._results import TestResult
+from khaled_dsml._results import TestResult as ResultRecord
 from khaled_dsml.reports import render_test_report, save_test_report
 
 
 def sample_result(p_value=0.01):
-    return TestResult(
+    return ResultRecord(
         test="Shapiro-Wilk", statistic=0.91, p_value=p_value,
         alpha=0.05, reject_null=p_value < 0.05,
         interpretation_ar="نرفض الفرضية الصفرية." if p_value < 0.05
