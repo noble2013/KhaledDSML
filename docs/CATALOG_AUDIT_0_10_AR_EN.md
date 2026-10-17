@@ -41,7 +41,7 @@ A machine-assisted **source-trace of all 256 rows** is preserved in [CATALOG_256
 - **Post-hoc / ROC:** `posthoc_comparisons.py` and `roc_comparison.py` exist since v0.6.0; the tracker must be checked at the level of each test and assumptions.
 - **Mediation / moderation:** `mediation_moderation.py` exists since v0.8.0. Association is not causation and is not automatically SEM.
 - **CFA / SEM:** no dedicated public implementation was found in the v0.9.0 package inventory; treat as a candidate gap rather than as implemented.
-- **Bayesian model comparison:** not evidenced by the currently inventoried public APIs; retain as a candidate gap.
+- **Bayesian model comparison:** no public Beta-binomial comparison in v0.9.0. New development functions `beta_binomial_posterior` and `beta_binomial_group_comparison` now provide prior-conditional binomial tools with independently verified SciPy references; **not full coverage of Bayesian model classes or all Bayesian catalogue sub-items**.
 
 ## Acceptance protocol / بروتوكول اعتماد بند
 
