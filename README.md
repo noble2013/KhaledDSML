@@ -49,7 +49,7 @@ py -m pip install khaled-dsml
 
 تستخدم النتائج واجهة **Analytics Studio** المبتكرة مع محاذاة العربية يمينًا والإنجليزية يسارًا. الإصدار المنشور على PyPI هو **0.4.0**؛ هذه نسخة تطويرية لا تمثل اكتمال البنود الـ256 كلها.
 
-[دليل التطوير 0.5 بالعربية والإنجليزية](docs/METHODS_0_5_AR_EN.md)
+[دليل التطوير 0.5 بالعربية والإنجليزية](docs/METHODS_0_5_AR_EN.md) · [دفتر Colab جاهز باختبارات متعددة ولوحات أنيقة](notebooks/08_advanced_methods.ipynb)
 
 ```python
 from khaled_dsml import (
