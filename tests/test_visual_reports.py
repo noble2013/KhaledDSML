@@ -57,7 +57,8 @@ def test_description_and_ml_metrics_are_understood_without_fake_values():
     assert output.count('class="kdsml-result"') == 2
     assert 'Median' in output
     assert 'ROC-AUC' in output
-    assert 'Coefficient of variation' in output or 'التشتت' in output
+    assert 'العينة الصالحة' in output
+    assert 'valid observations' in output
 
 
 def test_optional_real_series_chart_is_svg_offline_and_no_js():
