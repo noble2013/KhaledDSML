@@ -51,10 +51,25 @@ py -m pip install khaled-dsml
 from khaled_dsml import (
     mann_kendall_trend_test, pettitt_change_point_test,
     forecast_accuracy_report, reproducibility_manifest,
+    display_bilingual_result, display_bilingual_results,
 )
 trend = mann_kendall_trend_test([1, 2, 3, 5, 4, 6, 7, 8, 9, 10, 11, 12])
-print(trend.interpretation_ar)
-print(trend.interpretation_en)
+display_bilingual_result(trend)  # العربية يمين، الإنجليزية يسار، خط واضح
+```
+
+
+**العرض المُعتمد لدفاتر Google Colab وJupyter (تطوير 0.3.0):** بلا إطارات أو عناوين إضافية افتراضيًا، العربية RTL بمحاذاة اليمين، والإنجليزية LTR بمحاذاة اليسار، مع خط غامق كبير. يدعم عرض نتيجة واحدة أو مجموعة نتائج، وحفظ نسخة HTML:
+
+```python
+from khaled_dsml import (
+    display_bilingual_result, display_bilingual_results,
+    save_bilingual_results, pettitt_change_point_test,
+)
+
+change = pettitt_change_point_test([10] * 20 + [30] * 20)
+display_bilingual_result(trend)                 # نتيجة واحدة
+display_bilingual_results([trend, change], font_size=24)  # عدة نتائج
+save_bilingual_results([trend, change], "statistics_ar_en.html")
 ```
 
 تتضمن كذلك Box–Pierce وARCH-LM وMASE والتوثيق بالبصمة SHA-256. التفاصيل في [دليل السلاسل الزمنية وإعادة إنتاج البحث](docs/TIMESERIES_REPRODUCIBILITY_AR_EN.md).
