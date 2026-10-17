@@ -14,8 +14,8 @@ from khaled_dsml.bilingual_display import (
 def test_testresult_arabic_right_english_left():
     test = mann_kendall_trend_test([1, 2, 3, 4, 5, 6, 7, 8, 9, 10])
     html = render_bilingual_result(test)
-    assert 'class="kdsml-ar" dir="rtl" lang="ar"' in html
-    assert 'class="kdsml-en" dir="ltr" lang="en"' in html
+    assert 'class="kdsml-ar" lang="ar" dir="rtl"' in html
+    assert 'class="kdsml-en" lang="en" dir="ltr"' in html
     assert "text-align:right !important" in html
     assert "text-align:left !important" in html
     assert "font-size:23px;font-weight:700" in html
