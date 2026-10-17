@@ -102,7 +102,7 @@ def save_analysis_xlsx(result, path, *, title="KhaledDSML | تقرير التح�
             tab.cell(1,col,_excel_value(name))
         for row in range(len(table)):
             for col in range(len(fields)):
-                tab.cell(row+2,col,_excel_value(table.iat[row,col]))
+                tab.cell(row+2,col+1,_excel_value(table.iat[row,col]))
         tab.freeze_panes="A2"
         tab.auto_filter.ref=f"A1:{tab.cell(1,max(1,len(fields))).column_letter}{len(table)+1}"
         for j in range(1,len(fields)+1):
