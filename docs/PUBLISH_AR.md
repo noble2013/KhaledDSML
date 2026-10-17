@@ -1,9 +1,9 @@
-# نشر KhaledDSML 0.10.0 — دليل عملي
-**حالة الحزمة المصدرية:** إصدار `0.10.0` مستقر من جهة رقم النسخة، لكن **النشر على PyPI لا يحدث لمجرد الدمج**. آخر GitHub Release مؤكد قبل تحديث المصدر هو `v0.9.0`.
+# KhaledDSML 0.10.0 — دليل التثبيت وسجل النشر
+**حالة الإصدار:** نُشر [KhaledDSML 0.10.0 رسميًا على PyPI](https://pypi.org/project/khaled-dsml/0.10.0/) بتاريخ **17 أكتوبر 2026** بعد نجاح [GitHub Actions](https://github.com/noble2013/KhaledDSML/actions/runs/39072405164). الإصدار السابق هو `v0.9.0`.
 
 **[الدليل الكامل للإصدار 0.10.0 والاختبارات والنشر](FINAL_RELEASE_0_10_AR_EN.md)** يحتوي أوامر Windows PowerShell للبناء والتثبيت، وفحص `wheel` و`sdist` في بيئات معزولة، واختبارات Colab 14–23، وضوابط GitHub Trusted Publishing.
 
-تحتاج عملية النشر النهائية إلى نجاح جميع مهام GitHub Actions على **SHA الإصدار المستقر نفسه**، ثم إعداد بيئة GitHub `pypi` وTrusted Publisher، وإنشاء GitHub Release بعلامة `v0.10.0` من commit مُجاز على `main`، دون وضع علامة `prerelease`. عندئذ فقط يفعّل GitHub workflow `release.yml` للنشر الخارجي. لم يُطلب إنشاء GitHub Release في هذه المرحلة.
+**مكتمل:** اجتازت نسخة `main` جميع مهام GitHub Actions على SHA الإصدار المستقر، ثم نُشر GitHub Release `v0.10.0` وشغّل Trusted Publisher مسار `release.yml` بنجاح، وحُملت ملفات wheel وsdist إلى PyPI. تحديث هذا الدليل بعد الإصدار لا يغيّر وصف PyPI المنشور سابقًا.
 
 اختبار `TestPyPI` الحالي مصمم لنسخة **تجريبية** ويتطلب تأكيد `TESTPYPI` من المالك؛ لن يقبل النسخة المستقرة `0.10.0`. لا تتجاوز هذه الحماية عبر إدخال وصف `rc1` صوريًا. يمكن اختبار الملفات بموثوقية محليًا وعلى CI دون نشر خارجي.
 

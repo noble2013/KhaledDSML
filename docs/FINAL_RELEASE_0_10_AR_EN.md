@@ -1,10 +1,13 @@
-# KhaledDSML 0.10.0 — النسخة النهائية جاهزة للفحص قبل النشر
-## Stable source release readiness | جاهزية إصدار المصدر المستقر
+# KhaledDSML 0.10.0 — تم النشر على PyPI | Published stable release
+## Verified stable release | الإصدار المستقر المنشور
+
+> **تحديث حالة النشر — 17 أكتوبر 2026، 22:49 (الجزائر):** نُشر **[KhaledDSML 0.10.0 رسميًا على PyPI](https://pypi.org/project/khaled-dsml/0.10.0/)**، وصدر [GitHub Release v0.10.0](https://github.com/noble2013/KhaledDSML/releases/tag/v0.10.0)، واكتمل [GitHub Actions Publish to PyPI](https://github.com/noble2013/KhaledDSML/actions/runs/39072405164) بنجاح بعد اجتياز اختبارات المصدر والحزم. الفقرات اللاحقة التي تصف ما «يجب فعله قبل النشر» تُقرأ **كسجل خطوات الإصدار المنفَّذة**، لا كتصريح بأن 0.10.0 ما زال غير منشور.
+
 
 **المؤلف:** خالد علي — جامعة الشهيد حمه لخضر، الوادي، الجزائر.
 
-**Source version:** `0.10.0` (stable-versioned source, NOT yet a public PyPI release).
-**Prior confirmed GitHub release:** `v0.9.0`. **No 0.10.0 upload is performed by this file or by merging a pull request.**
+**Source and published version:** `0.10.0` ([PyPI](https://pypi.org/project/khaled-dsml/0.10.0/)).
+**Previous GitHub release:** `v0.9.0`; current [GitHub release `v0.10.0`](https://github.com/noble2013/KhaledDSML/releases/tag/v0.10.0). README changes in GitHub do not retroactively replace metadata on the already published PyPI version.
 
 ### معيار إعلان جاهزية النشر
 

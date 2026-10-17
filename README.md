@@ -4,12 +4,14 @@
 **الجامعة:** جامعة الشهيد حمه لخضر – الوادي، الجزائر (University of El Oued, Algeria)  
 **الكلية:** كلية العلوم الاقتصادية والتجارية وعلوم التسيير (Faculty of Economic, Commercial and Management Sciences)  
 **البريد الإلكتروني المهني:** [ali-khaled@univ-eloued.dz](mailto:ali-khaled@univ-eloued.dz)  
-**الإصدار الرسمي المنشور على PyPI: 0.9.0 (17 أكتوبر 2026)**  
-**نسخة المصدر النهائية: 0.10.0 — جاهزة للتحقق الأخير قبل النشر؛ ليست منشورة على PyPI حتى نجاح إجراء نشر مستقل.**
+**الإصدار الرسمي الأحدث: [KhaledDSML 0.10.0 على PyPI](https://pypi.org/project/khaled-dsml/0.10.0/) — منشور بتاريخ 17 أكتوبر 2026.**  
+**Latest stable release: [v0.10.0 on GitHub](https://github.com/noble2013/KhaledDSML/releases/tag/v0.10.0) · [Verified PyPI publishing workflow](https://github.com/noble2013/KhaledDSML/actions/runs/39072405164)**
+
+[![PyPI version](https://img.shields.io/pypi/v/khaled-dsml)](https://pypi.org/project/khaled-dsml/) [![Python versions](https://img.shields.io/pypi/pyversions/khaled-dsml)](https://pypi.org/project/khaled-dsml/) [![Python tests](https://github.com/noble2013/KhaledDSML/actions/workflows/python-tests.yml/badge.svg)](https://github.com/noble2013/KhaledDSML/actions/workflows/python-tests.yml) [![License](https://img.shields.io/pypi/l/khaled-dsml)](LICENSE)
 
 **ملاحظة للمراجعين:** مصدر الكتالوج يتضمن 256/256 ربطًا برمجيًا مرشحًا، لكن عدد البنود المكتملة علميًا غير مُعتمد آليًا. البندان #85 و#117 مرتبطان ببدائل محدودة لا تعادل اختبار القدرة المرصودة أو Vuong في Poisson/ZIP. لا تساوِ بين تغطية الواجهة والاعتماد العلمي.
 
-**[دليل نشر 0.10.0 النهائي](docs/FINAL_RELEASE_0_10_AR_EN.md)** · **[اختبارات تشغيل Colab الحقيقية](docs/NOTEBOOK_EXECUTION_RC1_AR_EN.md)** · **[نتائج التدقيق المصدرية](docs/CATALOG_AUDIT_0_10_AR_EN.md)** · **[الضوابط الخاصة بالقدرة وفائض الأصفار](docs/ZERO_INFLATION_AND_PRECISION_0_10_AR_EN.md)**
+**[سجل التحقق والنشر للإصدار 0.10.0](docs/FINAL_RELEASE_0_10_AR_EN.md)** · **[اختبارات تشغيل Colab الحقيقية](docs/NOTEBOOK_EXECUTION_RC1_AR_EN.md)** · **[نتائج التدقيق المصدرية](docs/CATALOG_AUDIT_0_10_AR_EN.md)** · **[الضوابط الخاصة بالقدرة وفائض الأصفار](docs/ZERO_INFLATION_AND_PRECISION_0_10_AR_EN.md)**
 
 حزمة Python تعليمية للمقاييس التالية:
 
@@ -27,28 +29,47 @@
 - 24 سؤال اختيار متعدد للتقويم التكويني مع التصحيح والتفسير.
 - دعم Windows وJupyterLab وGoogle Colab بعد تثبيت الاعتمادات.
 
-## التثبيت من المجلد المصدر — Windows PowerShell
+## التثبيت السريع من PyPI | Quick installation
 
-افتح PowerShell من داخل المجلد الذي يحتوي `pyproject.toml`:
+الحزمة **منشورة رسميًا** باسم `khaled-dsml`؛ وهي متاحة لمستخدمي Python 3.10 إلى 3.13. لا تحتاج إلى تنزيل الشيفرة المصدرية أو Git لتثبيتها.
+
+```bash
+python -m pip install "khaled-dsml==0.10.0"
+```
+
+على Windows، يمكنك تثبيتها في بيئة مستقلة وتشغيلها:
 
 ```powershell
 py -3.13 -m venv .venv
 .\.venv\Scripts\python.exe -m pip install --upgrade pip
-.\.venv\Scripts\python.exe -m pip install -e ".[all,dev]"
-.\.venv\Scripts\python.exe -m pytest
+.\.venv\Scripts\python.exe -m pip install "khaled-dsml==0.10.0"
+.\.venv\Scripts\python.exe -c "import khaled_dsml; print(khaled_dsml.__version__)"
 .\.venv\Scripts\khaled-dsml.exe demo --rows 1000
 .\.venv\Scripts\khaled-dsml.exe quiz --course big_data --count 5
 ```
 
-بعض بيئات Windows تستعمل `py` بدل `py -3.13` عند عدم توفر الفرع 3.13.
+النسخة المطبوعة المتوقعة هي `0.10.0`. يمكن استعمال `py` بدل `py -3.13` حسب نسخة Python المثبتة.
 
-*الإصدار الرسمي الحالي على PyPI:*
+لتحليل البيانات الضخمة: `python -m pip install "khaled-dsml[distributed]==0.10.0"` (يتطلب PySpark بيئة Java متوافقة). ولتثبيت أدوات العرض والتصدير والتحليل الاختيارية: `python -m pip install "khaled-dsml[all]==0.10.0"`.
 
-```powershell
-py -m pip install khaled-dsml
+**For developers (editable source install):** from the repository root containing `pyproject.toml`, install `python -m pip install -e ".[all,dev]"` and run `python -m pytest`.
+
+### تجربة سريعة | Quick Python example
+
+```python
+from khaled_dsml import describe_numeric, display_descriptive_report
+
+summary = describe_numeric([10, 12, 12, 14, 18, 20, None])
+print(summary)
+# In Jupyter or Google Colab: Arabic RTL + English LTR output
+display_descriptive_report(summary)
 ```
 
-### KhaledDSML 0.9.0 — البيانات المفقودة والاستكمال المتعدد (منشور)
+يمكن استكشاف وظائف المكتبة الأخرى من [قائمة الأمثلة](notebooks/) و[الشروح العلمية](docs/) أو باستعمال `help(khaled_dsml.describe_numeric)`.
+
+## سجل الإصدارات السابقة | Previous releases
+
+### KhaledDSML 0.9.0 — البيانات المفقودة والاستكمال المتعدد (إصدار سابق)
 
 أربع أدوات أكاديمية إضافية: **Little MCAR** مع تقدير EM، وفحص ارتباط غياب المتغيرات المرصودة وتصحيح Holm، وتعويض متعدد باحتمالات مع عزل بيانات التدريب عن الاختبار، ودمج تقديرات Rubin.
 
@@ -56,7 +77,7 @@ py -m pip install khaled-dsml
 
 [الدليل العلمي للبيانات المفقودة 0.9 بالعربية والإنجليزية](docs/MISSING_DATA_0_9_AR_EN.md) · [دفتر Colab 12 بلوحات إحصائية إبداعية](notebooks/12_missing_data_studio.ipynb).
 
-**0.9.0 منشور رسميًا** على [PyPI](https://pypi.org/project/khaled-dsml/0.9.0/).
+**0.9.0** إصدار سابق متاح في [أرشيف PyPI](https://pypi.org/project/khaled-dsml/0.9.0/)؛ الإصدار الأحدث هو **0.10.0**.
 
 ### KhaledDSML 0.8.0 — الوساطة والتعديل الإحصائي (منشور)
 
@@ -73,10 +94,10 @@ py -m pip install khaled-dsml
 **PySpark مُضافة منذ إصدار 0.2.0** ضمن الإضافة الاختيارية `[spark]`، ولا تتطلب النسخة الأساسية تثبيتها. يوسّع 0.7 استخدام Spark وDask ليشمل: فحص NULL وNaN والسلاسل الفارغة، قياس التكرارات، جداول إحصائية رقمية، تقسيمًا زمنيًا لا يفقد التواريخ المعطوبة، وتدريب نموذج تصنيف لوجستي وتقييم ROC-AUC/PR-AUC موزّعًا عبر Spark ML.
 
 ```powershell
-py -3.13 -m pip install --upgrade "khaled-dsml[distributed]==0.9.0"
+py -3.13 -m pip install --upgrade "khaled-dsml[distributed]==0.10.0"
 ```
 
-وظائف 0.7 متاحة في الإصدار الرسمي 0.9.0. للاطلاع على الواجهات: [دليل PySpark وDask](docs/PYSPARK_DASK_0_7_AR_EN.md) · [دفتر Colab بالتصميم الإبداعي](notebooks/10_pyspark_dask_analytics.ipynb). تبقى العربية RTL يمينًا والإنجليزية LTR يسارًا في تقارير Analytics Studio.
+وظائف 0.7 متاحة أيضًا في الإصدار الرسمي 0.10.0. للاطلاع على الواجهات: [دليل PySpark وDask](docs/PYSPARK_DASK_0_7_AR_EN.md) · [دفتر Colab بالتصميم الإبداعي](notebooks/10_pyspark_dask_analytics.ipynb). تبقى العربية RTL يمينًا والإنجليزية LTR يسارًا في تقارير Analytics Studio.
 
 ### KhaledDSML 0.6.0 — المقارنات البعدية ومقارنة ROC-AUC (منشور)
 
@@ -104,9 +125,9 @@ display_analysis_dashboard(
 
 0.6.0 إصدار منشور سابق، ولا يمثل إنهاءً لكل بنود الكتالوج الـ256.
 
-### KhaledDSML 0.5.0 — استكمال اختبارات البحث العلمي (تطوير)
+### KhaledDSML 0.5.0 — استكمال اختبارات البحث العلمي (إصدار سابق)
 
-تم توسيع المكتبة في فرع التطوير باختبارات **Mardia، Box's M، Mauchly، Breusch–Godfrey، Cochran–Armitage، CMH، G-test، TOST**، وفواصل Newcombe، وتحليل القوة، وثبات **Omega/ICC/Krippendorff**، وTrustworthiness وBootstrap للعناقيد، وتحليل النصوص العربية **Zipf وTTR وKeyness**.
+تضمن هذا الإصدار ثم الإصدارات اللاحقة اختبارات **Mardia، Box's M، Mauchly، Breusch–Godfrey، Cochran–Armitage، CMH، G-test، TOST**، وفواصل Newcombe، وتحليل القوة، وثبات **Omega/ICC/Krippendorff**، وTrustworthiness وBootstrap للعناقيد، وتحليل النصوص العربية **Zipf وTTR وKeyness**.
 
 تستخدم النتائج واجهة **Analytics Studio** المبتكرة مع محاذاة العربية يمينًا والإنجليزية يسارًا. وظائف 0.5.0 منشورة، ولا يعني ذلك اكتمال البنود الـ256.
 
@@ -143,7 +164,7 @@ display_analysis_dashboard(interval, theme="amethyst")
 
 الوثائق العلمية للأسماء والفرضيات وشروط الاستخدام: [Academic Suite 0.4 AR/EN](docs/ACADEMIC_SUITE_0_4_AR_EN.md). لا ادعاء بإتمام كل كتالوج 256 بندًا قبل تغطيته المرجعية والتحقق الكامل.
 
-### Analytics Studio — واجهة تحليل إحصائي إبداعية (تطوير 0.3.0)
+### Analytics Studio — واجهة تحليل إحصائي إبداعية (بدأت في 0.3.0)
 
 الواجهة الجديدة **افتراضيًا** تعرض رأسًا متدرجًا، وبطاقات مؤشرات محسوبة فعليًا، وقرار الاختبار عند توافره، وتفسيرًا عربيًا من اليمين وإنجليزيًا من اليسار. تدعم الرسم SVG دون إنترنت، وثلاثة ألوان: `aurora` و`ocean` و`amethyst`. يمكن العودة إلى الشكل النصي القديم بـ `style="plain"`.
 
@@ -166,9 +187,9 @@ save_analysis_dashboard(result, "report_ar_en.html", chart_data=data)
 
 **[دفتر Colab جاهز بتصميم مبهر](notebooks/06_analytics_studio.ipynb)** · **[دليل الاستخدام بالعربية والإنجليزية](docs/ANALYTICS_STUDIO_AR_EN.md)**. أصبحت هذه الوظائف ضمن الإصدارات المنشورة بدءًا من `0.3.0`.
 
-### التطوير 0.3.0: السلاسل الزمنية وقابلية إعادة البحث
+### منذ الإصدار 0.3.0: السلاسل الزمنية وقابلية إعادة البحث
 
-الإضافات التالية **موجودة في فرع التطوير فقط** `feature/v0.3-timeseries-reproducibility`، ولم تُنشر بعد على PyPI:
+الإضافات التالية أصبحت **متاحة في الإصدار الرسمي 0.10.0**، بعدما ظهرت لأول مرة في مرحلة تطوير 0.3.0:
 
 ```python
 from khaled_dsml import (
@@ -355,29 +376,29 @@ print(grade_quiz(questions, answers))
 
 **لإنشاء المستودع ونشر الحزمة بأمان عبر GitHub Actions وTrusted Publishing (بدون حفظ مفتاح API)، راجع [دليل النشر العربي](docs/PUBLISH_AR.md).**
 
-## الإصدار الرسمي الحالي والتطوير القادم
+## الإصدار الرسمي الحالي | Current public release
 
-- **الإصدار المنشور:** [KhaledDSML 0.9.0 على PyPI](https://pypi.org/project/khaled-dsml/0.9.0/).
-- **تحضير الإصدار المستقر 0.10.0:** اختبارات Python 3.10–3.13، وDask/PySpark الحقيقي، وتنفيذ دفاتر Colab 14–23 وملفات Office، وفحص تثبيت كل من wheel وsdist في بيئتين منفصلتين. النشر الفعلي إلى PyPI يبقى إجراء مستقلاً؛ [دليل إصدار 0.10.0](docs/FINAL_RELEASE_0_10_AR_EN.md).
+- **الإصدار المنشور:** [KhaledDSML 0.10.0 على PyPI](https://pypi.org/project/khaled-dsml/0.10.0/) · [GitHub Release v0.10.0](https://github.com/noble2013/KhaledDSML/releases/tag/v0.10.0) · [نجاح النشر عبر Trusted Publishing](https://github.com/noble2013/KhaledDSML/actions/runs/39072405164).
+- **التحقق قبل النشر:** نجاح اختبارات Python 3.10–3.13 (596 اختبارًا ناجحًا و16 متجاوزًا على 3.13)، وDask/PySpark الحقيقي، وتنفيذ دفاتر Colab 14–23 وتوليد ملفات Office، وبناء وتثبيت wheel وsdist في بيئتين نظيفتين منفصلتين. [سجل اعتماد الإصدار](docs/FINAL_RELEASE_0_10_AR_EN.md).
 - **التدقيق:** [مراجعة كتالوج 256 بندًا](docs/CATALOG_AUDIT_0_10_AR_EN.md). لا يعني عدد اختبارات pytest اكتمال الكتالوج.
 - **وظائف تجريبية:** Henze–Zirkler بمعايرة Monte Carlo، وتحليل حساسية MNAR بعوامل delta افتراضية؛ انظر [الدليل العلمي](docs/RESEARCH_METHODS_0_10_AR_EN.md). [دفتر Colab 13](notebooks/13_multivariate_mnar_studio.ipynb).
-- **مراقبة البيانات والتحليل البعدي (فرع التطوير):** PSI وJensen–Shannon وWasserstein مع KS، ومتوسط/تباين Welford المتدفق، وSRM، وعدم التجانس Q/I² وDerSimonian–Laird وEgger، جميعها بتفسيرات ثنائية اللغة وتحفظات علمية. [الدليل](docs/MONITORING_META_0_10_AR_EN.md) · [دفتر Colab 15](notebooks/15_monitoring_meta_studio.ipynb).
-- **التحقق من النزاهة البحثية (تطوير 0.10):** اختبار McNemar المزدوج، MAPE الصارم، GRIM لاتساق المتوسطات، إعادة حساب قيم p لاختبار t، عقود جودة DataFrame، وإنذارات Page–Hinkley. نتائج Analytics Studio ثنائية اللغة مع تنبيهات منهجية واضحة. [الدليل](docs/RESEARCH_INTEGRITY_0_10_AR_EN.md) · [دفتر Colab 16](notebooks/16_research_integrity_studio.ipynb). الفحص الحسابي ليس اتهامًا بمخالفة بحثية.\n- **التحقق العلمي لتعلم الآلة (فرع تطوير 0.10):** Nested CV باختيار المعلمات داخل التدريب، واختبار permutation الملصقات بقيمة p مشروطة، وأهمية السمات على مجموعة اختبار مستقلة، ومنحنيات تعلّم، وخط أساس Dummy. تقارير Analytics Studio عربية RTL وإنجليزية LTR. [الدليل](docs/ML_VALIDATION_0_10_AR_EN.md) · [دفتر Colab 17](notebooks/17_ml_validation_studio.ipynb). البيانات الزمنية والمجموعات المترابطة تحتاج مخطط تحقق مختلفًا.
-- **النماذج الخطية العامة (فرع تطوير 0.10):** ANCOVA مع اختبار تجانس الميل، وMANOVA بإحصاءات Wilks/Pillai/Hotelling/Roy، وANOVA للقياسات المتكررة مع تنبيه فرضية الكروية وعدم تطبيق التصحيحات. التقارير بالعربية RTL والإنجليزية LTR. [الدليل](docs/GENERAL_LINEAR_MODELS_0_10_AR_EN.md) · [Colab 18](notebooks/18_general_linear_models_studio.ipynb).
-- **دفعة الإكمال الموحدة (فرع تطوير 0.10):** 21 دالة عامة للتجارب المتتابعة SPRT وCUPED، وWald/LR/Score للانحدار المتداخل، ونسب التحديد الزائفة، والفحوص المتقاطعة المصححة 5×2cv، وHopkins/Gap/Leave-One-Out وثبات البذرة، وتمثيل العيّنة، وHyperLogLog وMinHash/LSH. جميعها محددة القيود وبمخرجات عربية RTL وإنجليزية LTR. [الدليل المتكامل](docs/FINAL_SCIENTIFIC_GAPFILL_0_10_AR_EN.md) · [Colab 19](notebooks/19_final_research_studio.ipynb). **237 بندًا مرشحًا / 19 غير مربوط؛ لا يعني الاعتماد العلمي لكل بند.**
-- **المناهج المتخصصة ومخرجات Office (فرع 0.10):** ارتباط Polychoric الكامن، اختبار Williams–Steiger لارتباطات العينة نفسها، مقارنات Conover–Iman (بلا تساوٍ في الرتب)، PELT الدقيق لتغير المتوسط، DDM وإنذار ADWIN-style بتحفظات صريحة، وحفظ ملفات **DOCX وXLSX فعلية** مع العربية RTL والإنجليزية LTR. [الدليل](docs/SPECIALIZED_INFERENCE_MONITORING_EXPORTS_0_10_AR_EN.md) · [Colab 20](notebooks/20_specialized_inference_and_exports.ipynb). **245 ربطًا مرشحًا / 11 بلا ربط، وليس 245 اعتمادًا علميًا.**
-- **اختبارات متخصصة جديدة في 0.10:** Phillips–Perron عبر `arch`، وفحص GRIMMER لحساب المتوسط والانحراف المعياري لعينة من قيم صحيحة باستخدام DP دقيق، وفحص نصف منحنى قيم p الدالة مع التحفظ العلمي أنه **ليس p-curve كاملًا**. تقارير Analytics Studio بالعربية RTL والإنجليزية LTR. [الدليل](docs/UNITROOT_GRIMMER_PCURVE_0_10_AR_EN.md) · [Colab 21](notebooks/21_pp_grimmer_pcurve_studio.ipynb). مطابقة **248/256** دالة مرشحة ولا تعني اكتمالًا علميًا.
-- **دفعة SEM/SHAP/t-digest وBayes/Sprite (فرع 0.10):** مؤشرات CFI/TLI/RMSEA/SRMR من نماذج مقدرة مسبقًا، مقارنة تكافؤ القياس داخل ML التقليدي، ثبات ترتيب SHAP المحسوب سلفًا، الكميات المئوية التقريبية t-digest، Bayes factor دقيق للفئات، وتركيب بيانات صحيحة اصطناعية ممكنة مستوحى من SPRITE. [الدليل العلمي](docs/SEM_SHAP_TDIGEST_0_10_AR_EN.md) · [Colab 22](notebooks/22_sem_shap_tdigest_bayes.ipynb). **254/256** خريطة أسماء دوال فقط؛ يُترك Post-hoc observed power وVuong Poisson-vs-ZIP دون ادعاءات استدلالية مضللة.
-- **إغلاق مرشحات كتالوج 256 بندًا (فرع تطوير 0.10):** فحص van den Broek لفائض الأصفار تحت Poisson مع قيمة z واتجاه الفرض، وVuong **للنماذج غير المتداخلة فعلًا فقط** (ويمنع Poisson مقابل ZIP)، وتحليل دقة ما بعد الدراسة وسيناريوهات آثار **مستقلة مفترضة** بدل «القدرة المرصودة» المشتقة من p. [الدليل العلمي](docs/ZERO_INFLATION_AND_PRECISION_0_10_AR_EN.md) · [Colab 23](notebooks/23_zero_inflation_vuong_precision.ipynb). **256/256 بندًا مربوطة بمرشحات API**؛ البندان #85 و#117 بدائل/نطاقات محدودة **وليست اكتمالًا علميًا للمنهجين الأصليين**.
+- **مراقبة البيانات والتحليل البعدي (0.10.0):** PSI وJensen–Shannon وWasserstein مع KS، ومتوسط/تباين Welford المتدفق، وSRM، وعدم التجانس Q/I² وDerSimonian–Laird وEgger، جميعها بتفسيرات ثنائية اللغة وتحفظات علمية. [الدليل](docs/MONITORING_META_0_10_AR_EN.md) · [دفتر Colab 15](notebooks/15_monitoring_meta_studio.ipynb).
+- **التحقق من النزاهة البحثية (0.10.0):** اختبار McNemar المزدوج، MAPE الصارم، GRIM لاتساق المتوسطات، إعادة حساب قيم p لاختبار t، عقود جودة DataFrame، وإنذارات Page–Hinkley. نتائج Analytics Studio ثنائية اللغة مع تنبيهات منهجية واضحة. [الدليل](docs/RESEARCH_INTEGRITY_0_10_AR_EN.md) · [دفتر Colab 16](notebooks/16_research_integrity_studio.ipynb). الفحص الحسابي ليس اتهامًا بمخالفة بحثية.\n- **التحقق العلمي لتعلم الآلة (0.10.0):** Nested CV باختيار المعلمات داخل التدريب، واختبار permutation الملصقات بقيمة p مشروطة، وأهمية السمات على مجموعة اختبار مستقلة، ومنحنيات تعلّم، وخط أساس Dummy. تقارير Analytics Studio عربية RTL وإنجليزية LTR. [الدليل](docs/ML_VALIDATION_0_10_AR_EN.md) · [دفتر Colab 17](notebooks/17_ml_validation_studio.ipynb). البيانات الزمنية والمجموعات المترابطة تحتاج مخطط تحقق مختلفًا.
+- **النماذج الخطية العامة (0.10.0):** ANCOVA مع اختبار تجانس الميل، وMANOVA بإحصاءات Wilks/Pillai/Hotelling/Roy، وANOVA للقياسات المتكررة مع تنبيه فرضية الكروية وعدم تطبيق التصحيحات. التقارير بالعربية RTL والإنجليزية LTR. [الدليل](docs/GENERAL_LINEAR_MODELS_0_10_AR_EN.md) · [Colab 18](notebooks/18_general_linear_models_studio.ipynb).
+- **دفعة الإكمال الموحدة (0.10.0):** 21 دالة عامة للتجارب المتتابعة SPRT وCUPED، وWald/LR/Score للانحدار المتداخل، ونسب التحديد الزائفة، والفحوص المتقاطعة المصححة 5×2cv، وHopkins/Gap/Leave-One-Out وثبات البذرة، وتمثيل العيّنة، وHyperLogLog وMinHash/LSH. جميعها محددة القيود وبمخرجات عربية RTL وإنجليزية LTR. [الدليل المتكامل](docs/FINAL_SCIENTIFIC_GAPFILL_0_10_AR_EN.md) · [Colab 19](notebooks/19_final_research_studio.ipynb). **كانت 237 بندًا مرشحًا في مرحلة سابقة، قبل بلوغ 256/256 من وصلات الواجهات؛ لا يعني الاعتماد العلمي لكل بند.**
+- **المناهج المتخصصة ومخرجات Office (0.10.0):** ارتباط Polychoric الكامن، اختبار Williams–Steiger لارتباطات العينة نفسها، مقارنات Conover–Iman (بلا تساوٍ في الرتب)، PELT الدقيق لتغير المتوسط، DDM وإنذار ADWIN-style بتحفظات صريحة، وحفظ ملفات **DOCX وXLSX فعلية** مع العربية RTL والإنجليزية LTR. [الدليل](docs/SPECIALIZED_INFERENCE_MONITORING_EXPORTS_0_10_AR_EN.md) · [Colab 20](notebooks/20_specialized_inference_and_exports.ipynb). **مرحلة تاريخية من التدقيق (245/256)، تلتها تغطية 256/256 مرشحات؛ ليست اعتمادًا علميًا.**
+- **اختبارات متخصصة جديدة في 0.10:** Phillips–Perron عبر `arch`، وفحص GRIMMER لحساب المتوسط والانحراف المعياري لعينة من قيم صحيحة باستخدام DP دقيق، وفحص نصف منحنى قيم p الدالة مع التحفظ العلمي أنه **ليس p-curve كاملًا**. تقارير Analytics Studio بالعربية RTL والإنجليزية LTR. [الدليل](docs/UNITROOT_GRIMMER_PCURVE_0_10_AR_EN.md) · [Colab 21](notebooks/21_pp_grimmer_pcurve_studio.ipynb). مطابقة **248/256** دالة مرشحة كانت نتيجة مرحلة تاريخية قبل بلوغ 256/256 من روابط API، ولا تعني اكتمالًا علميًا.
+- **دفعة SEM/SHAP/t-digest وBayes/Sprite (0.10.0):** مؤشرات CFI/TLI/RMSEA/SRMR من نماذج مقدرة مسبقًا، مقارنة تكافؤ القياس داخل ML التقليدي، ثبات ترتيب SHAP المحسوب سلفًا، الكميات المئوية التقريبية t-digest، Bayes factor دقيق للفئات، وتركيب بيانات صحيحة اصطناعية ممكنة مستوحى من SPRITE. [الدليل العلمي](docs/SEM_SHAP_TDIGEST_0_10_AR_EN.md) · [Colab 22](notebooks/22_sem_shap_tdigest_bayes.ipynb). **كانت 254/256 خريطة أسماء في مرحلة سابقة؛ أصبحت 256/256 مرشحات API مع بدائل محدودة للبندين 85 و117، دون ادعاءات استدلالية مضللة.**
+- **إغلاق مرشحات كتالوج 256 بندًا (0.10.0):** فحص van den Broek لفائض الأصفار تحت Poisson مع قيمة z واتجاه الفرض، وVuong **للنماذج غير المتداخلة فعلًا فقط** (ويمنع Poisson مقابل ZIP)، وتحليل دقة ما بعد الدراسة وسيناريوهات آثار **مستقلة مفترضة** بدل «القدرة المرصودة» المشتقة من p. [الدليل العلمي](docs/ZERO_INFLATION_AND_PRECISION_0_10_AR_EN.md) · [Colab 23](notebooks/23_zero_inflation_vuong_precision.ipynb). **256/256 بندًا مربوطة بمرشحات API**؛ البندان #85 و#117 بدائل/نطاقات محدودة **وليست اكتمالًا علميًا للمنهجين الأصليين**.
 - **التحليل البايزي التجريبي:** `beta_binomial_posterior` و`beta_binomial_group_comparison` للتقدير البعدي وفحص الفروض البايزية، مع `BF10` محسوب فعليًا؛ [الدليل](docs/BAYESIAN_BINOMIAL_0_10_AR_EN.md) · [Colab 14](notebooks/14_bayesian_binomial_studio.ipynb).
 
 ```powershell
-py -3.13 -m pip install --upgrade "khaled-dsml[econometrics,distributed]==0.9.0"
+py -3.13 -m pip install --upgrade "khaled-dsml[econometrics,distributed]==0.10.0"
 ```
 
 ## Notes (English)
 
-KhaledDSML is an **educational** Python toolkit; it wraps proven NumPy, pandas, SciPy and scikit-learn primitives rather than reinventing statistical algorithms. Optional statistics are backed by statsmodels. It is not a distributed processing engine: the MapReduce example runs locally; Optional Dask and Spark adapters are included, and require compatible engines; real local Spark and Dask integration tests were executed for the published v0.9.0. Do not fit preprocessing on test data. Hypothesis-test interpretations should be checked against sampling design and assumptions. An MIT license covers this original wrapper code, not a claim of authorship over third-party algorithms.
+KhaledDSML is an **educational** Python toolkit; it wraps proven NumPy, pandas, SciPy and scikit-learn primitives rather than reinventing statistical algorithms. Optional statistics are backed by statsmodels. It is not a distributed processing engine: the MapReduce example runs locally; Optional Dask and Spark adapters are included, and require compatible engines; real local Spark and Dask integration tests passed for published v0.10.0. Do not fit preprocessing on test data. Hypothesis-test interpretations should be checked against sampling design and assumptions. An MIT license covers this original wrapper code, not a claim of authorship over third-party algorithms.
 
 ## حقوق الاستخدام
 
